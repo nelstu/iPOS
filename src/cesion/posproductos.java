@@ -191,10 +191,11 @@ public class posproductos extends javax.swing.JFrame {
         // TODO add your handling code here:
      if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
          String Buscar= jTextField1.getText();
-        cargarDriver();
-        String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2";
-        String username = "nelstu";
-        String password = "armijo183ISLA";
+         cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -250,9 +251,10 @@ public class posproductos extends javax.swing.JFrame {
 
 String Buscar= jTextField1.getText();
         cargarDriver();
-        String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2";
-        String username = "nelstu";
-        String password = "armijo183ISLA";
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;

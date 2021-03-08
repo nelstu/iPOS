@@ -5,48 +5,25 @@
  */
 package cesion;
 import com.itextpdf.text.BaseColor; 
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document; 
 import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize; 
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase; 
-import com.itextpdf.text.pdf.Barcode;
-import com.itextpdf.text.pdf.BarcodeEAN; 
-import com.itextpdf.text.pdf.PdfContentByte; 
-import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
-import com.itextpdf.*;
-import com.itextpdf.text.Paragraph;
 import java.io.*; 
 
-import java.util.Calendar;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.KeyEvent;
-import java.io.*;
 import static java.lang.Integer.parseInt;
 import java.sql.PreparedStatement;
-import java.util.*;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.print.PrintException;
@@ -616,10 +593,11 @@ DefaultTableModel modelodet;
        
        
         String Buscar= jTextField7.getText();
-        cargarDriver();
-        String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2"; 
-        String username ="nelstu"; 
-        String password = "armijo183ISLA"; 
+      cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
@@ -652,10 +630,11 @@ DefaultTableModel modelodet;
        
         DefaultTableModel modelodet = (DefaultTableModel)jTable1.getModel();
         String Buscar= jTextField1.getText();
-        cargarDriver();
-          String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2"; 
-        String username ="nelstu"; 
-        String password = "armijo183ISLA"; 
+     cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
@@ -694,10 +673,11 @@ DefaultTableModel modelodet;
        
        
         String Buscar= jTextField2.getText();
-        cargarDriver();
-          String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2"; 
-        String username ="nelstu"; 
-        String password = "armijo183ISLA"; 
+       cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
@@ -903,10 +883,11 @@ void imprimirpdf(){
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        cargarDriver();
-          String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2"; 
-        String username ="nelstu"; 
-        String password = "armijo183ISLA"; 
+     cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
@@ -1059,10 +1040,11 @@ void imprimirpdf(){
         jLabel16.setText(sqlDate.toString());
         
         //consultar Boletas Emitidas
-        cargarDriver();
-        String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2";
-        String username = "nelstu";
-        String password = "armijo183ISLA";
+      cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -1108,10 +1090,11 @@ void imprimirpdf(){
         java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
         java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
         String fe=sqlDate.toString();
-        cargarDriver();
-        String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2";
-        String username = "nelstu";
-        String password = "armijo183ISLA";
+     cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -1182,11 +1165,13 @@ void imprimirpdf(){
         // TODO add your handling code here:
         empresa objeto10=new empresa();
         objeto10.setVisible(true);
+     
         
          cargarDriver();
-        String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2";
-        String username = "nelstu";
-        String password = "armijo183ISLA";
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -1194,6 +1179,7 @@ void imprimirpdf(){
         // JOptionPane.showMessageDialog(null, query);
        String montoinicial="";
         try {
+            
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
             //getting PreparedStatment to execute query 
@@ -1238,9 +1224,12 @@ void imprimirpdf(){
     }//GEN-LAST:event_jButton12ActionPerformed
 
     public static void imprimirtickets(String bol) throws PrintException, IOException{
-          String url = "jdbc:mysql://45.7.230.72:3306/ferreteria2?useSSL=false";
-        String user = "nelstu";
-        String password = "armijo183ISLA";
+        
+         Conexion cn=new Conexion();
+        
+          String url = "jdbc:mysql://"+cn.ip+":3306/"+cn.base+"?useSSL=false";
+        String user = cn.usuario;
+        String password = cn.pass;
         System.out.println("Buscando Boletas a Imprimir...");
         String query = "SELECT numero_bol,total,fecha,forma,neto,iva FROM boletas WHERE numero_bol="+bol;
         String pr="POS-58";

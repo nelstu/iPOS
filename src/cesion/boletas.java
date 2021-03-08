@@ -43,9 +43,10 @@ public void llenar1(){
        
         String Buscar= sqlDate.toString();
         cargarDriver();
-          String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2"; 
-        String username ="nelstu"; 
-        String password = "armijo183ISLA"; 
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
