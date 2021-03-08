@@ -62,13 +62,13 @@ public class productos extends javax.swing.JFrame {
        
         String Buscar= jTextField6.getText();
         cargarDriver();
-        String dbURL = "jdbc:mysql://localhost:3306/ferreteria2"; 
-        String username ="root"; 
-        String password = "NSloteria2015"; 
+         String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2"; 
+        String username ="nelstu"; 
+        String password = "armijo183ISLA"; 
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
-        String query ="select id,codigo,producto,venta from productos where producto like '%"+Buscar+"%'"; 
+        String query ="select id,codigo,producto,venta2 from productos where producto like '%"+Buscar+"%'"; 
          // JOptionPane.showMessageDialog(null, query);
           try {
               //getting database connection to MySQL server 
@@ -98,13 +98,13 @@ public class productos extends javax.swing.JFrame {
     
     public void llenar(){
         cargarDriver();
-        String dbURL = "jdbc:mysql://localhost:3306/ferreteria2"; 
-        String username ="root"; 
-        String password = "NSloteria2015"; 
+          String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2"; 
+        String username ="nelstu"; 
+        String password = "armijo183ISLA"; 
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
-        String query ="select id,codigo,producto,venta from productos"; 
+        String query ="select id,codigo,producto,venta2 from productos"; 
           try {
               //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password); 
