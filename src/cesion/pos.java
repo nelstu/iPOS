@@ -165,6 +165,7 @@ DefaultTableModel modelodet;
         Familias = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
 
         setTitle("Punto de Venta");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -407,6 +408,13 @@ DefaultTableModel modelodet;
             }
         });
 
+        jButton12.setText("Datos Empresa");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -450,7 +458,9 @@ DefaultTableModel modelodet;
                         .addGap(28, 28, 28)
                         .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton11)))
+                        .addComponent(jButton11)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton12)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -574,8 +584,9 @@ DefaultTableModel modelodet;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                             .addComponent(Familias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
@@ -1167,6 +1178,65 @@ void imprimirpdf(){
 
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        empresa objeto10=new empresa();
+        objeto10.setVisible(true);
+        
+         cargarDriver();
+        String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2";
+        String username = "nelstu";
+        String password = "armijo183ISLA";
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select id,rut,nombre,giro,acteco,direccion,comuna,ciudad,rut_replegal,nombre_replegal,fechares,res from empresa where id=1 ";
+        // JOptionPane.showMessageDialog(null, query);
+       String montoinicial="";
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                 String rut=rs.getString("rut");
+                 String nombre=rs.getString("nombre");
+                 String direccion=rs.getString("direccion");
+                 String comuna=rs.getString("comuna");
+                 String ciudad=rs.getString("ciudad");
+                  String giro=rs.getString("giro");
+                  String fechares=rs.getString("fechares");
+                  String res=rs.getString("res");
+                    String acteco=rs.getString("acteco");
+                    String rut_replegal=rs.getString("rut_replegal");
+                    String nombre_replegal=rs.getString("nombre_replegal");
+                 objeto10.jTextField1.setText("1");
+                 objeto10.jTextField2.setText(rut);
+                 objeto10.jTextField3.setText(nombre);
+                 objeto10.jTextField4.setText(direccion);
+                 objeto10.jTextField5.setText(comuna);
+                 objeto10.jTextField6.setText(ciudad);
+                 objeto10.jTextField7.setText(giro);
+                  objeto10.jTextField8.setText(fechares);
+                   objeto10.jTextField9.setText(res);
+                    objeto10.jTextField10.setText(acteco);
+                    objeto10.jTextField11.setText(rut_replegal);
+                    objeto10.jTextField12.setText(nombre_replegal);
+                    
+
+            }
+          
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+        
+        
+
+    }//GEN-LAST:event_jButton12ActionPerformed
+
     public static void imprimirtickets(String bol) throws PrintException, IOException{
           String url = "jdbc:mysql://45.7.230.72:3306/ferreteria2?useSSL=false";
         String user = "nelstu";
@@ -1332,6 +1402,7 @@ void imprimirpdf(){
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
