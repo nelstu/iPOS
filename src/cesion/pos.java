@@ -143,6 +143,7 @@ DefaultTableModel modelodet;
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
 
         setTitle("Punto de Venta");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -392,6 +393,13 @@ DefaultTableModel modelodet;
             }
         });
 
+        jButton13.setText("Configuracion");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -437,7 +445,9 @@ DefaultTableModel modelodet;
                         .addGap(28, 28, 28)
                         .addComponent(jButton11)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton12)))
+                        .addComponent(jButton12)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton13)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -563,7 +573,8 @@ DefaultTableModel modelodet;
                             .addComponent(Familias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
@@ -1223,6 +1234,47 @@ void imprimirpdf(){
 
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+          configura objeto12=new configura();
+        objeto12.setVisible(true);
+        
+          cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select id,impresoratermica from configuracion where id=1 ";
+        // JOptionPane.showMessageDialog(null, query);
+       String montoinicial="";
+        try {
+            
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                 String id=rs.getString("id");
+                 String impresoratermica=rs.getString("impresoratermica");
+           
+                 objeto12.jTextField1.setText(impresoratermica);
+        
+                    
+
+            }
+          
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        } 
+        
+    }//GEN-LAST:event_jButton13ActionPerformed
+
     public static void imprimirtickets(String bol) throws PrintException, IOException{
         
          Conexion cn=new Conexion();
@@ -1231,6 +1283,40 @@ void imprimirpdf(){
         String user = cn.usuario;
         String password = cn.pass;
         System.out.println("Buscando Boletas a Imprimir...");
+        
+        //datos empresa
+          String query0 = "SELECT rut,nombre,direccion,comuna,ciudad,giro,fantasia FROM empresa WHERE id=1";
+                String  rut="";
+                String  nombre="";
+                String  direccion="";
+                String  comuna="";
+                String  ciudad="";
+                 String  giro="";
+                 String  fantasia="";
+       try (Connection con = DriverManager.getConnection(url, user, password);
+                PreparedStatement pst = con.prepareStatement(query0);
+                ResultSet rs0 = pst.executeQuery()) {
+
+            while (rs0.next()) {
+                rut=rs0.getString("rut");
+                nombre=rs0.getString("nombre");
+                direccion=rs0.getString("direccion");
+                comuna=rs0.getString("comuna");
+                ciudad=rs0.getString("ciudad");
+                giro=rs0.getString("giro");
+                fantasia=rs0.getString("fantasia");
+                
+                
+                
+                
+                  }
+             } catch (SQLException ex2) {
+                 System.out.println(ex2.getMessage()); 
+         
+        }
+        //fin datos empresa
+        
+        
         String query = "SELECT numero_bol,total,fecha,forma,neto,iva FROM boletas WHERE numero_bol="+bol;
         String pr="POS-58";
        //  String pr="PDF Printer";
@@ -1260,13 +1346,13 @@ void imprimirpdf(){
 		System.out.println(printerService.getPrinters());
 			
 		//print some stuff
-                printerService.printString(pr, "El WASON BB"+"\n");
+                printerService.printString(pr, fantasia +"\n");
                 printerService.printString(pr, "Boleta Electronica Numero:"+numero +"\n");
-                printerService.printString(pr, "Dennis Joel Hidalgo Jofre \n");
-		printerService.printString(pr, "13693753-7 \n");
-                printerService.printString(pr, "Minimercado de bebidas Alcoholicas \n");
-                printerService.printString(pr, "INTD Fontana 166 \n");
-                printerService.printString(pr, "Linares \n");
+                printerService.printString(pr, nombre +" \n");
+		printerService.printString(pr, rut +" \n");
+                printerService.printString(pr, giro +" \n");
+                printerService.printString(pr, direccion +" \n");
+                printerService.printString(pr, comuna +" \n");
                 printerService.printString(pr, "Fecha:"+fecha+" \n");
                 
                 printerService.printString(pr, "Codigo Producto  Total \n");
@@ -1392,6 +1478,7 @@ void imprimirpdf(){
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

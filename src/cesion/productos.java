@@ -61,10 +61,11 @@ public class productos extends javax.swing.JFrame {
        
        
         String Buscar= jTextField6.getText();
-        cargarDriver();
-         String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2"; 
-        String username ="nelstu"; 
-        String password = "armijo183ISLA"; 
+         cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
@@ -94,13 +95,54 @@ public class productos extends javax.swing.JFrame {
         }
 
     }
+    
+    
+        public void llenar2(){
+       
+       
+        String Buscar= jTextField5.getText();
+         cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null; 
+        Statement stmt = null; 
+        ResultSet rs = null; 
+        String query ="select id,codigo,producto,venta2,barra from productos where codigo like '%"+Buscar+"%'  or barra like '%"+Buscar+"%'  "; 
+         // JOptionPane.showMessageDialog(null, query);
+          try {
+              //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password); 
+           //getting PreparedStatment to execute query 
+           stmt = dbCon.prepareStatement(query); 
+          //Resultset returned by query 
+           rs = stmt.executeQuery(query);  
+           while(rs.next()){ 
+              
+              Object []object = new Object[4];
+        object[0] = rs.getString(1);
+        object[1] = rs.getString(2); 
+        object[2] = rs.getString(3); 
+        object[3] = rs.getString(4); 
+  System.out.println("Si" );
+        
+        modelo.addRow(object);
+          } 
+         
+        } catch(SQLException ex){
+          System.out.println("Nop" ); 
+        }
+
+    }
 
     
     public void llenar(){
-        cargarDriver();
-          String dbURL = "jdbc:mysql://45.7.230.72:3306/ferreteria2"; 
-        String username ="nelstu"; 
-        String password = "armijo183ISLA"; 
+         cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
@@ -183,6 +225,7 @@ public class productos extends javax.swing.JFrame {
         jLabel1.setText("id");
 
         jTextField1.setText("jTextField1");
+        jTextField1.setEnabled(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -218,6 +261,11 @@ public class productos extends javax.swing.JFrame {
         jTextField6.setText("jTextField6");
 
         jButton2.setText("..");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("..");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -262,66 +310,69 @@ public class productos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(77, 77, 77)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton2)
-                        .addGap(485, 485, 485)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(67, 67, 67)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(90, 90, 90)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel5)
+                                .addGap(77, 77, 77)
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2)
+                                .addGap(404, 404, 404)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(65, 65, 65)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel6)
+                                .addGap(67, 67, 67)
+                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(jButton3))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(55, 55, 55)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(64, 64, 64)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(81, 81, 81)
-                                .addComponent(jButton1))))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(90, 90, 90)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(65, 65, 65)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(64, 64, 64)
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(81, 81, 81)
+                                        .addComponent(jButton1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(55, 55, 55)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2)
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel7)))
-                .addGap(18, 18, 18)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
@@ -360,7 +411,8 @@ public class productos extends javax.swing.JFrame {
                         .addGap(205, 205, 205)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)))))
+                            .addComponent(jButton1))))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
@@ -389,7 +441,74 @@ public class productos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-limpiar();
+//limpiar();
+
+String Buscar= jTextField2.getText();
+        cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select codigo,barra,producto,nombrecorto,un,familia,venta2,boleta,solicitaprecio from productos where  barra = '" + Buscar + "'";
+        // JOptionPane.showMessageDialog(null, query);
+        String existe="N";
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+          
+            while (rs.next()) {
+             existe="S";
+                  }
+            
+            if (existe.equals("S")){
+                 try {
+                         dbCon = DriverManager.getConnection(dbURL, username, password); 
+                         Statement comando=dbCon.createStatement();
+                         String codigo= jTextField2.getText();
+                         String barra= jTextField2.getText();
+                         String producto= jTextField3.getText();
+                         String nombrecorto= jTextField3.getText();
+                        // String un= jTextField4.getText();
+                        // String familia= jTextField5.getText();
+                         String venta2= jTextField4.getText();
+                         comando.executeUpdate("UPDATE productos set venta2="+venta2+" WHERE barra='"+barra+"'");
+                         JOptionPane.showMessageDialog(null, "Producto Actualizado");
+                        } catch(SQLException ex){
+                           setTitle(ex.toString());
+                        }
+            }
+            if (existe.equals("N")){
+                       try {
+                         dbCon = DriverManager.getConnection(dbURL, username, password); 
+                         Statement comando=dbCon.createStatement();
+                         String codigo= jTextField2.getText();
+                         String barra= jTextField2.getText();
+                         String producto= jTextField3.getText();
+                         String nombrecorto= jTextField3.getText();
+                        // String un= jTextField4.getText();
+                        // String familia= jTextField5.getText();
+                         String venta2= jTextField4.getText();
+                         comando.executeUpdate("insert into productos(codigo,barra,producto,nombrecorto,venta2) values ('"+codigo+"','"+barra+"','"+producto+"','"+nombrecorto+"',"+venta2+")");
+                         JOptionPane.showMessageDialog(null, "Producto Nuevo Creado");
+                        } catch(SQLException ex){
+                           setTitle(ex.toString());
+                        }
+                   }
+          limpiar();
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+            
+
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -415,6 +534,15 @@ limpiar();
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+ limpiarjtable();
+        // TODO add your handling code here:
+  llenar2();
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
