@@ -60,12 +60,23 @@ public class posproductos extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
 
         setTitle("Crear o Consultar Productos");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel1.setText("Codigo");
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
             }
         });
 
@@ -188,8 +199,7 @@ public class posproductos extends javax.swing.JFrame {
         // TODO add your handling code here:
      if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
          
-         cargarcombo();
-         cargarcombo2();
+       
          String Buscar= jTextField1.getText();
          cargarDriver();
          Conexion cn=new Conexion();
@@ -220,8 +230,8 @@ public class posproductos extends javax.swing.JFrame {
                  String solicitaprecio=rs.getString("solicitaprecio");
                  this.jTextField2.setText(producto);
                  this.jTextField3.setText(nombrecorto);
-                 this.jComboBox1.setSelectedItem("un");
-                 this.jComboBox2.setSelectedItem("familia");
+                 this.jComboBox1.setSelectedItem(rs.getString("un"));
+                  this.jComboBox2.setSelectedItem(rs.getString("familia"));
                
                  this.jTextField6.setText(venta2);
                  if (boleta.equals("S")){
@@ -248,8 +258,8 @@ public class posproductos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyPressed
 
     
-    private void cargarcombo(){
-        this.jComboBox1.removeAllItems();
+    private void cargarcombofamilias(){
+        this.jComboBox2.removeAllItems();
         cargarDriver();
          Conexion cn=new Conexion();
         String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
@@ -271,7 +281,7 @@ public class posproductos extends javax.swing.JFrame {
            
             while (rs.next()) {
                  String familias=rs.getString("familias");
-              this.jComboBox1.addItem(familias);
+              this.jComboBox2.addItem(familias);
         }
           
         } catch (SQLException ex) {
@@ -279,8 +289,8 @@ public class posproductos extends javax.swing.JFrame {
         }
     }
     
-        private void cargarcombo2(){
-        this.jComboBox2.removeAllItems();
+        private void cargarcombounidades(){
+        this.jComboBox1.removeAllItems();
         cargarDriver();
          Conexion cn=new Conexion();
         String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
@@ -302,7 +312,7 @@ public class posproductos extends javax.swing.JFrame {
            
             while (rs.next()) {
                  String familias=rs.getString("unidades");
-              this.jComboBox2.addItem(familias);
+              this.jComboBox1.addItem(familias);
         }
           
         } catch (SQLException ex) {
@@ -349,7 +359,15 @@ String Buscar= jTextField1.getText();
                          String un= this.jComboBox1.getSelectedItem().toString();
                          String familia= this.jComboBox2.getSelectedItem().toString();
                          String venta2= jTextField6.getText();
-                         comando.executeUpdate("UPDATE productos set venta2="+venta2+",un='"+un+"',familia='"+familia+" WHERE barra='"+barra+"'");
+                         String boleta="N";
+                         if (jCheckBox1.isSelected()){
+                             boleta="S";
+                         }
+                          String solicitaprecio="N";
+                         if (jCheckBox2.isSelected()){
+                             solicitaprecio="S";
+                         }
+                         comando.executeUpdate("UPDATE productos set venta2="+venta2+",un='"+un+"',familia='"+familia+"',boleta='"+boleta+"',solicitaprecio='"+solicitaprecio+"' WHERE barra='"+barra+"'");
                          JOptionPane.showMessageDialog(null, "Producto Actualizado");
                         } catch(SQLException ex){
                            setTitle(ex.toString());
@@ -366,7 +384,15 @@ String Buscar= jTextField1.getText();
                           String un= this.jComboBox1.getSelectedItem().toString();
                          String familia= this.jComboBox2.getSelectedItem().toString();
                          String venta2= jTextField6.getText();
-                         comando.executeUpdate("insert into productos(codigo,barra,producto,nombrecorto,un,familia,venta2) values ('"+codigo+"','"+barra+"','"+producto+"','"+nombrecorto+"','"+un+"','"+familia+"',"+venta2+")");
+                          String boleta="N";
+                          if (jCheckBox1.isSelected()){
+                             boleta="S";
+                         }
+                          String solicitaprecio="N";
+                         if (jCheckBox2.isSelected()){
+                             solicitaprecio="S";
+                         }
+                         comando.executeUpdate("insert into productos(codigo,barra,producto,nombrecorto,un,familia,venta2,boleta,solicitaprecio) values ('"+codigo+"','"+barra+"','"+producto+"','"+nombrecorto+"','"+un+"','"+familia+"',"+venta2+","+boleta+","+solicitaprecio+")");
                          JOptionPane.showMessageDialog(null, "Producto Nuevo Creado");
                         } catch(SQLException ex){
                            setTitle(ex.toString());
@@ -382,6 +408,22 @@ String Buscar= jTextField1.getText();
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+
+  cargarcombounidades();
+         cargarcombofamilias();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

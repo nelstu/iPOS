@@ -649,7 +649,7 @@ DefaultTableModel modelodet;
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
-        String query ="select id,barra,producto,venta2 from productos where barra = '"+Buscar+"'"; 
+        String query ="select id,barra,producto,venta2,boleta,solicitaprecio from productos where barra = '"+Buscar+"'"; 
          // JOptionPane.showMessageDialog(null, query);
           try {
               //getting database connection to MySQL server 
@@ -658,17 +658,46 @@ DefaultTableModel modelodet;
            stmt = dbCon.prepareStatement(query); 
           //Resultset returned by query 
            rs = stmt.executeQuery(query);  
+           String agregar="S";
            while(rs.next()){ 
+               String solicitaprecio=rs.getString(6);
+               
+          
               
               Object []object = new Object[6];
               object[0] = rs.getString(2);
               object[1] = rs.getString(3); 
               object[2] = ""; 
               object[3] = "1"; 
-              object[4] = rs.getString(4); 
+              if (solicitaprecio.equals("S")){
+                    String result = (String)JOptionPane.showInputDialog(
+               this,
+               "Ingrese $ Precio", 
+               "Solicitud",            
+               JOptionPane.PLAIN_MESSAGE,
+               null,            
+               null, 
+               "0"
+            );
+                    
+                if(result != null && result.length() > 0){
+              
+            }else {
+                 JOptionPane.showMessageDialog(null, "Debe Seleccionar Precio");
+                 agregar="N";
+            }     
+                    
+                    
+               object[4] =result; 
+               object[5] = result; 
+               }else{
+               object[4] = rs.getString(4); 
               object[5] = rs.getString(4); 
+                   }
               System.out.println("Si" );
+              if (agregar.equals("S")){
               modelodet.addRow(object);
+              }
         
           } 
          sumardet();
@@ -891,6 +920,10 @@ void imprimirpdf(){
         sumardet();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+
+    
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
@@ -1092,6 +1125,10 @@ void imprimirpdf(){
 
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    
+    
+    
+    
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         cerrarcaja objeto4=new cerrarcaja();
