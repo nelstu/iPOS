@@ -58,6 +58,8 @@ public class posproductos extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
 
         setTitle("Crear o Consultar Productos");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -102,10 +104,19 @@ public class posproductos extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("Mayorista");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox1)
+                .addGap(52, 52, 52)
+                .addComponent(jCheckBox2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
+                .addComponent(jButton1))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,12 +125,10 @@ public class posproductos extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -129,15 +138,12 @@ public class posproductos extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jCheckBox1)
-                .addGap(52, 52, 52)
-                .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(29, 29, 29))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,17 +172,20 @@ public class posproductos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCheckBox1)
                             .addComponent(jCheckBox2))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(47, 47, 47))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -189,7 +198,7 @@ public class posproductos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 54, Short.MAX_VALUE))
         );
 
         pack();
@@ -209,7 +218,7 @@ public class posproductos extends javax.swing.JFrame {
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select codigo,barra,producto,nombrecorto,un,familia,venta2,boleta,solicitaprecio from productos where  barra = '" + Buscar + "'";
+        String query = "select codigo,barra,producto,nombrecorto,un,familia,venta2,boleta,solicitaprecio,mayorista from productos where  barra = '" + Buscar + "'";
         // JOptionPane.showMessageDialog(null, query);
        String montoinicial="";
         try {
@@ -228,8 +237,10 @@ public class posproductos extends javax.swing.JFrame {
                  String venta2=rs.getString("venta2");
                  String boleta=rs.getString("boleta");
                  String solicitaprecio=rs.getString("solicitaprecio");
+                 String mayorista=rs.getString("mayorista");
                  this.jTextField2.setText(producto);
                  this.jTextField3.setText(nombrecorto);
+                 this.jTextField4.setText(mayorista);
                  this.jComboBox1.setSelectedItem(rs.getString("un"));
                   this.jComboBox2.setSelectedItem(rs.getString("familia"));
                
@@ -333,7 +344,7 @@ String Buscar= jTextField1.getText();
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select codigo,barra,producto,nombrecorto,un,familia,venta2,boleta,solicitaprecio from productos where  barra = '" + Buscar + "'";
+        String query = "select codigo,barra,producto,nombrecorto,un,familia,venta2,boleta,solicitaprecio,mayorista from productos where  barra = '" + Buscar + "'";
         // JOptionPane.showMessageDialog(null, query);
         String existe="N";
         try {
@@ -359,6 +370,7 @@ String Buscar= jTextField1.getText();
                          String un= this.jComboBox1.getSelectedItem().toString();
                          String familia= this.jComboBox2.getSelectedItem().toString();
                          String venta2= jTextField6.getText();
+                         String mayorista= jTextField4.getText();
                          String boleta="N";
                          if (jCheckBox1.isSelected()){
                              boleta="S";
@@ -367,7 +379,7 @@ String Buscar= jTextField1.getText();
                          if (jCheckBox2.isSelected()){
                              solicitaprecio="S";
                          }
-                         comando.executeUpdate("UPDATE productos set venta2="+venta2+",un='"+un+"',familia='"+familia+"',boleta='"+boleta+"',solicitaprecio='"+solicitaprecio+"' WHERE barra='"+barra+"'");
+                         comando.executeUpdate("UPDATE productos set nombrecorto='"+nombrecorto+"',producto='"+producto+"',mayorista="+mayorista+",venta2="+venta2+",un='"+un+"',familia='"+familia+"',boleta='"+boleta+"',solicitaprecio='"+solicitaprecio+"' WHERE barra='"+barra+"'");
                          JOptionPane.showMessageDialog(null, "Producto Actualizado");
                         } catch(SQLException ex){
                            setTitle(ex.toString());
@@ -383,6 +395,7 @@ String Buscar= jTextField1.getText();
                          String nombrecorto= jTextField3.getText();
                           String un= this.jComboBox1.getSelectedItem().toString();
                          String familia= this.jComboBox2.getSelectedItem().toString();
+                         String mayorista= jTextField4.getText();
                          String venta2= jTextField6.getText();
                           String boleta="N";
                           if (jCheckBox1.isSelected()){
@@ -392,7 +405,7 @@ String Buscar= jTextField1.getText();
                          if (jCheckBox2.isSelected()){
                              solicitaprecio="S";
                          }
-                         comando.executeUpdate("insert into productos(codigo,barra,producto,nombrecorto,un,familia,venta2,boleta,solicitaprecio) values ('"+codigo+"','"+barra+"','"+producto+"','"+nombrecorto+"','"+un+"','"+familia+"',"+venta2+","+boleta+","+solicitaprecio+")");
+                         comando.executeUpdate("insert into productos(mayorista,codigo,barra,producto,nombrecorto,un,familia,venta2,boleta,solicitaprecio) values ("+mayorista+",'"+codigo+"','"+barra+"','"+producto+"','"+nombrecorto+"','"+un+"','"+familia+"',"+venta2+",'"+boleta+"','"+solicitaprecio+"')");
                          JOptionPane.showMessageDialog(null, "Producto Nuevo Creado");
                         } catch(SQLException ex){
                            setTitle(ex.toString());
@@ -472,10 +485,12 @@ String Buscar= jTextField1.getText();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

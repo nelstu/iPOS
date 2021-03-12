@@ -139,8 +139,16 @@ public class configura extends javax.swing.JFrame {
                          dbCon = DriverManager.getConnection(dbURL, username, password); 
                          Statement comando=dbCon.createStatement();
                          String impresoratermica= jTextField1.getText();
+                         String boleta="N";
+                          if (jCheckBox1.isSelected()){
+                             boleta="S";
+                         }
+                          String ticket="N";
+                          if (jCheckBox2.isSelected()){
+                             ticket="S";
+                         }
                      
-                         comando.executeUpdate("UPDATE configuracion set impresoratermica='"+impresoratermica+"' WHERE id=1");
+                         comando.executeUpdate("UPDATE configuracion set impresoratermica='"+impresoratermica+"',boleta='"+boleta+"',ticket='"+ticket+"' WHERE id=1");
                          JOptionPane.showMessageDialog(null, "Configuracion Actualizada");
     
             }
@@ -188,8 +196,8 @@ public class configura extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
+    public static javax.swing.JCheckBox jCheckBox1;
+    public static javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
