@@ -18,13 +18,63 @@ import javax.swing.table.DefaultTableModel;
  * @author dev
  */
 public class familias extends javax.swing.JFrame {
-
+ DefaultTableModel modelo;
     /**
      * Creates new form familias
      */
     public familias() {
         initComponents();
+              setLocationRelativeTo(null);
+         modelo = new DefaultTableModel();
+        jTable1.setModel(modelo);
+        
+        modelo.addColumn("Id");
+        modelo.addColumn("Familia");
+
+   
+    
+        limpiar();
+        llenar();
     }
+     private void limpiarjtable(){
+    modelo.setRowCount(0);
+   }
+      public void llenar(){
+        limpiarjtable();
+        cargarDriver();
+        Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null; 
+        Statement stmt = null; 
+        ResultSet rs = null; 
+        String query ="select id,familias from familias"; 
+          try {
+              //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password); 
+           //getting PreparedStatment to execute query 
+           stmt = dbCon.prepareStatement(query); 
+          //Resultset returned by query 
+           rs = stmt.executeQuery(query);  
+           while(rs.next()){ 
+              
+              Object []object = new Object[2];
+        object[0] = rs.getString(1);
+        object[1] = rs.getString(2); 
+ 
+ // System.out.println("Si" );
+        
+        modelo.addRow(object);
+          } 
+         
+        } catch(SQLException ex){
+          System.out.println("Nop" ); 
+        }
+
+    }
+    
+    
     private void cargarDriver() {
     try {
       Class.forName("com.mysql.jdbc.Driver");
@@ -34,9 +84,11 @@ public class familias extends javax.swing.JFrame {
   }
     
         private void limpiar(){
-        jTextField1.setText("");
-  
-         jLabel3.setText("Nuevo");
+            limpiarjtable();
+            llenar();
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jLabel3.setText("Nuevo");
     }
     
     
@@ -63,6 +115,8 @@ public class familias extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
+        setTitle("Familias");
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -82,6 +136,8 @@ public class familias extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("id");
+
+        jTextField1.setEditable(false);
 
         jLabel2.setText("Familia");
 
@@ -146,7 +202,7 @@ public class familias extends javax.swing.JFrame {
                                 .addComponent(jLabel3)))
                         .addContainerGap(57, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addGap(48, 48, 48))))
@@ -159,7 +215,7 @@ public class familias extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -186,7 +242,9 @@ public class familias extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -205,12 +263,12 @@ String Buscar= jTextField1.getText();
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select id,familias from familias where  id = " + Buscar ;
+      
         // JOptionPane.showMessageDialog(null, query);
         String existe="N";
-    
+        String operacion=this.jLabel3.getText();
             
-            if (existe.equals("S")){
+            if (operacion.equals("Editar")){
                  try {
                          dbCon = DriverManager.getConnection(dbURL, username, password); 
                          Statement comando=dbCon.createStatement();
@@ -223,14 +281,14 @@ String Buscar= jTextField1.getText();
                            setTitle(ex.toString());
                         }
             }
-            if (jLabel3.equals("N")){
+            if (operacion.equals("Nuevo")){
                        try {
                          dbCon = DriverManager.getConnection(dbURL, username, password); 
                          Statement comando=dbCon.createStatement();
                          String familias= jTextField2.getText();
                      
                          comando.executeUpdate("insert into familias(familias) values ('"+familias+"')");
-                         JOptionPane.showMessageDialog(null, "Familias Nuev< Creado");
+                         JOptionPane.showMessageDialog(null, "Familias Nueva Creado");
                         } catch(SQLException ex){
                            setTitle(ex.toString());
                         }

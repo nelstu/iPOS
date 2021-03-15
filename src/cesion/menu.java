@@ -5,6 +5,11 @@
  */
 package cesion;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -40,6 +45,7 @@ public class menu extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("iPOS");
 
         jButton1.setText("Productos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +75,7 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Socios");
+        jButton5.setText("Clientes -  Proveedores");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -83,7 +89,12 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Documentos Vtas");
+        jButton7.setText("Panel DTE");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Familias");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -99,22 +110,22 @@ public class menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
                 .addComponent(jButton8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jButton5)
@@ -157,11 +168,79 @@ public class menu extends javax.swing.JFrame {
           pos objeto2=new pos();
         objeto2.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+   private void cargarDriver() {
+    try {
+      Class.forName("com.mysql.jdbc.Driver");
+    }catch(Exception ex) {
 
+    }
+  }
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-         parametros objeto3=new parametros();
-        objeto3.setVisible(true);
+        // parametros objeto3=new parametros();
+        //objeto3.setVisible(true);
+            // TODO add your handling code here:
+        empresa objeto10=new empresa();
+        objeto10.setVisible(true);
+     
+        
+         cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select id,rut,nombre,giro,acteco,direccion,comuna,ciudad,rut_replegal,nombre_replegal,fechares,res from empresa where id=1 ";
+        // JOptionPane.showMessageDialog(null, query);
+       String montoinicial="";
+        try {
+            
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                 String rut=rs.getString("rut");
+                 String nombre=rs.getString("nombre");
+                 String direccion=rs.getString("direccion");
+                 String comuna=rs.getString("comuna");
+                 String ciudad=rs.getString("ciudad");
+                  String giro=rs.getString("giro");
+                  String fechares=rs.getString("fechares");
+                  String res=rs.getString("res");
+                    String acteco=rs.getString("acteco");
+                    String rut_replegal=rs.getString("rut_replegal");
+                    String nombre_replegal=rs.getString("nombre_replegal");
+                 objeto10.jTextField1.setText("1");
+                 objeto10.jTextField2.setText(rut);
+                 objeto10.jTextField3.setText(nombre);
+                 objeto10.jTextField4.setText(direccion);
+                 objeto10.jTextField5.setText(comuna);
+                 objeto10.jTextField6.setText(ciudad);
+                 objeto10.jTextField7.setText(giro);
+                  objeto10.jTextField8.setText(fechares);
+                   objeto10.jTextField9.setText(res);
+                    objeto10.jTextField10.setText(acteco);
+                    objeto10.jTextField11.setText(rut_replegal);
+                    objeto10.jTextField12.setText(nombre_replegal);
+                    
+
+            }
+          
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -183,6 +262,13 @@ public class menu extends javax.swing.JFrame {
         objeto13.setVisible(true);
 
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+
+        paneldte objeto14=new paneldte();
+        objeto14.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -38,6 +38,7 @@ public class login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ingreso al Sistema");
 
         jLabel1.setText("Login");
 

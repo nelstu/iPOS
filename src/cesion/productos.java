@@ -204,6 +204,8 @@ public class productos extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
 
+        setTitle("Productos");
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -518,14 +520,7 @@ String Buscar= jTextField2.getText();
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-       if (JOptionPane.showConfirmDialog(null, "Desea Salir?", "WARNING",
-        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-    // yes option
-    //this.dispose();
-    this.setVisible(false);
-} else {
-    // no option
-}
+         this.setVisible(false);
         
         
 

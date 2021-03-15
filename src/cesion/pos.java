@@ -145,6 +145,7 @@ DefaultTableModel modelodet;
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
 
         setTitle("Punto de Venta");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -381,6 +382,11 @@ DefaultTableModel modelodet;
 
         Familias.setBackground(new java.awt.Color(255, 255, 153));
         Familias.setText("Familias");
+        Familias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FamiliasActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Cerra Caja");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -407,6 +413,13 @@ DefaultTableModel modelodet;
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
+            }
+        });
+
+        jButton14.setText("Informes");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
             }
         });
 
@@ -457,7 +470,9 @@ DefaultTableModel modelodet;
                         .addGap(28, 28, 28)
                         .addComponent(jButton12)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton13)))
+                        .addComponent(jButton13)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -584,7 +599,8 @@ DefaultTableModel modelodet;
                             .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
@@ -1051,7 +1067,7 @@ void imprimirpdf(){
 		    try {
            dbCon = DriverManager.getConnection(dbURL, username, password); 
           Statement comando=dbCon.createStatement();
-          comando.executeUpdate("insert into detalle_bol(fecha,hora,numero_bol,codigo,descripcion,cant,precio,total) values ('"+sqlDate.toString()+"','"+sqlTime+"',"+String.valueOf(es)+","+codigo+",'"+des+"','"+cant+"','"+pre+"','"+total+"')");
+          comando.executeUpdate("insert into detalle_bol(fecha,hora,numero_bol,codigo,descripcion,cant,precio,total) values ('"+sqlDate.toString()+"','"+sqlTime+"',"+String.valueOf(es)+",'"+codigo+"','"+des+"','"+cant+"','"+pre+"','"+total+"')");
           //JOptionPane.showMessageDialog(null, "Boleta Creada");
         } catch(SQLException ex){
           setTitle(ex.toString());
@@ -1477,6 +1493,21 @@ void imprimirpdf(){
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable2MouseEntered
 
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        Informes objeto20=new Informes();
+        objeto20.setVisible(true);
+
+
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void FamiliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiliasActionPerformed
+        // TODO add your handling code here:
+        familias objeto13=new familias();
+        objeto13.setVisible(true);
+
+    }//GEN-LAST:event_FamiliasActionPerformed
+
     
     
     
@@ -1833,6 +1864,7 @@ void imprimirpdf(){
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

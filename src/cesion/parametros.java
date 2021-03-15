@@ -6,6 +6,13 @@
 
 package cesion;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dev
@@ -99,6 +106,11 @@ public class parametros extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/diskblue.jpg"))); // NOI18N
         jButton1.setText("Grabar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,6 +194,50 @@ public class parametros extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void cargarDriver() {
+    try {
+      Class.forName("com.mysql.jdbc.Driver");
+    }catch(Exception ex) {
+
+    }
+  }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+
+String Buscar= jTextField1.getText();
+        cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+      
+        // JOptionPane.showMessageDialog(null, query);
+   
+            
+        String fechares=this.jTextField8.getText();
+        String res=this.jTextField9.getText();
+                 try {
+                         dbCon = DriverManager.getConnection(dbURL, username, password); 
+                         Statement comando=dbCon.createStatement();
+                     
+                  JOptionPane.showMessageDialog(null, "UPDATE empresa set fechares='"+fechares+"',res='"+res+"' WHERE id=1");
+             
+                         comando.executeUpdate("UPDATE empresa set fechares='"+fechares+"',res='"+res+"' WHERE id=1");
+                         JOptionPane.showMessageDialog(null, "Empresa Actualizada");
+                        } catch(SQLException ex){
+                           setTitle(ex.toString());
+                        }
+     
+  
+       
+     
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
