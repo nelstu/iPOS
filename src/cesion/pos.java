@@ -114,6 +114,7 @@ DefaultTableModel modelodet;
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -252,6 +253,8 @@ DefaultTableModel modelodet;
 
         jCheckBox1.setText("Mayorista");
 
+        jCheckBox2.setText("Ticket");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -264,15 +267,16 @@ DefaultTableModel modelodet;
                     .addComponent(jLabel3))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                    .addComponent(jTextField2)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
-                                .addComponent(jCheckBox1)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCheckBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCheckBox2)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -290,7 +294,8 @@ DefaultTableModel modelodet;
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jCheckBox1)
+                    .addComponent(jCheckBox2))
                 .addContainerGap())
         );
 
@@ -694,35 +699,61 @@ DefaultTableModel modelodet;
               object[0] = rs.getString(2);
               object[1] = rs.getString(3); 
               object[2] = ""; 
-              if (this.jTextField3.getText().equals("1")){
+              
+              if ((!jCheckBox1.isSelected()) && this.jTextField3.getText().equals("1") && solicitaprecio.equals("N")){
                   object[3] = "1"; 
-              }else{
+                  object[4] = rs.getString(4); 
+                  object[5] = rs.getString(4);
+              }
+              if (((!jCheckBox1.isSelected()) && !this.jTextField3.getText().equals("1")) &&  solicitaprecio.equals("N")){
+                
                   object[3] = jTextField3.getText(); 
-                    object[5] = String.valueOf(parseInt(rs.getString(4))*parseInt(jTextField3.getText()));
+                  object[4] = rs.getString(4); 
+                  object[5] = String.valueOf(parseInt(rs.getString(4))*parseInt(jTextField3.getText()));
               }
               
-              if (solicitaprecio.equals("S")){
+              if ((!jCheckBox1.isSelected()) && this.jTextField3.getText().equals("1") &&  solicitaprecio.equals("S")){
                     String result = (String)JOptionPane.showInputDialog(
-               this,
-               "Ingrese $ Precio", 
-               "Solicitud",            
-               JOptionPane.PLAIN_MESSAGE,
-               null,            
-               null, 
-               "0"
-            );
+                    this,
+                    "Ingrese $ Precio", 
+                    "Solicitud",            
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,            
+                    null, 
+                    "0"
+                   );
                     
                 if(result != null && result.length() > 0){
+                   }else {
+                    JOptionPane.showMessageDialog(null, "Debe Seleccionar Precio");
+                    agregar="N";
+                    }     
+                    object[3] = "1"; 
+                    object[4] =result; 
+                    object[5] = result; 
+                    }
               
-            }else {
-                 JOptionPane.showMessageDialog(null, "Debe Seleccionar Precio");
-                 agregar="N";
-            }     
-                    
-                    
-               object[4] =result; 
-               object[5] = result; 
-               }else{
+              
+                //mayorista
+             if ((jCheckBox1.isSelected()) && this.jTextField3.getText().equals("1") && solicitaprecio.equals("N")){
+                  object[3] = "1"; 
+                  object[4] = rs.getString(7); 
+                  object[5] = rs.getString(7);
+              }
+              if (((jCheckBox1.isSelected()) && !this.jTextField3.getText().equals("1")) &&  solicitaprecio.equals("N")){
+                
+                  object[3] = jTextField3.getText(); 
+                  object[4] = rs.getString(7); 
+                  object[5] = String.valueOf(parseInt(rs.getString(7))*parseInt(jTextField3.getText()));
+              }
+                
+                
+              
+              
+              
+              
+              /*
+                 if (!solicitaprecio.equals("S")){
                    if (jCheckBox1.isSelected()){
                          object[4] = rs.getString(7); 
                          object[5] = rs.getString(7); 
@@ -732,6 +763,7 @@ DefaultTableModel modelodet;
                          }
             
                    }
+              */
               System.out.println("Si" );
               if (agregar.equals("S")){
               modelodet.addRow(object);
@@ -739,8 +771,9 @@ DefaultTableModel modelodet;
         
           } 
          sumardet();
+         jCheckBox1.setSelected(false);
         } catch(SQLException ex){
-          System.out.println("Nop" ); 
+          System.out.println(ex.getMessage().toString() ); 
         }
 
     }
@@ -749,7 +782,8 @@ DefaultTableModel modelodet;
     
     public void llenar1(){
        
-       
+          modelo.setRowCount(0);
+   
         String Buscar= jTextField2.getText();
        cargarDriver();
          Conexion cn=new Conexion();
@@ -807,13 +841,14 @@ DefaultTableModel modelodet;
         object[0] =  model.getValueAt(selectedRowIndex, 1).toString();
         object[1] =  model.getValueAt(selectedRowIndex, 2).toString();
         object[2] =   "";
-        object[3] =  "1";
+        object[3] =  jTextField3.getText();
          object[4] =    model.getValueAt(selectedRowIndex, 3).toString();
-          object[5] =    model.getValueAt(selectedRowIndex, 3).toString();
+          object[5] =  String.valueOf(parseInt(model.getValueAt(selectedRowIndex, 3).toString())*parseInt(jTextField3.getText()));      
   System.out.println("Si" );
         
         modelodet.addRow(object);
         jTextField2.setText("");
+         jTextField3.setText("1");
   jTextField1.grabFocus();
   sumardet();
     }//GEN-LAST:event_jTable2MouseClicked
@@ -973,8 +1008,8 @@ void imprimirpdf(){
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
-        cargarDriver();
+        
+            cargarDriver();
         Conexion cn=new Conexion();
         String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
         String username = cn.usuario;
@@ -1001,8 +1036,12 @@ void imprimirpdf(){
           } 
          
         } catch(SQLException ex){
-          System.out.println("Nop" ); 
+          System.out.println(ex.getMessage().toString() ); 
         }
+    
+        
+        
+        if (!jCheckBox2.isSelected()){
     
         //fin buscar numero boleta
         
@@ -1028,7 +1067,7 @@ void imprimirpdf(){
           } 
          
         } catch(SQLException ex){
-          System.out.println("Nop" ); 
+         System.out.println(ex.getMessage().toString() ); 
         }
     
         //fin buscar numero boleta
@@ -1070,7 +1109,7 @@ void imprimirpdf(){
           comando.executeUpdate("insert into detalle_bol(fecha,hora,numero_bol,codigo,descripcion,cant,precio,total) values ('"+sqlDate.toString()+"','"+sqlTime+"',"+String.valueOf(es)+",'"+codigo+"','"+des+"','"+cant+"','"+pre+"','"+total+"')");
           //JOptionPane.showMessageDialog(null, "Boleta Creada");
         } catch(SQLException ex){
-          setTitle(ex.toString());
+         System.out.println(ex.getMessage().toString() ); 
         }
 		// }
 		 // System.out.println();
@@ -1085,7 +1124,7 @@ void imprimirpdf(){
           comando.executeUpdate("update contador set contador="+String.valueOf(es)+" where documento='BOL'");
           JOptionPane.showMessageDialog(null, "Boleta Creada");
         } catch(SQLException ex){
-          setTitle(ex.toString());
+      System.out.println(ex.getMessage().toString() ); 
         }
           //fin actualizar contador
         limpiar();
@@ -1100,8 +1139,9 @@ void imprimirpdf(){
     }
           
         }
-    
-        if (ticket.equals("S")){
+        }
+         if (jCheckBox2.isSelected()){
+        //if (ticket.equals("S")){
                 //buscar numero boleta
       String query1 ="select documento,contador from contador where documento='TIC'"; 
          // JOptionPane.showMessageDialog(null, query);
@@ -1121,7 +1161,7 @@ void imprimirpdf(){
           } 
          
         } catch(SQLException ex){
-          System.out.println("Nop" ); 
+          System.out.println(ex.getMessage().toString() ); 
         }
     
         //fin buscar numero boleta
@@ -1163,7 +1203,7 @@ void imprimirpdf(){
           comando.executeUpdate("insert into detalle_tickets(fecha,hora,numero_bol,codigo,descripcion,cant,precio,total) values ('"+sqlDate.toString()+"','"+sqlTime+"',"+String.valueOf(es)+","+codigo+",'"+des+"','"+cant+"','"+pre+"','"+total+"')");
           //JOptionPane.showMessageDialog(null, "Boleta Creada");
         } catch(SQLException ex){
-          setTitle(ex.toString());
+       System.out.println(ex.getMessage().toString() ); 
         }
 		// }
 		 // System.out.println();
@@ -1191,9 +1231,9 @@ void imprimirpdf(){
     } catch (IOException ex) {
         Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
     }    
-            
-        } 
-        
+        jCheckBox2.setSelected(false);       
+   //     } 
+         }
     
       jTextField1.grabFocus();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1874,6 +1914,7 @@ void imprimirpdf(){
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     public static javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

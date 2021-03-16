@@ -5,6 +5,7 @@
  */
 package cesion;
 
+import static cesion.AbrirCaja.jTextField1;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -165,8 +166,55 @@ public class menu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-          pos objeto2=new pos();
-        objeto2.setVisible(true);
+        
+        //revisar apertura de Caja
+            java.util.Date utilDate = new java.util.Date(); //fecha actual
+        long lnMilisegundos = utilDate.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
+        java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
+       
+        String Buscar= sqlDate.toString();
+        
+             cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select id,caja,fecha,estado from cajas where estado='Abierta' and fecha='"+Buscar+"' ";
+        // JOptionPane.showMessageDialog(null, query);
+       String montoinicial="";
+        String apertura="N";
+        try {
+            
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                 apertura="S";
+               }
+          
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+        
+        //fin revisar apertura de caja
+        if (apertura.equals("S")){
+             pos objeto2=new pos();
+             objeto2.setVisible(true);
+        }else{
+             JOptionPane.showMessageDialog(null, "Debe Abrir Caja");
+              AbrirCaja objeto25=new AbrirCaja();
+             objeto25.setVisible(true);
+             objeto25.jTextField1.setText(Buscar);
+        }
+         
     }//GEN-LAST:event_jButton2ActionPerformed
    private void cargarDriver() {
     try {
