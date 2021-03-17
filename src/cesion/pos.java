@@ -1320,6 +1320,33 @@ void imprimirpdf(){
         } catch (SQLException ex) {
             System.out.println("Nop");
         }
+        
+        //configuracion establecer default
+        
+                String query0 = "select * from configuracion where id=1";
+        // JOptionPane.showMessageDialog(null, query);
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query0);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query0);
+            String def = "B";
+            while (rs.next()) {
+                def="T";
+                      jCheckBox2.setSelected(true);
+
+            }
+           
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+        //fin configuracion establecer default
+        
+        
+        
+        
             jTextField1.grabFocus();
         //fin consultar Boletas Emitidas
     }//GEN-LAST:event_formWindowActivated
