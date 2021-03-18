@@ -1323,7 +1323,7 @@ void imprimirpdf(){
         
         //configuracion establecer default
         
-                String query0 = "select * from configuracion where id=1";
+                String query0 = "select defecto from configuracion where id=1";
         // JOptionPane.showMessageDialog(null, query);
         try {
             //getting database connection to MySQL server 
@@ -1334,9 +1334,14 @@ void imprimirpdf(){
             rs = stmt.executeQuery(query0);
             String def = "B";
             while (rs.next()) {
-                def="T";
-                      jCheckBox2.setSelected(true);
+                def=rs.getString(1);
+                   
 
+            }
+            if (def.equals("T")){
+                   jCheckBox2.setSelected(true);
+            }else{
+                   jCheckBox2.setSelected(false);
             }
            
         } catch (SQLException ex) {
@@ -1562,10 +1567,18 @@ void imprimirpdf(){
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
+
+  java.util.Date utilDate = new java.util.Date(); //fecha actual
+        long lnMilisegundos = utilDate.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
+        java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
+       // jLabel16.setText(sqlDate.toString());
+        
+        
         Informes objeto20=new Informes();
         objeto20.setVisible(true);
-
-
+        objeto20.jTextField1.setText(sqlDate.toString());
+        objeto20.jTextField2.setText(sqlDate.toString());
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void FamiliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiliasActionPerformed

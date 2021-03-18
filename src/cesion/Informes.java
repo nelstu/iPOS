@@ -157,7 +157,7 @@ cargarDriver();
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
-        String query ="select id,numero_bol,total,fecha,neto,iva from boletas"; 
+        String query ="select id,numero_bol,total,fecha,neto,iva from boletas WHERE fecha>='"+jTextField1.getText()+"' AND fecha<='"+jTextField2.getText()+"'"; 
           try {
               //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password); 
@@ -250,7 +250,7 @@ System.out.println("Error al escribir el fichero.");
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    public static javax.swing.JTextField jTextField1;
+    public static javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
