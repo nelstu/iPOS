@@ -5,43 +5,44 @@
  */
 package cesion;
 
+import static cesion.Informes.jTextField1;
+import static cesion.Informes.jTextField2;
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import jxl.Sheet;
 import jxl.Workbook;
-import jxl.read.biff.BiffException;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
- 
-
 
 /**
  *
- * @author nelstu
+ * @author dev
  */
-public class Informes extends javax.swing.JFrame {
+public class Informes1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Informes
+     * Creates new form Informes1
      */
-    public Informes() {
+    public Informes1() {
         initComponents();
         setLocationRelativeTo(null);
     }
 
+            private void cargarDriver() {
+    try {
+      Class.forName("com.mysql.jdbc.Driver");
+    }catch(Exception ex) {
+
+    }
+  }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,7 +63,11 @@ public class Informes extends javax.swing.JFrame {
 
         jLabel2.setText("Hasta");
 
-        jButton1.setText("Informe de Ventas");
+        jTextField1.setText("jTextField1");
+
+        jTextField2.setText("jTextField2");
+
+        jButton1.setText("Informe");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -74,33 +79,33 @@ public class Informes extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(86, 86, 86)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(61, 61, 61)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))))
-                .addContainerGap(200, Short.MAX_VALUE))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(31, 31, 31)
                 .addComponent(jButton1)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -108,34 +113,29 @@ public class Informes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-        private void cargarDriver() {
-    try {
-      Class.forName("com.mysql.jdbc.Driver");
-    }catch(Exception ex) {
-
-    }
-  }
-    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
-
+        String Desde=jTextField1.getText();
+        String Hasta=jTextField2.getText();
+     
 try
 {
     
-    File f = new File("informeporboleta.xls"); // Creamos un objeto file
+    File f = new File("informeporboletatotal.xls"); // Creamos un objeto file
     System.out.println(f.getAbsolutePath());  
 //Se crea el libro Excel
 WritableWorkbook workbook =Workbook.createWorkbook(f);
@@ -145,10 +145,10 @@ WritableSheet sheet =workbook.createSheet("Informe", 0);
 
 //Creamos celdas de varios tipos
 //sheet.addCell(new jxl.write.Number(0, 0, "Numero"));
-sheet.addCell(new jxl.write.Label(0, 0, "Numero"));
-sheet.addCell(new jxl.write.Label(1, 0, "Fecha"));
-sheet.addCell(new jxl.write.Label(2, 0, "Neto"));
-sheet.addCell(new jxl.write.Label(3, 0, "Iva"));
+sheet.addCell(new jxl.write.Label(0, 0, "Fecha"));
+sheet.addCell(new jxl.write.Label(1, 0, "Desde"));
+sheet.addCell(new jxl.write.Label(2, 0, "Hasta"));
+sheet.addCell(new jxl.write.Label(3, 0, "#Boletas"));
 sheet.addCell(new jxl.write.Label(4, 0, "Total"));
 //sheet.addCell(new jxl.write.Boolean(3,0,true));
 //buscar ventas
@@ -160,7 +160,7 @@ cargarDriver();
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
-        String query ="select id,numero_bol,total,fecha,neto,iva from boletas WHERE fecha>='"+jTextField1.getText()+"' AND fecha<='"+jTextField2.getText()+"' order by numero_bol ASC"; 
+        String query ="select fecha,desde,hasta,ventadia,cantboletas from cajas WHERE fecha>='"+jTextField1.getText()+"' AND fecha<='"+jTextField2.getText()+"' order by fecha ASC"; 
           try {
               //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password); 
@@ -171,18 +171,22 @@ cargarDriver();
            int j=1;
            int jtot=0;
            while(rs.next()){ 
-              sheet.addCell(new jxl.write.Label(0, j, rs.getString(2)));
-              sheet.addCell(new jxl.write.Label(1, j, rs.getString(4)));
-              sheet.addCell(new jxl.write.Number(2, j, rs.getInt(5)));
-              sheet.addCell(new jxl.write.Number(3, j, rs.getInt(6)));
-              sheet.addCell(new jxl.write.Number(4, j, rs.getInt(3)));
-              jtot=jtot+rs.getInt(3);
+              sheet.addCell(new jxl.write.Label(0, j, rs.getString(1)));
+              sheet.addCell(new jxl.write.Label(1, j, rs.getString(2)));
+              sheet.addCell(new jxl.write.Label(2, j, rs.getString(3)));
+              
+              sheet.addCell(new jxl.write.Number(3, j, rs.getInt(5)));
+              sheet.addCell(new jxl.write.Number(4, j, rs.getInt(4)));
+              //sheet.addCell(new jxl.write.Number(2, j, rs.getInt(5)));
+              //sheet.addCell(new jxl.write.Number(3, j, rs.getInt(6)));
+              //sheet.addCell(new jxl.write.Number(4, j, rs.getInt(3)));
+              //jtot=jtot+rs.getInt(3);
               j++;
               } 
-              sheet.addCell(new jxl.write.Label(3, j, "Total"));
-              sheet.addCell(new jxl.write.Number(4, j, jtot));
+              //sheet.addCell(new jxl.write.Label(3, j, "Total"));
+              //sheet.addCell(new jxl.write.Number(4, j, jtot));
         } catch(SQLException ex){
-          System.out.println("Nop" ); 
+          System.out.println(ex.getMessage().toString() ); 
         }
 //fin buscar ventas
 
@@ -205,7 +209,7 @@ System.out.println("Error al escribir el fichero.");
 }
 
   try {
-                Desktop.getDesktop().open(new File("informeporboleta.xls"));
+                Desktop.getDesktop().open(new File("informeporboletatotal.xls"));
                 //To check if the solution is open or not, you can wait some time here
                 Thread.sleep(1000);
 
@@ -214,6 +218,8 @@ System.out.println("Error al escribir el fichero.");
       
 
 }  
+
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -233,20 +239,20 @@ System.out.println("Error al escribir el fichero.");
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Informes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informes1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Informes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informes1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Informes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informes1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Informes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informes1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Informes().setVisible(true);
+                new Informes1().setVisible(true);
             }
         });
     }

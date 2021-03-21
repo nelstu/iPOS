@@ -5,6 +5,13 @@
  */
 package cesion;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dev
@@ -131,11 +138,67 @@ public class login extends javax.swing.JFrame {
         jPasswordField1.setText("");
 
     }
+  
+      private void cargarDriver() {
+    try {
+      Class.forName("com.mysql.jdbc.Driver");
+    }catch(Exception ex) {
+
+    }
+  }
+  
+  
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.hide();
-        menu objeto=new menu();
-        objeto.setVisible(true);
+
+          cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        char[] arrayC = this.jPasswordField1.getPassword(); 
+String pass = new String(arrayC); 
+
+        String query = "select usuario,pass from usuarios where usuario='"+this.jTextField1.getText()+"' AND pass='"+pass+"'";
+        // JOptionPane.showMessageDialog(null, query);
+      
+        String existe="N";
+        
+  try {
+            
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                 existe="S";
+            
+           
+    
+        
+                    
+
+            }
+          
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        } 
+  
+         if (existe.equals("S")){
+                this.hide();
+                menu objeto=new menu();
+                objeto.setVisible(true);   
+             }else{
+             JOptionPane.showMessageDialog(null, "Acceso Rechazado");
+             System.exit(0);
+         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
