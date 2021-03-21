@@ -242,6 +242,96 @@ public class cerrarcaja extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void  actualizar(String buscar){
+        String Desde="2021-03-01";
+        String Hasta="2021-03-31";
+        
+        
+         cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        Statement stmt0 = null;
+        ResultSet rs0 = null;
+        String query = "select fecha FROM cajas WHERE fecha = '" + buscar + "' ";
+     
+       String montoinicial="";
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                 String fechaca=rs.getString("fecha");
+                // System.out.println("Fecha->"+fechaca);
+                 //buscar en boletas
+                     try {
+                         //getting database connection to MySQL server 
+                         dbCon = DriverManager.getConnection(dbURL, username, password);
+                         //getting PreparedStatment to execute query 
+                          String query0 = "select  numero_bol,fecha,total,forma FROM boletas WHERE fecha='"+fechaca+"' order by numero_bol ASC";
+     
+                         stmt0 = dbCon.prepareStatement(query0);
+                         //Resultset returned by query 
+                         rs0 = stmt0.executeQuery(query0);
+                         int stot=0;
+                         int son=0;
+                         int inibol=0;
+                         int finbol=0;
+                         int van=0;
+                         int actual=0;
+                         while (rs0.next()) {
+                             if (van==0){
+                                 inibol=rs0.getInt("numero_bol");
+                                // System.out.println("Aqui"+inibol);
+                             }
+                             actual=rs0.getInt("numero_bol");
+                             stot=stot+rs0.getInt("total");
+                             son++;
+                             van++;
+                            }
+                           
+                            //actualizar datos caja
+                            try {
+                                dbCon = DriverManager.getConnection(dbURL, username, password); 
+                                Statement comando=dbCon.createStatement();
+                            
+                                comando.executeUpdate("UPDATE cajas set desde="+inibol+",hasta="+actual+",ventadia='"+stot+"',cantboletas="+son+" WHERE fecha='"+fechaca+"'");
+                        
+                                } catch(SQLException ex){
+                                          System.out.println(ex.getMessage().toString());
+                                    }
+                            
+                            //fin actualizar datos caja
+                            
+                         } catch (SQLException ex0) {
+                            System.out.println(ex0.getMessage().toString());
+                          }
+                 
+                 //fin buscar en boletas
+     
+                
+
+            }
+          
+        } catch (SQLException ex2) {
+            System.out.println(ex2.getMessage().toString());
+        }
+            
+      
+
+
+        
+        
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
        java.util.Date utilDate = new java.util.Date(); //fecha actual
@@ -252,6 +342,7 @@ public class cerrarcaja extends javax.swing.JFrame {
         String Buscar= sqlDate.toString();
         int reply = JOptionPane.showConfirmDialog(null, "Desea Cerrar la Caja", "Cierre de Caja", JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
+                 actualizar(Buscar);
                  cargarDriver();
                  Conexion cn=new Conexion();
                  String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
