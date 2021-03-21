@@ -260,8 +260,12 @@ public class cerrarcaja extends javax.swing.JFrame {
                  Connection dbCon = null;
                  Statement stmt = null;
                  ResultSet rs = null;
-
-                        try {
+                 
+                 //buscar datos para actualizar Caja
+                 
+                 
+                 //fin buscar datos para actualizar Caja
+                try {
                          dbCon = DriverManager.getConnection(dbURL, username, password); 
                          Statement comando=dbCon.createStatement();
                        

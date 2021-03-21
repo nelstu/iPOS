@@ -170,6 +170,8 @@ cargarDriver();
            rs = stmt.executeQuery(query);  
            int j=1;
            int jtot=0;
+           int totalboletas=0;
+           int totalrango=0;
            while(rs.next()){ 
               sheet.addCell(new jxl.write.Label(0, j, rs.getString(1)));
               sheet.addCell(new jxl.write.Label(1, j, rs.getString(2)));
@@ -181,10 +183,13 @@ cargarDriver();
               //sheet.addCell(new jxl.write.Number(3, j, rs.getInt(6)));
               //sheet.addCell(new jxl.write.Number(4, j, rs.getInt(3)));
               //jtot=jtot+rs.getInt(3);
+              totalboletas=totalboletas+rs.getInt(5);
+              totalrango=totalrango+rs.getInt(4);
               j++;
               } 
-              //sheet.addCell(new jxl.write.Label(3, j, "Total"));
-              //sheet.addCell(new jxl.write.Number(4, j, jtot));
+              sheet.addCell(new jxl.write.Label(2, j, "Totales"));
+              sheet.addCell(new jxl.write.Number(3, j, totalboletas));
+              sheet.addCell(new jxl.write.Number(4, j, totalrango));
         } catch(SQLException ex){
           System.out.println(ex.getMessage().toString() ); 
         }
