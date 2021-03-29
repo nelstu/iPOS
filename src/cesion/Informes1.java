@@ -5,8 +5,7 @@
  */
 package cesion;
 
-import static cesion.Informes.jTextField1;
-import static cesion.Informes.jTextField2;
+
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;

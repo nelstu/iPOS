@@ -1713,9 +1713,12 @@ void imprimirpdf(){
                          String  codigo=rs1.getString("codigo");
                          String  producto=rs1.getString("descripcion");
                          int  totall=rs1.getInt("total");
+                          int  cant=rs1.getInt("cant");
+                          int  precio=rs1.getInt("precio");
                          printerService.printString(pr,codigo+ "\n");
                          printerService.printString(pr,producto +"\n");
-                         printerService.printString(pr,"       $"+totall+ "\n");
+                         printerService.printString(pr,cant +"      $"+precio+"\n");
+                         printerService.printString(pr,"            $"+totall+ "\n");
                        
                          
                     }
