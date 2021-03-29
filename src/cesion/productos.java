@@ -32,6 +32,7 @@ public class productos extends javax.swing.JFrame {
         modelo.addColumn("Productos");
         modelo.addColumn("$ Venta");
    modelo.addColumn("$ Mayorista");
+   modelo.addColumn("Solicita $");
     
         limpiar();
         //llenar();
@@ -49,6 +50,7 @@ public class productos extends javax.swing.JFrame {
         jTextField6.setText("");
          jTextField7.setText("");
          jLabel7.setText("Nuevo");
+            this.jCheckBox1.setSelected(false) ;
     }
     private void cargarDriver() {
     try {
@@ -69,7 +71,7 @@ public class productos extends javax.swing.JFrame {
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
-        String query ="select id,codigo,producto,venta2,mayorista from productos where producto like '%"+Buscar+"%'"; 
+        String query ="select id,codigo,producto,venta2,mayorista,solicitaprecio from productos where producto like '%"+Buscar+"%'"; 
          // JOptionPane.showMessageDialog(null, query);
           try {
               //getting database connection to MySQL server 
@@ -80,12 +82,13 @@ public class productos extends javax.swing.JFrame {
            rs = stmt.executeQuery(query);  
            while(rs.next()){ 
               
-              Object []object = new Object[5];
+              Object []object = new Object[6];
         object[0] = rs.getString(1);
         object[1] = rs.getString(2); 
         object[2] = rs.getString(3); 
         object[3] = rs.getString(4); 
         object[4] = rs.getString(5);
+         object[5] = rs.getString(6);
   System.out.println("Si" );
         
         modelo.addRow(object);
@@ -110,7 +113,7 @@ public class productos extends javax.swing.JFrame {
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
-        String query ="select id,codigo,producto,venta2,barra,mayorista from productos where codigo like '%"+Buscar+"%'  or barra like '%"+Buscar+"%'  "; 
+        String query ="select id,codigo,producto,venta2,barra,mayorista,solicitaprecio from productos where  barra = '"+Buscar+"'  "; 
          // JOptionPane.showMessageDialog(null, query);
           try {
               //getting database connection to MySQL server 
@@ -121,12 +124,13 @@ public class productos extends javax.swing.JFrame {
            rs = stmt.executeQuery(query);  
            while(rs.next()){ 
               
-              Object []object = new Object[5];
+              Object []object = new Object[6];
         object[0] = rs.getString(1);
         object[1] = rs.getString(2); 
         object[2] = rs.getString(3); 
         object[3] = rs.getString(4); 
         object[4] = rs.getString(6);
+        object[5] = rs.getString(7);
   System.out.println("Si" );
         
         modelo.addRow(object);
@@ -148,7 +152,7 @@ public class productos extends javax.swing.JFrame {
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
-        String query ="select id,codigo,producto,venta2,mayorista from productos"; 
+        String query ="select id,codigo,producto,venta2,mayorista,solicitaprecio from productos"; 
           try {
               //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password); 
@@ -158,12 +162,13 @@ public class productos extends javax.swing.JFrame {
            rs = stmt.executeQuery(query);  
            while(rs.next()){ 
               
-              Object []object = new Object[5];
+              Object []object = new Object[6];
         object[0] = rs.getString(1);
         object[1] = rs.getString(2); 
         object[2] = rs.getString(3); 
         object[3] = rs.getString(4); 
         object[4] = rs.getString(5);
+         object[5] = rs.getString(6);
   System.out.println("Si" );
         
         modelo.addRow(object);
@@ -208,6 +213,7 @@ public class productos extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setTitle("Productos");
 
@@ -322,6 +328,8 @@ public class productos extends javax.swing.JFrame {
 
         jTextField7.setText("jTextField7");
 
+        jCheckBox1.setText("Solicita Precio");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -336,18 +344,23 @@ public class productos extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel8))
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4)
-                                    .addComponent(jTextField7)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel8))
+                                        .addGap(41, 41, 41)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField4)
+                                            .addComponent(jTextField7)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jCheckBox1)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(77, 77, 77)
@@ -425,7 +438,9 @@ public class productos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(154, 154, 154)
+                        .addGap(33, 33, 33)
+                        .addComponent(jCheckBox1)
+                        .addGap(98, 98, 98)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1))))
@@ -448,6 +463,11 @@ public class productos extends javax.swing.JFrame {
          jTextField3.setText(model.getValueAt(selectedRowIndex, 2).toString());
           jTextField4.setText(model.getValueAt(selectedRowIndex, 3).toString());
            jTextField7.setText(model.getValueAt(selectedRowIndex, 4).toString());
+           String solicitaprecio=model.getValueAt(selectedRowIndex, 5).toString();
+             if (solicitaprecio.equals("S")){
+                 System.out.println("solicitaprecio:"+solicitaprecio);
+                     jCheckBox1.setSelected(true) ;
+                 }
           jLabel7.setText("Editar");
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -496,8 +516,14 @@ String Buscar= jTextField2.getText();
                         // String un= jTextField4.getText();
                         // String familia= jTextField5.getText();
                          String venta2= jTextField4.getText();
-                           String mayorista= jTextField7.getText();
-                         comando.executeUpdate("UPDATE productos set venta2="+venta2+",mayorista="+mayorista+" WHERE barra='"+barra+"'");
+                         String mayorista= jTextField7.getText();
+                           
+                        String solicitaprecio="N";
+                        if (jCheckBox1.isSelected()){
+                             solicitaprecio="S";
+                         }
+                           
+                         comando.executeUpdate("UPDATE productos set solicitaprecio='"+solicitaprecio+"',venta2="+venta2+",mayorista="+mayorista+" WHERE barra='"+barra+"'");
                          JOptionPane.showMessageDialog(null, "Producto Actualizado");
                         } catch(SQLException ex){
                            setTitle(ex.toString());
@@ -628,6 +654,7 @@ limpiarjtable();
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

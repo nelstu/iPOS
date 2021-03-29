@@ -1048,8 +1048,9 @@ void imprimirpdf(){
         int es=0;
         String ticket="N";
         String boleta="N";
+        String imprimir="N";
         //buscar configuracion
-        String query0 ="select boleta,ticket from configuracion where id=1"; 
+        String query0 ="select boleta,ticket,imprimir from configuracion where id=1"; 
          // JOptionPane.showMessageDialog(null, query);
           try {
               //getting database connection to MySQL server 
@@ -1061,6 +1062,7 @@ void imprimirpdf(){
            while(rs.next()){ 
                boleta = rs.getString(1);
                ticket = rs.getString(2);
+               imprimir = rs.getString(3);
           } 
          
         } catch(SQLException ex){
@@ -1159,7 +1161,9 @@ void imprimirpdf(){
         limpiarjtable(); 
         String aimprimir=String.valueOf(es);
     try {
-        imprimirtickets(aimprimir);
+        if (imprimir.equals("S")){
+            imprimirtickets(aimprimir);
+        }
     } catch (PrintException ex) {
         Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
     } catch (IOException ex) {
@@ -1253,7 +1257,9 @@ void imprimirpdf(){
         limpiarjtable(); 
         String aimprimir=String.valueOf(es);
     try {
+        if (imprimir.equals("S")){
         imprimirtickets2(aimprimir);
+        }
     } catch (PrintException ex) {
         Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
     } catch (IOException ex) {
@@ -1493,7 +1499,7 @@ void imprimirpdf(){
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select id,rut,nombre,giro,acteco,direccion,comuna,ciudad,rut_replegal,nombre_replegal,fechares,res from empresa where id=1 ";
+        String query = "select id,rut,nombre,giro,acteco,direccion,comuna,ciudad,rut_replegal,nombre_replegal,fechares,res,fantasia from empresa where id=1 ";
         // JOptionPane.showMessageDialog(null, query);
        String montoinicial="";
         try {
@@ -1517,6 +1523,7 @@ void imprimirpdf(){
                     String acteco=rs.getString("acteco");
                     String rut_replegal=rs.getString("rut_replegal");
                     String nombre_replegal=rs.getString("nombre_replegal");
+                      String fantasia=rs.getString("fantasia");
                  objeto10.jTextField1.setText("1");
                  objeto10.jTextField2.setText(rut);
                  objeto10.jTextField3.setText(nombre);
@@ -1529,6 +1536,7 @@ void imprimirpdf(){
                     objeto10.jTextField10.setText(acteco);
                     objeto10.jTextField11.setText(rut_replegal);
                     objeto10.jTextField12.setText(nombre_replegal);
+                     objeto10.jTextField13.setText(fantasia);
                     
 
             }
@@ -1554,7 +1562,7 @@ void imprimirpdf(){
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select id,impresoratermica,boleta,ticket from configuracion where id=1 ";
+        String query = "select id,impresoratermica,boleta,ticket,imprimir from configuracion where id=1 ";
         // JOptionPane.showMessageDialog(null, query);
        String montoinicial="";
         try {
@@ -1571,12 +1579,18 @@ void imprimirpdf(){
                  String impresoratermica=rs.getString("impresoratermica");
                  String boleta=rs.getString("boleta");
                  String ticket=rs.getString("ticket");
+                 String imprimir=rs.getString("imprimir");
               if (boleta.equals("S")){
                      objeto12.jCheckBox1.setSelected(true) ;
                  }
                    if (ticket.equals("S")){
                      objeto12.jCheckBox2.setSelected(true) ;
                  }
+                   
+                   if (imprimir.equals("S")){
+                     objeto12.jCheckBox3.setSelected(true) ;
+                 }  
+                   
                  objeto12.jTextField1.setText(impresoratermica);
         
                     

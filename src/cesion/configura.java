@@ -48,6 +48,7 @@ public class configura extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
 
         jLabel1.setText("jLabel1");
 
@@ -64,6 +65,8 @@ public class configura extends javax.swing.JFrame {
         jCheckBox1.setText("Boleta Electronica");
 
         jCheckBox2.setText("Ticket");
+
+        jCheckBox3.setText("Imprimir");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,7 +88,8 @@ public class configura extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jCheckBox2)
-                                    .addComponent(jCheckBox1))))
+                                    .addComponent(jCheckBox1)
+                                    .addComponent(jCheckBox3))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -100,7 +104,9 @@ public class configura extends javax.swing.JFrame {
                 .addComponent(jCheckBox1)
                 .addGap(18, 18, 18)
                 .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(14, 14, 14))
         );
@@ -148,7 +154,11 @@ public class configura extends javax.swing.JFrame {
                              ticket="S";
                          }
                      
-                         comando.executeUpdate("UPDATE configuracion set impresoratermica='"+impresoratermica+"',boleta='"+boleta+"',ticket='"+ticket+"' WHERE id=1");
+                            String imprimir="N";
+                          if (jCheckBox3.isSelected()){
+                             imprimir="S";
+                         }
+                         comando.executeUpdate("UPDATE configuracion set imprimir='"+imprimir+"',impresoratermica='"+impresoratermica+"',boleta='"+boleta+"',ticket='"+ticket+"' WHERE id=1");
                          JOptionPane.showMessageDialog(null, "Configuracion Actualizada");
     
             }
@@ -198,6 +208,7 @@ public class configura extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     public static javax.swing.JCheckBox jCheckBox1;
     public static javax.swing.JCheckBox jCheckBox2;
+    public static javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
