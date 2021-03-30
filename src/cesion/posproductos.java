@@ -210,7 +210,7 @@ public class posproductos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 51, Short.MAX_VALUE))
+                .addGap(0, 61, Short.MAX_VALUE))
         );
 
         pack();
@@ -339,7 +339,7 @@ public class posproductos extends javax.swing.JFrame {
         }
           
         } catch (SQLException ex) {
-            System.out.println("Nop");
+            System.out.println(ex.getMessage().toString());
         }
     }
     

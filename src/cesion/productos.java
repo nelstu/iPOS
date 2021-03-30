@@ -5,7 +5,10 @@
  */
 package cesion;
 
+import java.awt.Desktop;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,7 +16,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.*;
+import jxl.Workbook;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 
 /**
  *
@@ -151,6 +157,51 @@ public class productos extends javax.swing.JFrame {
 
     }
 
+    
+    public void llenar3() {
+
+        String Buscar = this.jComboBox2.getSelectedItem().toString();
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select id,codigo,producto,venta2,barra,mayorista,solicitaprecio,familia from productos where  familia= '" + Buscar + "'  ";
+        // JOptionPane.showMessageDialog(null, query);
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+
+                Object[] object = new Object[7];
+                object[0] = rs.getString(1);
+                object[1] = rs.getString(2);
+                object[2] = rs.getString(3);
+                object[3] = rs.getString(4);
+                object[4] = rs.getString(6);
+                object[5] = rs.getString(7);
+                object[6] = rs.getString(8);
+                System.out.println("Si");
+
+                modelo.addRow(object);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+
+    }
+
+    
+    
+    
     public void llenar() {
         cargarDriver();
         Conexion cn = new Conexion();
@@ -217,6 +268,7 @@ public class productos extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
         jButton4 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
@@ -225,8 +277,16 @@ public class productos extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jButton7 = new javax.swing.JButton();
 
         setTitle("Productos");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -322,6 +382,20 @@ public class productos extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton4);
 
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/excel.gif"))); // NOI18N
+        jButton8.setText("Informe");
+        jButton8.setFocusable(false);
+        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton8.setMaximumSize(new java.awt.Dimension(44, 54));
+        jButton8.setMinimumSize(new java.awt.Dimension(44, 54));
+        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton8);
+
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/SAL.jpg"))); // NOI18N
         jButton5.setText("Salir");
         jButton5.setFocusable(false);
@@ -353,6 +427,15 @@ public class productos extends javax.swing.JFrame {
 
         jLabel9.setText("Familia");
 
+        jLabel10.setText("Familias");
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/buscar.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -362,20 +445,6 @@ public class productos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(77, 77, 77)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2)
-                                .addGap(404, 404, 404)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(67, 67, 67)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton3))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
@@ -407,7 +476,32 @@ public class productos extends javax.swing.JFrame {
                                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(65, 65, 65)
                                                 .addComponent(jButton1)))
-                                        .addGap(8, 8, 8))))))
+                                        .addGap(8, 8, 8))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(77, 77, 77)
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton2)
+                                        .addGap(404, 404, 404)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(jLabel10)
+                                                .addGap(71, 71, 71)
+                                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton3)
+                                            .addComponent(jButton7))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -417,32 +511,35 @@ public class productos extends javax.swing.JFrame {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel5))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jLabel7)))
-                .addGap(17, 17, 17)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton3))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton7))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addGap(71, 71, 71)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
@@ -480,7 +577,11 @@ public class productos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1))
-                        .addGap(25, 25, 25))))
+                        .addGap(25, 25, 25))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -540,6 +641,38 @@ public class productos extends javax.swing.JFrame {
             System.out.println("Nop");
         }
     }
+    
+       private void cargarcombofamilias2(){
+        this.jComboBox2.removeAllItems();
+        cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select id,familias from familias order by familias";
+        // JOptionPane.showMessageDialog(null, query);
+       String montoinicial="";
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                 String familias=rs.getString("familias");
+              this.jComboBox2.addItem(familias);
+        }
+          
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+    }
+    
     
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -702,6 +835,111 @@ public class productos extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_jTextField5KeyPressed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+         cargarcombofamilias();
+         cargarcombofamilias2();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+
+        limpiarjtable();
+        // TODO add your handling code here:
+        llenar3();
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+   
+     
+try
+{
+    
+    File f = new File("informeproductos.xls"); // Creamos un objeto file
+    System.out.println(f.getAbsolutePath());  
+//Se crea el libro Excel
+WritableWorkbook workbook =Workbook.createWorkbook(f);
+
+//Se crea una nueva hoja dentro del libro
+WritableSheet sheet =workbook.createSheet("Informe", 0);
+
+//Creamos celdas de varios tipos
+//sheet.addCell(new jxl.write.Number(0, 0, "Numero"));
+sheet.addCell(new jxl.write.Label(0, 0, "Codigo"));
+sheet.addCell(new jxl.write.Label(1, 0, "Producto"));
+sheet.addCell(new jxl.write.Label(2, 0, "Un"));
+sheet.addCell(new jxl.write.Label(3, 0, "$Venta"));
+sheet.addCell(new jxl.write.Label(4, 0, "Familia"));
+//sheet.addCell(new jxl.write.Boolean(3,0,true));
+//buscar ventas
+cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null; 
+        Statement stmt = null; 
+        ResultSet rs = null; 
+        String query ="select barra,producto,un,venta2,familia from productos  order by familia ASC"; 
+          try {
+              //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password); 
+           //getting PreparedStatment to execute query 
+           stmt = dbCon.prepareStatement(query); 
+          //Resultset returned by query 
+           rs = stmt.executeQuery(query);  
+           int j=1;
+
+           while(rs.next()){ 
+              sheet.addCell(new jxl.write.Label(0, j, rs.getString(1)));
+              sheet.addCell(new jxl.write.Label(1, j, rs.getString(2)));
+              sheet.addCell(new jxl.write.Label(2, j, rs.getString(3)));
+              
+              sheet.addCell(new jxl.write.Number(3, j, rs.getInt(4)));
+              sheet.addCell(new jxl.write.Label(4, j, rs.getString(5)));
+    
+              j++;
+              } 
+        
+        } catch(SQLException ex){
+          System.out.println(ex.getMessage().toString() ); 
+        }
+//fin buscar ventas
+
+
+//Escribimos los resultados al fichero Excel
+workbook.write();
+workbook.close();
+
+
+
+System.out.println("Ejemplo finalizado.");
+}
+catch (IOException ex)
+{
+System.out.println("Error al crear el fichero.");
+}
+catch (WriteException ex)
+{
+System.out.println("Error al escribir el fichero.");
+}
+
+  try {
+                Desktop.getDesktop().open(new File("informeproductos.xls"));
+                //To check if the solution is open or not, you can wait some time here
+                Thread.sleep(1000);
+
+            } catch (IOException | InterruptedException ex) {
+             //   Logger.getLogger(Open.class.getName()).log(Level.SEVERE, null, ex);
+      
+
+}  
+
+
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -744,9 +982,13 @@ public class productos extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
