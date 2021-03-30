@@ -727,7 +727,7 @@ public class productos extends javax.swing.JFrame {
                         solicitaprecio = "S";
                     }
                     String familia= this.jComboBox1.getSelectedItem().toString();
-                    comando.executeUpdate("UPDATE productos set familia='" + familia + "',solicitaprecio='" + solicitaprecio + "',venta2=" + venta2 + ",mayorista=" + mayorista + " WHERE barra='" + barra + "'");
+                    comando.executeUpdate("UPDATE productos set nombrecorto='" + producto + "',producto='" + producto + "',familia='" + familia + "',solicitaprecio='" + solicitaprecio + "',venta2=" + venta2 + ",mayorista=" + mayorista + " WHERE barra='" + barra + "'");
                     JOptionPane.showMessageDialog(null, "Producto Actualizado");
                     this.jComboBox1.removeAllItems();
                 } catch (SQLException ex) {
