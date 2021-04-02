@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package cesion;
-import com.itextpdf.text.BaseColor; 
+
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
-import java.io.*; 
+import java.io.*;
 
 import java.io.FileOutputStream;
 
@@ -29,13 +30,16 @@ import java.util.logging.Logger;
 import javax.print.PrintException;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumnModel;
+
 /**
  *
  * @author dev
  */
 public class pos extends javax.swing.JFrame {
-DefaultTableModel modelo;
-DefaultTableModel modelodet;
+
+    DefaultTableModel modelo;
+    DefaultTableModel modelodet;
+
     /**
      * Creates new form pos
      */
@@ -43,46 +47,45 @@ DefaultTableModel modelodet;
         initComponents();
         setLocationRelativeTo(null);
         limpiar();
-        
+
         modelo = new DefaultTableModel();
         jTable2.setModel(modelo);
 //ableColumnModel columnModel = tabla.getColumnModel();
-   
+
         modelo.addColumn("Id");
         modelo.addColumn("Codigo");
         modelo.addColumn("Productos");
         modelo.addColumn("$ Venta");
-        
-       TableColumnModel columnModel = jTable2.getColumnModel();
-       columnModel.getColumn(0).setWidth(0);
-       columnModel.getColumn(0).setMinWidth(0);
-       columnModel.getColumn(0).setMaxWidth(0);
-       columnModel.getColumn(1).setWidth(0);
-       columnModel.getColumn(1).setMinWidth(0);
-       columnModel.getColumn(1).setMaxWidth(0);
-       columnModel.getColumn(2).setWidth(300); 
+
+        TableColumnModel columnModel = jTable2.getColumnModel();
+        columnModel.getColumn(0).setWidth(0);
+        columnModel.getColumn(0).setMinWidth(0);
+        columnModel.getColumn(0).setMaxWidth(0);
+        columnModel.getColumn(1).setWidth(0);
+        columnModel.getColumn(1).setMinWidth(0);
+        columnModel.getColumn(1).setMaxWidth(0);
+        columnModel.getColumn(2).setWidth(300);
         columnModel.getColumn(2).setMinWidth(300);
-       columnModel.getColumn(2).setMaxWidth(300);
-      
+        columnModel.getColumn(2).setMaxWidth(300);
+
         modelodet = new DefaultTableModel();
         jTable1.setModel(modelodet);
-        
-       
+
         modelodet.addColumn("Codigo");
         modelodet.addColumn("Productos");
         modelodet.addColumn("Un");
         modelodet.addColumn("Cantidad");
         modelodet.addColumn("$ Precio");
         modelodet.addColumn("Total");
-        
-    TableColumnModel columnModel2 = jTable1.getColumnModel();
-       columnModel2.getColumn(0).setPreferredWidth(100);
-       columnModel2.getColumn(1).setPreferredWidth(300);
-       columnModel2.getColumn(2).setPreferredWidth(50); 
-       columnModel2.getColumn(3).setPreferredWidth(100);
-       columnModel2.getColumn(4).setPreferredWidth(100);
-       columnModel2.getColumn(5).setPreferredWidth(100);
-       
+
+        TableColumnModel columnModel2 = jTable1.getColumnModel();
+        columnModel2.getColumn(0).setPreferredWidth(100);
+        columnModel2.getColumn(1).setPreferredWidth(300);
+        columnModel2.getColumn(2).setPreferredWidth(50);
+        columnModel2.getColumn(3).setPreferredWidth(100);
+        columnModel2.getColumn(4).setPreferredWidth(100);
+        columnModel2.getColumn(5).setPreferredWidth(100);
+
     }
 
     /**
@@ -555,12 +558,10 @@ DefaultTableModel modelodet;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel5))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton3)
-                                .addGap(18, 18, 18)))
+                                .addComponent(jButton3)))
                         .addGap(20, 20, 20)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -585,7 +586,6 @@ DefaultTableModel modelodet;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -594,7 +594,8 @@ DefaultTableModel modelodet;
                                 .addComponent(Familias, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -612,13 +613,13 @@ DefaultTableModel modelodet;
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -648,139 +649,131 @@ DefaultTableModel modelodet;
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void cargarDriver() {
-    try {
-      Class.forName("com.mysql.jdbc.Driver");
-    }catch(Exception ex) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception ex) {
 
+        }
     }
-  }
-    private void limpiarjtable(){
-    modelo.setRowCount(0);
-    modelodet.setRowCount(0);
-   }
-    
-    public void buscarcli(){
-       
-       
-        String Buscar= jTextField7.getText();
-      cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+
+    private void limpiarjtable() {
+        modelo.setRowCount(0);
+        modelodet.setRowCount(0);
+    }
+
+    public void buscarcli() {
+
+        String Buscar = jTextField7.getText();
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
-        Connection dbCon = null; 
-        Statement stmt = null; 
-        ResultSet rs = null; 
-        String query ="select rut,nombre,direccion,comuna,ciudad,giro from clientes where rut = '"+Buscar+"'"; 
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select rut,nombre,direccion,comuna,ciudad,giro from clientes where rut = '" + Buscar + "'";
         //  JOptionPane.showMessageDialog(null, query);
-          try {
-              //getting database connection to MySQL server 
-            dbCon = DriverManager.getConnection(dbURL, username, password); 
-           //getting PreparedStatment to execute query 
-           stmt = dbCon.prepareStatement(query); 
-          //Resultset returned by query 
-           rs = stmt.executeQuery(query);  
-           while(rs.next()){ 
-          
-        jTextField8.setText(rs.getString(2));
-        jTextField9.setText(rs.getString(3)); 
-        jTextField10.setText(rs.getString(4)); 
-        jTextField11.setText(rs.getString(5)); 
-        jTextField12.setText(rs.getString(6));
-       
-          } 
-         
-        } catch(SQLException ex){
-          System.out.println("Nop" ); 
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+
+                jTextField8.setText(rs.getString(2));
+                jTextField9.setText(rs.getString(3));
+                jTextField10.setText(rs.getString(4));
+                jTextField11.setText(rs.getString(5));
+                jTextField12.setText(rs.getString(6));
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Nop");
         }
 
     }
-    
-       public void llenarbarra(){
-       
-        DefaultTableModel modelodet = (DefaultTableModel)jTable1.getModel();
-        String Buscar= jTextField1.getText();
-     cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+
+    public void llenarbarra() {
+
+        DefaultTableModel modelodet = (DefaultTableModel) jTable1.getModel();
+        String Buscar = jTextField1.getText();
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
-        Connection dbCon = null; 
-        Statement stmt = null; 
-        ResultSet rs = null; 
-        String query ="select id,barra,producto,venta2,boleta,solicitaprecio,mayorista from productos where barra = '"+Buscar+"'"; 
-         // JOptionPane.showMessageDialog(null, query);
-          try {
-              //getting database connection to MySQL server 
-            dbCon = DriverManager.getConnection(dbURL, username, password); 
-           //getting PreparedStatment to execute query 
-           stmt = dbCon.prepareStatement(query); 
-          //Resultset returned by query 
-           rs = stmt.executeQuery(query);  
-           String agregar="S";
-           while(rs.next()){ 
-               String solicitaprecio=rs.getString(6);
-               
-          
-              
-              Object []object = new Object[6];
-              object[0] = rs.getString(2);
-              object[1] = rs.getString(3); 
-              object[2] = ""; 
-              
-              if ((!jCheckBox1.isSelected()) && this.jTextField3.getText().equals("1") && solicitaprecio.equals("N")){
-                  object[3] = "1"; 
-                  object[4] = rs.getString(4); 
-                  object[5] = rs.getString(4);
-              }
-              if (((!jCheckBox1.isSelected()) && !this.jTextField3.getText().equals("1")) &&  solicitaprecio.equals("N")){
-                
-                  object[3] = jTextField3.getText(); 
-                  object[4] = rs.getString(4); 
-                  object[5] = String.valueOf(parseInt(rs.getString(4))*parseInt(jTextField3.getText()));
-              }
-              
-              if ((!jCheckBox1.isSelected()) && this.jTextField3.getText().equals("1") &&  solicitaprecio.equals("S")){
-                    String result = (String)JOptionPane.showInputDialog(
-                    this,
-                    "Ingrese $ Precio", 
-                    "Solicitud",            
-                    JOptionPane.PLAIN_MESSAGE,
-                    null,            
-                    null, 
-                    "0"
-                   );
-                    
-                if(result != null && result.length() > 0){
-                   }else {
-                    JOptionPane.showMessageDialog(null, "Debe Seleccionar Precio");
-                    agregar="N";
-                    }     
-                    object[3] = "1"; 
-                    object[4] =result; 
-                    object[5] = result; 
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select id,barra,producto,venta2,boleta,solicitaprecio,mayorista from productos where barra = '" + Buscar + "'";
+        // JOptionPane.showMessageDialog(null, query);
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+            String agregar = "S";
+            while (rs.next()) {
+                String solicitaprecio = rs.getString(6);
+
+                Object[] object = new Object[6];
+                object[0] = rs.getString(2);
+                object[1] = rs.getString(3);
+                object[2] = "";
+
+                if ((!jCheckBox1.isSelected()) && this.jTextField3.getText().equals("1") && solicitaprecio.equals("N")) {
+                    object[3] = "1";
+                    object[4] = rs.getString(4);
+                    object[5] = rs.getString(4);
+                }
+                if (((!jCheckBox1.isSelected()) && !this.jTextField3.getText().equals("1")) && solicitaprecio.equals("N")) {
+
+                    object[3] = jTextField3.getText();
+                    object[4] = rs.getString(4);
+                    object[5] = String.valueOf(parseInt(rs.getString(4)) * parseInt(jTextField3.getText()));
+                }
+
+                if ((!jCheckBox1.isSelected()) && this.jTextField3.getText().equals("1") && solicitaprecio.equals("S")) {
+                    String result = (String) JOptionPane.showInputDialog(
+                            this,
+                            "Ingrese $ Precio",
+                            "Solicitud",
+                            JOptionPane.PLAIN_MESSAGE,
+                            null,
+                            null,
+                            "0"
+                    );
+
+                    if (result != null && result.length() > 0) {
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Debe Seleccionar Precio");
+                        agregar = "N";
                     }
-              
-              
+                    object[3] = "1";
+                    object[4] = result;
+                    object[5] = result;
+                }
+
                 //mayorista
-             if ((jCheckBox1.isSelected()) && this.jTextField3.getText().equals("1") && solicitaprecio.equals("N")){
-                  object[3] = "1"; 
-                  object[4] = rs.getString(7); 
-                  object[5] = rs.getString(7);
-              }
-              if (((jCheckBox1.isSelected()) && !this.jTextField3.getText().equals("1")) &&  solicitaprecio.equals("N")){
-                
-                  object[3] = jTextField3.getText(); 
-                  object[4] = rs.getString(7); 
-                  object[5] = String.valueOf(parseInt(rs.getString(7))*parseInt(jTextField3.getText()));
-              }
-                
-                
-              
-              
-              
-              
-              /*
+                if ((jCheckBox1.isSelected()) && this.jTextField3.getText().equals("1") && solicitaprecio.equals("N")) {
+                    object[3] = "1";
+                    object[4] = rs.getString(7);
+                    object[5] = rs.getString(7);
+                }
+                if (((jCheckBox1.isSelected()) && !this.jTextField3.getText().equals("1")) && solicitaprecio.equals("N")) {
+
+                    object[3] = jTextField3.getText();
+                    object[4] = rs.getString(7);
+                    object[5] = String.valueOf(parseInt(rs.getString(7)) * parseInt(jTextField3.getText()));
+                }
+
+                /*
                  if (!solicitaprecio.equals("S")){
                    if (jCheckBox1.isSelected()){
                          object[4] = rs.getString(7); 
@@ -791,500 +784,497 @@ DefaultTableModel modelodet;
                          }
             
                    }
-              */
-              System.out.println("Si" );
-              if (agregar.equals("S")){
-              modelodet.addRow(object);
-              }
-        
-          } 
-         sumardet();
-         jCheckBox1.setSelected(false);
-        } catch(SQLException ex){
-          System.out.println(ex.getMessage().toString() ); 
+                 */
+                System.out.println("Si");
+                if (agregar.equals("S")) {
+                    modelodet.addRow(object);
+                }
+
+            }
+            sumardet();
+            jCheckBox1.setSelected(false);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage().toString());
         }
 
     }
-    
-    
-    
-    public void llenar1(){
-       
-          modelo.setRowCount(0);
-   
-        String Buscar= jTextField2.getText();
-       cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+
+    public void llenar1() {
+
+        modelo.setRowCount(0);
+
+        String Buscar = jTextField2.getText();
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
-        Connection dbCon = null; 
-        Statement stmt = null; 
-        ResultSet rs = null; 
-        String query ="select id,codigo,producto,venta2,mayorista from productos where producto like '%"+Buscar+"%'"; 
-         // JOptionPane.showMessageDialog(null, query);
-          try {
-              //getting database connection to MySQL server 
-            dbCon = DriverManager.getConnection(dbURL, username, password); 
-           //getting PreparedStatment to execute query 
-           stmt = dbCon.prepareStatement(query); 
-          //Resultset returned by query 
-           rs = stmt.executeQuery(query);  
-           while(rs.next()){ 
-              
-              Object []object = new Object[4];
-        object[0] = rs.getString(1);
-        object[1] = rs.getString(2); 
-        object[2] = rs.getString(3); 
-        
-           if (jCheckBox1.isSelected()){
-               object[3] = rs.getString(5); 
-               }else{
-               object[3] = rs.getString(4); 
-                 }
-            
-               
-        
-      
-  System.out.println("Si" );
-        
-        modelo.addRow(object);
-          } 
-         
-        } catch(SQLException ex){
-          System.out.println("Nop" ); 
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select id,codigo,producto,venta2,mayorista from productos where producto like '%" + Buscar + "%'";
+        // JOptionPane.showMessageDialog(null, query);
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+
+                Object[] object = new Object[4];
+                object[0] = rs.getString(1);
+                object[1] = rs.getString(2);
+                object[2] = rs.getString(3);
+
+                if (jCheckBox1.isSelected()) {
+                    object[3] = rs.getString(5);
+                } else {
+                    object[3] = rs.getString(4);
+                }
+
+                System.out.println("Si");
+
+                modelo.addRow(object);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Nop");
         }
 
     }
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
-                // TODO add your handling code here:
- DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
 
         // get the selected row index
-       int selectedRowIndex = jTable2.getSelectedRow();
-        
-          Object []object = new Object[6];
-        object[0] =  model.getValueAt(selectedRowIndex, 1).toString();
-        object[1] =  model.getValueAt(selectedRowIndex, 2).toString();
-        object[2] =   "";
-        object[3] =  jTextField3.getText();
-         object[4] =    model.getValueAt(selectedRowIndex, 3).toString();
-          object[5] =  String.valueOf(parseInt(model.getValueAt(selectedRowIndex, 3).toString())*parseInt(jTextField3.getText()));      
-  System.out.println("Si" );
-        
+        int selectedRowIndex = jTable2.getSelectedRow();
+
+        Object[] object = new Object[6];
+        object[0] = model.getValueAt(selectedRowIndex, 1).toString();
+        object[1] = model.getValueAt(selectedRowIndex, 2).toString();
+        object[2] = "";
+        object[3] = jTextField3.getText();
+        object[4] = model.getValueAt(selectedRowIndex, 3).toString();
+        object[5] = String.valueOf(parseInt(model.getValueAt(selectedRowIndex, 3).toString()) * parseInt(jTextField3.getText()));
+        System.out.println("Si");
+
         modelodet.addRow(object);
         jTextField2.setText("");
-         jTextField3.setText("1");
-  jTextField1.grabFocus();
-  sumardet();
+        jTextField3.setText("1");
+        jTextField1.grabFocus();
+        sumardet();
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-       //  limpiarjtable();
+        //  limpiarjtable();
         // TODO add your handling code here:
-  llenar1();
-  jTextField2.setText("");
-  jTextField2.grabFocus();
+        llenar1();
+        jTextField2.setText("");
+        jTextField2.grabFocus();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    void difpago(){
-        String cad1=jTextField4.getText().trim();
-            String cad2=jTextField5.getText().trim();
-            int x1=Integer.parseInt(cad1);
-            int x2=Integer.parseInt(cad2);
-            int suma=x2-x1;
-            String total=String.valueOf(suma);  
-            jTextField6.setText(total);
+    void difpago() {
+        String cad1 = jTextField4.getText().trim();
+        String cad2 = jTextField5.getText().trim();
+        int x1 = Integer.parseInt(cad1);
+        int x2 = Integer.parseInt(cad2);
+        int suma = x2 - x1;
+        String total = String.valueOf(suma);
+        jTextField6.setText(total);
     }
-    void sumardet(){
-        double sumatoria1=0;
-        int totalRow= jTable1.getRowCount();
-        totalRow-=1;
-        for(int i=0;i<=(totalRow);i++)
-        {
-             double sumatoria= Double.parseDouble(String.valueOf(jTable1.getValueAt(i,5)));
+
+    void sumardet() {
+        double sumatoria1 = 0;
+        int totalRow = jTable1.getRowCount();
+        totalRow -= 1;
+        for (int i = 0; i <= (totalRow); i++) {
+            double sumatoria = Double.parseDouble(String.valueOf(jTable1.getValueAt(i, 5)));
 //en la parte de arriba indica el primer parametro la fila y el segundo la columna la cual estaras //manejando
-             sumatoria1+=sumatoria;
- 
-          System.out.println(""+sumatoria1);
- 
-           }
-        int numero = (int)sumatoria1;
- jTextField4.setText(String.valueOf((numero)));
-}
+            sumatoria1 += sumatoria;
 
-void imprimirpdf(){
-    String pdfFile="C:\\dte3\\doc33.pdf";
-    
-     Document document = new Document();
-      
-    try {
-        Image imagen = Image.getInstance("pdf417.png");  
-      PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
-      document.open();
-      PdfContentByte cb = writer.getDirectContent();
+            System.out.println("" + sumatoria1);
 
-      cb.beginText();
-
-      BaseFont bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-      cb.setFontAndSize(bf, 14);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Empresa", 50, 800, 0);
-       cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Direccion", 50, 780, 0);
-        cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Comuna", 50, 760, 0);
-        cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Ciudad", 50, 740, 0);
-        cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "email", 50, 720, 0);
-      
-       cb.setFontAndSize(bf, 9);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Razon", 50, 680, 0);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Rut", 350, 680, 0);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Direccion", 50, 660, 0);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Fecha", 350, 660, 0);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Comuna", 50, 640, 0);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Forma de Pago", 350, 640, 0);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Ciudad", 50, 620, 0);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Telefono", 50, 600, 0);
-       cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "email", 50, 580, 0);
-       
-       cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Codigo", 50, 550, 0);
-        cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Producto", 100, 550, 0);
-         cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Unidad", 250, 550, 0);
-          cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "$ Precio", 300, 550, 0);
-           cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Cantidad", 400, 550, 0);
-            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Total", 500, 550, 0);
-       
-       
-       
-        cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Subtotal", 400, 180, 0);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Descuento", 400, 160, 0);
-       cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Neto", 400, 140, 0);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Iva (19%)", 400, 120, 0);
-      cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Total", 400, 100, 0);
-     
-      
-      
-       
-       
-       cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Timbre Electronico SII", 150, 100, 0);
-       cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Resolucion 0 de 2014", 150, 90, 0);
-       cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Verifique documento:www.sii.cl", 130, 80, 0);
-       cb.setColorFill(BaseColor.RED);
-       cb.setFontAndSize(bf, 10);
-        cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "SII.-SANTIAGO CENTRO", 430, 700, 0);
-         cb.setFontAndSize(bf, 14);
-        cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "RUT.:",420, 780, 0);
-         cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "FACTURA ELECTRONICA", 400, 760, 0);
-          cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Nª", 450, 740, 0);
-      cb.endText();
-      
-       imagen.setAbsolutePosition(25, 130);
-        document.add(imagen);
-        
-       cb.setRGBColorFill(255, 51, 51);
-       cb.setLineWidth(2);
-       //x eje y ancho alto
-       cb.rectangle(380,710,200,100);
-       cb.stroke();
-       
-       
-       cb.setRGBColorFill(0xFF, 0xFF, 0xFF);
-       cb.setLineWidth(1);
-       cb.rectangle(10,10,580,820);
-       cb.stroke();
-
-       cb.setRGBColorFill(0xFF, 0xFF, 0xFF);
-       cb.setLineWidth(1);
-       cb.rectangle(10,540,580,25);
-       cb.stroke();
-       
-       cb.setRGBColorFill(0xFF, 0xFF, 0xFF);
-       cb.setLineWidth(1);
-       cb.rectangle(10,540,580,150);
-       cb.stroke();
-   
-  
-
-    } catch (Exception e) {
-      System.err.println(e.getMessage());
+        }
+        int numero = (int) sumatoria1;
+        jTextField4.setText(String.valueOf((numero)));
     }
-    document.close();
-  
-    try {
-                Desktop.getDesktop().open(new File("C:\\dte3\\doc33.pdf"));
-                //To check if the solution is open or not, you can wait some time here
-                Thread.sleep(1000);
 
-            } catch (IOException | InterruptedException ex) {
-             //   Logger.getLogger(Open.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } 
- 
+    void imprimirpdf() {
+        String pdfFile = "C:\\dte3\\doc33.pdf";
+
+        Document document = new Document();
+
+        try {
+            Image imagen = Image.getInstance("pdf417.png");
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
+            document.open();
+            PdfContentByte cb = writer.getDirectContent();
+
+            cb.beginText();
+
+            BaseFont bf = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+            cb.setFontAndSize(bf, 14);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Empresa", 50, 800, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Direccion", 50, 780, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Comuna", 50, 760, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Ciudad", 50, 740, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "email", 50, 720, 0);
+
+            cb.setFontAndSize(bf, 9);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Razon", 50, 680, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Rut", 350, 680, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Direccion", 50, 660, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Fecha", 350, 660, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Comuna", 50, 640, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Forma de Pago", 350, 640, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Ciudad", 50, 620, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Telefono", 50, 600, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "email", 50, 580, 0);
+
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Codigo", 50, 550, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Producto", 100, 550, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Unidad", 250, 550, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "$ Precio", 300, 550, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Cantidad", 400, 550, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Total", 500, 550, 0);
+
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Subtotal", 400, 180, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Descuento", 400, 160, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Neto", 400, 140, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Iva (19%)", 400, 120, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Total", 400, 100, 0);
+
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Timbre Electronico SII", 150, 100, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Resolucion 0 de 2014", 150, 90, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Verifique documento:www.sii.cl", 130, 80, 0);
+            cb.setColorFill(BaseColor.RED);
+            cb.setFontAndSize(bf, 10);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "SII.-SANTIAGO CENTRO", 430, 700, 0);
+            cb.setFontAndSize(bf, 14);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "RUT.:", 420, 780, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "FACTURA ELECTRONICA", 400, 760, 0);
+            cb.showTextAligned(PdfContentByte.ALIGN_LEFT, "Nª", 450, 740, 0);
+            cb.endText();
+
+            imagen.setAbsolutePosition(25, 130);
+            document.add(imagen);
+
+            cb.setRGBColorFill(255, 51, 51);
+            cb.setLineWidth(2);
+            //x eje y ancho alto
+            cb.rectangle(380, 710, 200, 100);
+            cb.stroke();
+
+            cb.setRGBColorFill(0xFF, 0xFF, 0xFF);
+            cb.setLineWidth(1);
+            cb.rectangle(10, 10, 580, 820);
+            cb.stroke();
+
+            cb.setRGBColorFill(0xFF, 0xFF, 0xFF);
+            cb.setLineWidth(1);
+            cb.rectangle(10, 540, 580, 25);
+            cb.stroke();
+
+            cb.setRGBColorFill(0xFF, 0xFF, 0xFF);
+            cb.setLineWidth(1);
+            cb.rectangle(10, 540, 580, 150);
+            cb.stroke();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        document.close();
+
+        try {
+            Desktop.getDesktop().open(new File("C:\\dte3\\doc33.pdf"));
+            //To check if the solution is open or not, you can wait some time here
+            Thread.sleep(1000);
+
+        } catch (IOException | InterruptedException ex) {
+            //   Logger.getLogger(Open.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel(); //TableProducto es el nombre de mi tabla ;) 
-        dtm.removeRow(jTable1.getSelectedRow()); 
+        dtm.removeRow(jTable1.getSelectedRow());
         sumardet();
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
-    
-    
-    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-            cargarDriver();
-        Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
-        Connection dbCon = null; 
-        Statement stmt = null; 
-        ResultSet rs = null; 
-        int es=0;
-        String ticket="N";
-        String boleta="N";
-        String imprimir="N";
+        Connection dbCon = null;
+        Connection dbCon0 = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        int es = 0;
+        String ticket = "N";
+        String boleta = "N";
+        String imprimir = "N";
         //buscar configuracion
-        String query0 ="select boleta,ticket,imprimir from configuracion where id=1"; 
-         // JOptionPane.showMessageDialog(null, query);
-          try {
-              //getting database connection to MySQL server 
-            dbCon = DriverManager.getConnection(dbURL, username, password); 
-           //getting PreparedStatment to execute query 
-           stmt = dbCon.prepareStatement(query0); 
-          //Resultset returned by query 
-           rs = stmt.executeQuery(query0);  
-           while(rs.next()){ 
-               boleta = rs.getString(1);
-               ticket = rs.getString(2);
-               imprimir = rs.getString(3);
-          } 
-         
-        } catch(SQLException ex){
-          System.out.println(ex.getMessage().toString() ); 
+        String query0 = "select boleta,ticket,imprimir from configuracion where id=1";
+        // JOptionPane.showMessageDialog(null, query);
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query0);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query0);
+            while (rs.next()) {
+                boleta = rs.getString(1);
+                ticket = rs.getString(2);
+                imprimir = rs.getString(3);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage().toString());
         }
-    
-        
-        
-        if (!jCheckBox2.isSelected()){
-    
-        //fin buscar numero boleta
-        
-        
-        if (boleta.equals("S")){
-        
-        //buscar numero boleta
-      String query1 ="select documento,contador from contador where documento='BOL'"; 
-         // JOptionPane.showMessageDialog(null, query);
-          try {
-              //getting database connection to MySQL server 
-            dbCon = DriverManager.getConnection(dbURL, username, password); 
-           //getting PreparedStatment to execute query 
-           stmt = dbCon.prepareStatement(query1); 
-          //Resultset returned by query 
-           rs = stmt.executeQuery(query1);  
-           while(rs.next()){ 
-              
-           
-         es = rs.getInt(2)+1;
-       
- 
-          } 
-         
-        } catch(SQLException ex){
-         System.out.println(ex.getMessage().toString() ); 
-        }
-    
-        //fin buscar numero boleta
-        
-        java.util.Date utilDate = new java.util.Date(); //fecha actual
-        long lnMilisegundos = utilDate.getTime();
-        java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
-        java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
-        //JOptionPane.showMessageDialog(null, "insert into boletas(numero_bol,total,fecha,hora) values ("+String.valueOf(es)+"","+jTextField4.getText()+",'"+sqlDate.toString()+"','"+sqlTime+"')");
-          try {
-           dbCon = DriverManager.getConnection(dbURL, username, password); 
-          Statement comando=dbCon.createStatement();
-          float totalg=Integer.valueOf(jTextField4.getText());
-          float neto=Math.round(totalg/1.19);
-          float iva=totalg-neto;
-          comando.executeUpdate("insert into boletas(estado,numero_bol,total,fecha,hora,neto,iva) values ('VIGENTE',"+String.valueOf(es)+","+jTextField4.getText()+",'"+sqlDate.toString()+"','"+sqlTime+"','"+neto+"','"+iva+"')");
-          //JOptionPane.showMessageDialog(null, "Boleta Creada");
-        } catch(SQLException ex){
-          setTitle(ex.toString());
-        }
-          //grabar detalle
-          String codigo;
-           String des;
-           String un;
-           String cant;
-           String pre;
-           String total;
-          for (int i = 0; i < jTable1.getRowCount(); i++) {
-	      //for (int j = 0; j < jTable1.getColumnCount(); j++) {
-                   codigo=jTable1.getValueAt(i, 0).toString();
-                   des=jTable1.getValueAt(i, 1).toString();
-                    un=jTable1.getValueAt(i, 2).toString();
-                    cant=jTable1.getValueAt(i, 3).toString();
-                    pre=jTable1.getValueAt(i, 4).toString();
-                    total=jTable1.getValueAt(i, 5).toString();
-		    try {
-           dbCon = DriverManager.getConnection(dbURL, username, password); 
-          Statement comando=dbCon.createStatement();
-          comando.executeUpdate("insert into detalle_bol(fecha,hora,numero_bol,codigo,descripcion,cant,precio,total) values ('"+sqlDate.toString()+"','"+sqlTime+"',"+String.valueOf(es)+",'"+codigo+"','"+des+"','"+cant+"','"+pre+"','"+total+"')");
-          //JOptionPane.showMessageDialog(null, "Boleta Creada");
-        } catch(SQLException ex){
-         System.out.println(ex.getMessage().toString() ); 
-        }
-		// }
-		 // System.out.println();
-		}
-          
-          //fin grabar detalle
-          
-          //actualizar contador
-          try {
-           dbCon = DriverManager.getConnection(dbURL, username, password); 
-          Statement comando=dbCon.createStatement();
-          comando.executeUpdate("update contador set contador="+String.valueOf(es)+" where documento='BOL'");
-          JOptionPane.showMessageDialog(null, "Boleta Creada");
-        } catch(SQLException ex){
-      System.out.println(ex.getMessage().toString() ); 
-        }
-          //fin actualizar contador
-        limpiar();
-        limpiarjtable(); 
-        String aimprimir=String.valueOf(es);
-    try {
-        if (imprimir.equals("S")){
-            imprimirtickets(aimprimir);
-        }
-    } catch (PrintException ex) {
-        Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (IOException ex) {
-        Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
-    }
-          
-        }
-        }
-         if (jCheckBox2.isSelected()){
-        //if (ticket.equals("S")){
+
+        if (!jCheckBox2.isSelected()) {
+
+            //fin buscar numero boleta
+            if (boleta.equals("S")) {
+
                 //buscar numero boleta
-      String query1 ="select documento,contador from contador where documento='TIC'"; 
-         // JOptionPane.showMessageDialog(null, query);
-          try {
-              //getting database connection to MySQL server 
-            dbCon = DriverManager.getConnection(dbURL, username, password); 
-           //getting PreparedStatment to execute query 
-           stmt = dbCon.prepareStatement(query1); 
-          //Resultset returned by query 
-           rs = stmt.executeQuery(query1);  
-           while(rs.next()){ 
-              
-           
-         es = rs.getInt(2)+1;
-       
- 
-          } 
-         
-        } catch(SQLException ex){
-          System.out.println(ex.getMessage().toString() ); 
+                String query1 = "select documento,contador from contador where documento='BOL'";
+                // JOptionPane.showMessageDialog(null, query);
+                try {
+                    //getting database connection to MySQL server 
+                    dbCon = DriverManager.getConnection(dbURL, username, password);
+                    //getting PreparedStatment to execute query 
+                    stmt = dbCon.prepareStatement(query1);
+                    //Resultset returned by query 
+                    rs = stmt.executeQuery(query1);
+                    while (rs.next()) {
+
+                        es = rs.getInt(2) + 1;
+
+                    }
+
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage().toString());
+                }
+
+                //fin buscar numero boleta
+                java.util.Date utilDate = new java.util.Date(); //fecha actual
+                long lnMilisegundos = utilDate.getTime();
+                java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
+                java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
+                //JOptionPane.showMessageDialog(null, "insert into boletas(numero_bol,total,fecha,hora) values ("+String.valueOf(es)+"","+jTextField4.getText()+",'"+sqlDate.toString()+"','"+sqlTime+"')");
+                try {
+                    dbCon = DriverManager.getConnection(dbURL, username, password);
+                    Statement comando = dbCon.createStatement();
+                    float totalg = Integer.valueOf(jTextField4.getText());
+                    float neto = Math.round(totalg / 1.19);
+                    float iva = totalg - neto;
+                    comando.executeUpdate("insert into boletas(estado,numero_bol,total,fecha,hora,neto,iva) values ('VIGENTE'," + String.valueOf(es) + "," + jTextField4.getText() + ",'" + sqlDate.toString() + "','" + sqlTime + "','" + neto + "','" + iva + "')");
+                    //JOptionPane.showMessageDialog(null, "Boleta Creada");
+                } catch (SQLException ex) {
+                    setTitle(ex.toString());
+                }
+                //grabar detalle
+                String codigo;
+                String des;
+                String un;
+                String cant;
+                String pre;
+                String total;
+                for (int i = 0; i < jTable1.getRowCount(); i++) {
+                    //for (int j = 0; j < jTable1.getColumnCount(); j++) {
+                    codigo = jTable1.getValueAt(i, 0).toString();
+                    des = jTable1.getValueAt(i, 1).toString();
+                    un = jTable1.getValueAt(i, 2).toString();
+                    cant = jTable1.getValueAt(i, 3).toString();
+                    pre = jTable1.getValueAt(i, 4).toString();
+                    total = jTable1.getValueAt(i, 5).toString();
+                    try {
+                        dbCon = DriverManager.getConnection(dbURL, username, password);
+                        Statement comando = dbCon.createStatement();
+                        comando.executeUpdate("insert into detalle_bol(fecha,hora,numero_bol,codigo,descripcion,cant,precio,total) values ('" + sqlDate.toString() + "','" + sqlTime + "'," + String.valueOf(es) + ",'" + codigo + "','" + des + "','" + cant + "','" + pre + "','" + total + "')");
+                        //JOptionPane.showMessageDialog(null, "Boleta Creada");
+                    } catch (SQLException ex) {
+                        System.out.println(ex.getMessage().toString());
+                    }
+                    
+                        //insertar
+                     try {
+                    dbCon0 = DriverManager.getConnection(dbURL, username, password);
+                    Statement comando0 = dbCon0.createStatement();
+                    comando0.executeUpdate("INSERT INTO movimientos(fecha,tipo,codigo,cantidad) VALUES ('"+sqlDate.toString()+"','BO','" + codigo + "'," + cant + ")");
+            
+                } catch (SQLException ex2) {
+                    System.out.println("Movimientos->"+ex2.getMessage().toString());
+                }
+             
+                 //fin insertar
+                    
+                    
+                    // }
+                    // System.out.println();
+                }
+
+                //fin grabar detalle
+                //actualizar contador
+                try {
+                    dbCon = DriverManager.getConnection(dbURL, username, password);
+                    Statement comando = dbCon.createStatement();
+                    comando.executeUpdate("update contador set contador=" + String.valueOf(es) + " where documento='BOL'");
+                    JOptionPane.showMessageDialog(null, "Boleta Creada");
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage().toString());
+                }
+                //fin actualizar contador
+                limpiar();
+                limpiarjtable();
+                String aimprimir = String.valueOf(es);
+                try {
+                    if (imprimir.equals("S")) {
+                        imprimirtickets(aimprimir);
+                    }
+                } catch (PrintException ex) {
+                    Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
         }
-    
-        //fin buscar numero boleta
-        
-        java.util.Date utilDate = new java.util.Date(); //fecha actual
-        long lnMilisegundos = utilDate.getTime();
-        java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
-        java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
-        //JOptionPane.showMessageDialog(null, "insert into boletas(numero_bol,total,fecha,hora) values ("+String.valueOf(es)+"","+jTextField4.getText()+",'"+sqlDate.toString()+"','"+sqlTime+"')");
-          try {
-           dbCon = DriverManager.getConnection(dbURL, username, password); 
-          Statement comando=dbCon.createStatement();
-          float totalg=Integer.valueOf(jTextField4.getText());
-          float neto=Math.round(totalg/1.19);
-          float iva=totalg-neto;
-          comando.executeUpdate("insert into tickets(estado,numero_bol,total,fecha,hora,neto,iva) values ('VIGENTE',"+String.valueOf(es)+","+jTextField4.getText()+",'"+sqlDate.toString()+"','"+sqlTime+"','"+neto+"','"+iva+"')");
-          //JOptionPane.showMessageDialog(null, "Boleta Creada");
-        } catch(SQLException ex){
-          setTitle(ex.toString());
+        if (jCheckBox2.isSelected()) {
+            //if (ticket.equals("S")){
+            //buscar numero boleta
+            String query1 = "select documento,contador from contador where documento='TIC'";
+            // JOptionPane.showMessageDialog(null, query);
+            try {
+                //getting database connection to MySQL server 
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                //getting PreparedStatment to execute query 
+                stmt = dbCon.prepareStatement(query1);
+                //Resultset returned by query 
+                rs = stmt.executeQuery(query1);
+                while (rs.next()) {
+
+                    es = rs.getInt(2) + 1;
+
+                }
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage().toString());
+            }
+
+            //fin buscar numero boleta
+            java.util.Date utilDate = new java.util.Date(); //fecha actual
+            long lnMilisegundos = utilDate.getTime();
+            java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
+            java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
+            //JOptionPane.showMessageDialog(null, "insert into boletas(numero_bol,total,fecha,hora) values ("+String.valueOf(es)+"","+jTextField4.getText()+",'"+sqlDate.toString()+"','"+sqlTime+"')");
+            try {
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                Statement comando = dbCon.createStatement();
+                float totalg = Integer.valueOf(jTextField4.getText());
+                float neto = Math.round(totalg / 1.19);
+                float iva = totalg - neto;
+                comando.executeUpdate("insert into tickets(estado,numero_bol,total,fecha,hora,neto,iva) values ('VIGENTE'," + String.valueOf(es) + "," + jTextField4.getText() + ",'" + sqlDate.toString() + "','" + sqlTime + "','" + neto + "','" + iva + "')");
+                //JOptionPane.showMessageDialog(null, "Boleta Creada");
+            } catch (SQLException ex) {
+                setTitle(ex.toString());
+            }
+            //grabar detalle
+            String codigo;
+            String des;
+            String un;
+            String cant;
+            String pre;
+            String total;
+            for (int i = 0; i < jTable1.getRowCount(); i++) {
+                //for (int j = 0; j < jTable1.getColumnCount(); j++) {
+                codigo = jTable1.getValueAt(i, 0).toString();
+                des = jTable1.getValueAt(i, 1).toString();
+                un = jTable1.getValueAt(i, 2).toString();
+                cant = jTable1.getValueAt(i, 3).toString();
+                pre = jTable1.getValueAt(i, 4).toString();
+                total = jTable1.getValueAt(i, 5).toString();
+                try {
+                    dbCon = DriverManager.getConnection(dbURL, username, password);
+                    Statement comando = dbCon.createStatement();
+                    comando.executeUpdate("insert into detalle_tickets(fecha,hora,numero_bol,codigo,descripcion,cant,precio,total) values ('" + sqlDate.toString() + "','" + sqlTime + "'," + String.valueOf(es) + "," + codigo + ",'" + des + "','" + cant + "','" + pre + "','" + total + "')");
+                    //JOptionPane.showMessageDialog(null, "Boleta Creada");
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage().toString());
+                }
+                
+                  //insertar
+                     try {
+                    dbCon0 = DriverManager.getConnection(dbURL, username, password);
+                    Statement comando0 = dbCon0.createStatement();
+                    comando0.executeUpdate("INSERT INTO movimientos(fecha,tipo,codigo,cantidad) VALUES ('"+sqlDate.toString()+"','TI','" + codigo + "'," + cant + ")");
+            
+                } catch (SQLException ex2) {
+                    System.out.println("Movimientos->"+ex2.getMessage().toString());
+                }
+             
+                 //fin insertar
+                // }
+                // System.out.println();
+            }
+
+            //fin grabar detalle
+            //actualizar contador
+            try {
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                Statement comando = dbCon.createStatement();
+                comando.executeUpdate("update contador set contador=" + String.valueOf(es) + " where documento='TIC'");
+                JOptionPane.showMessageDialog(null, "Tickets Creado");
+            } catch (SQLException ex) {
+                setTitle(ex.toString());
+            }
+            //fin actualizar contador
+            limpiar();
+            limpiarjtable();
+            String aimprimir = String.valueOf(es);
+            try {
+                if (imprimir.equals("S")) {
+                    imprimirtickets2(aimprimir);
+                }
+            } catch (PrintException ex) {
+                Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jCheckBox2.setSelected(false);
+            //     } 
         }
-          //grabar detalle
-          String codigo;
-           String des;
-           String un;
-           String cant;
-           String pre;
-           String total;
-          for (int i = 0; i < jTable1.getRowCount(); i++) {
-	      //for (int j = 0; j < jTable1.getColumnCount(); j++) {
-                   codigo=jTable1.getValueAt(i, 0).toString();
-                   des=jTable1.getValueAt(i, 1).toString();
-                    un=jTable1.getValueAt(i, 2).toString();
-                    cant=jTable1.getValueAt(i, 3).toString();
-                    pre=jTable1.getValueAt(i, 4).toString();
-                    total=jTable1.getValueAt(i, 5).toString();
-		    try {
-           dbCon = DriverManager.getConnection(dbURL, username, password); 
-          Statement comando=dbCon.createStatement();
-          comando.executeUpdate("insert into detalle_tickets(fecha,hora,numero_bol,codigo,descripcion,cant,precio,total) values ('"+sqlDate.toString()+"','"+sqlTime+"',"+String.valueOf(es)+","+codigo+",'"+des+"','"+cant+"','"+pre+"','"+total+"')");
-          //JOptionPane.showMessageDialog(null, "Boleta Creada");
-        } catch(SQLException ex){
-       System.out.println(ex.getMessage().toString() ); 
-        }
-		// }
-		 // System.out.println();
-		}
-          
-          //fin grabar detalle
-          
-          //actualizar contador
-          try {
-           dbCon = DriverManager.getConnection(dbURL, username, password); 
-          Statement comando=dbCon.createStatement();
-          comando.executeUpdate("update contador set contador="+String.valueOf(es)+" where documento='TIC'");
-          JOptionPane.showMessageDialog(null, "Tickets Creada");
-        } catch(SQLException ex){
-          setTitle(ex.toString());
-        }
-          //fin actualizar contador
-        limpiar();
-        limpiarjtable(); 
-        String aimprimir=String.valueOf(es);
-    try {
-        if (imprimir.equals("S")){
-        imprimirtickets2(aimprimir);
-        }
-    } catch (PrintException ex) {
-        Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (IOException ex) {
-        Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
-    }    
-        jCheckBox2.setSelected(false);       
-   //     } 
-         }
-    
-      jTextField1.grabFocus();
+
+        jTextField1.grabFocus();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
         // TODO add your handling code here:
-   
+
     }//GEN-LAST:event_jTextField5KeyPressed
 
     private void jTextField5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusLost
         // TODO add your handling code here:
-   difpago();
+        difpago();
     }//GEN-LAST:event_jTextField5FocusLost
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-   imprimirpdf();   
+        imprimirpdf();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
@@ -1300,17 +1290,17 @@ void imprimirpdf(){
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-     
-                    // TODO add your handling code here:
-          // limpiarjtable();
-        // TODO add your handling code here:
-           llenarbarra();
-           jTextField1.setText("");
-           jTextField3.setText("1");
-           jTextField1.grabFocus();
-            
-      }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            // TODO add your handling code here:
+            // limpiarjtable();
+            // TODO add your handling code here:
+            llenarbarra();
+            jTextField1.setText("");
+            jTextField3.setText("1");
+            jTextField1.grabFocus();
+
+        }
 
     }//GEN-LAST:event_jTextField1KeyPressed
 
@@ -1326,11 +1316,11 @@ void imprimirpdf(){
         java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
         java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
         jLabel16.setText(sqlDate.toString());
-        
+
         //consultar Boletas Emitidas
-      cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
         Connection dbCon = null;
@@ -1354,10 +1344,9 @@ void imprimirpdf(){
         } catch (SQLException ex) {
             System.out.println("Nop");
         }
-        
+
         //configuracion establecer default
-        
-                String query0 = "select defecto from configuracion where id=1";
+        String query0 = "select defecto from configuracion where id=1";
         // JOptionPane.showMessageDialog(null, query);
         try {
             //getting database connection to MySQL server 
@@ -1368,55 +1357,46 @@ void imprimirpdf(){
             rs = stmt.executeQuery(query0);
             String def = "B";
             while (rs.next()) {
-                def=rs.getString(1);
-                   
+                def = rs.getString(1);
 
             }
-            if (def.equals("T")){
-                   jCheckBox2.setSelected(true);
-            }else{
-                   jCheckBox2.setSelected(false);
+            if (def.equals("T")) {
+                jCheckBox2.setSelected(true);
+            } else {
+                jCheckBox2.setSelected(false);
             }
-           
+
         } catch (SQLException ex) {
             System.out.println("Nop");
         }
         //fin configuracion establecer default
-        
-        
-        
-        
-            jTextField1.grabFocus();
+
+        jTextField1.grabFocus();
         //fin consultar Boletas Emitidas
     }//GEN-LAST:event_formWindowActivated
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
 
-    posproductos objeto2=new posproductos();
+        posproductos objeto2 = new posproductos();
         objeto2.setVisible(true);
-
-      
 
 
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    
-    
-    
-    
+
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        cerrarcaja objeto4=new cerrarcaja();
+        cerrarcaja objeto4 = new cerrarcaja();
         objeto4.setVisible(true);
-          java.util.Date utilDate = new java.util.Date(); //fecha actual
+        java.util.Date utilDate = new java.util.Date(); //fecha actual
         long lnMilisegundos = utilDate.getTime();
         java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
         java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
-        String fe=sqlDate.toString();
-     cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String fe = sqlDate.toString();
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
         Connection dbCon = null;
@@ -1424,7 +1404,7 @@ void imprimirpdf(){
         ResultSet rs = null;
         String query = "select id,caja,fecha,montoinicial,estado from cajas where estado='Abierta' and fecha = '" + fe + "'";
         // JOptionPane.showMessageDialog(null, query);
-       String montoinicial="";
+        String montoinicial = "";
         try {
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
@@ -1432,23 +1412,23 @@ void imprimirpdf(){
             stmt = dbCon.prepareStatement(query);
             //Resultset returned by query 
             rs = stmt.executeQuery(query);
-           
+
             while (rs.next()) {
-                 montoinicial=rs.getString("montoinicial");
-                 System.out.println("fe->"+montoinicial);
-                 objeto4.jLabel2.setText(fe);
-                 objeto4.jLabel6.setText(montoinicial);
+                montoinicial = rs.getString("montoinicial");
+                System.out.println("fe->" + montoinicial);
+                objeto4.jLabel2.setText(fe);
+                objeto4.jLabel6.setText(montoinicial);
 
             }
-          
+
         } catch (SQLException ex) {
             System.out.println("Nop");
         }
         //ventas
-          String query1 = "select numero_bol,total,estado,forma from boletas where fecha = '" + fe + "'";
+        String query1 = "select numero_bol,total,estado,forma from boletas where fecha = '" + fe + "'";
         // JOptionPane.showMessageDialog(null, query);
-        int son=0;
-        int totalg=0;
+        int son = 0;
+        int totalg = 0;
         try {
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
@@ -1456,44 +1436,43 @@ void imprimirpdf(){
             stmt = dbCon.prepareStatement(query1);
             //Resultset returned by query 
             rs = stmt.executeQuery(query1);
-         
+
             while (rs.next()) {
-                 totalg=totalg+rs.getInt("total");
-                 son++;
+                totalg = totalg + rs.getInt("total");
+                son++;
 
             }
-          objeto4.jLabel4.setText(String.valueOf(son));
-          objeto4.jLabel14.setText(String.valueOf(totalg));
-          objeto4.jLabel8.setText(String.valueOf(totalg));
-          objeto4.jLabel10.setText("0");
-          objeto4.jLabel12.setText("0");
-          int tc=parseInt(montoinicial)+totalg;
-          objeto4.jLabel16.setText(String.valueOf(tc));
+            objeto4.jLabel4.setText(String.valueOf(son));
+            objeto4.jLabel14.setText(String.valueOf(totalg));
+            objeto4.jLabel8.setText(String.valueOf(totalg));
+            objeto4.jLabel10.setText("0");
+            objeto4.jLabel12.setText("0");
+            int tc = parseInt(montoinicial) + totalg;
+            objeto4.jLabel16.setText(String.valueOf(tc));
         } catch (SQLException ex) {
             System.out.println("Nop");
         }
-        
+
         //fin ventas
-        
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
 
-        boletas objeto9=new boletas();
+        boletas objeto9 = new boletas();
         objeto9.setVisible(true);
 
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        empresa objeto10=new empresa();
+        empresa objeto10 = new empresa();
         objeto10.setVisible(true);
-     
-        
-         cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
         Connection dbCon = null;
@@ -1501,62 +1480,60 @@ void imprimirpdf(){
         ResultSet rs = null;
         String query = "select id,rut,nombre,giro,acteco,direccion,comuna,ciudad,rut_replegal,nombre_replegal,fechares,res,fantasia from empresa where id=1 ";
         // JOptionPane.showMessageDialog(null, query);
-       String montoinicial="";
+        String montoinicial = "";
         try {
-            
+
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
             //getting PreparedStatment to execute query 
             stmt = dbCon.prepareStatement(query);
             //Resultset returned by query 
             rs = stmt.executeQuery(query);
-           
+
             while (rs.next()) {
-                 String rut=rs.getString("rut");
-                 String nombre=rs.getString("nombre");
-                 String direccion=rs.getString("direccion");
-                 String comuna=rs.getString("comuna");
-                 String ciudad=rs.getString("ciudad");
-                  String giro=rs.getString("giro");
-                  String fechares=rs.getString("fechares");
-                  String res=rs.getString("res");
-                    String acteco=rs.getString("acteco");
-                    String rut_replegal=rs.getString("rut_replegal");
-                    String nombre_replegal=rs.getString("nombre_replegal");
-                      String fantasia=rs.getString("fantasia");
-                 objeto10.jTextField1.setText("1");
-                 objeto10.jTextField2.setText(rut);
-                 objeto10.jTextField3.setText(nombre);
-                 objeto10.jTextField4.setText(direccion);
-                 objeto10.jTextField5.setText(comuna);
-                 objeto10.jTextField6.setText(ciudad);
-                 objeto10.jTextField7.setText(giro);
-                  objeto10.jTextField8.setText(fechares);
-                   objeto10.jTextField9.setText(res);
-                    objeto10.jTextField10.setText(acteco);
-                    objeto10.jTextField11.setText(rut_replegal);
-                    objeto10.jTextField12.setText(nombre_replegal);
-                     objeto10.jTextField13.setText(fantasia);
-                    
+                String rut = rs.getString("rut");
+                String nombre = rs.getString("nombre");
+                String direccion = rs.getString("direccion");
+                String comuna = rs.getString("comuna");
+                String ciudad = rs.getString("ciudad");
+                String giro = rs.getString("giro");
+                String fechares = rs.getString("fechares");
+                String res = rs.getString("res");
+                String acteco = rs.getString("acteco");
+                String rut_replegal = rs.getString("rut_replegal");
+                String nombre_replegal = rs.getString("nombre_replegal");
+                String fantasia = rs.getString("fantasia");
+                objeto10.jTextField1.setText("1");
+                objeto10.jTextField2.setText(rut);
+                objeto10.jTextField3.setText(nombre);
+                objeto10.jTextField4.setText(direccion);
+                objeto10.jTextField5.setText(comuna);
+                objeto10.jTextField6.setText(ciudad);
+                objeto10.jTextField7.setText(giro);
+                objeto10.jTextField8.setText(fechares);
+                objeto10.jTextField9.setText(res);
+                objeto10.jTextField10.setText(acteco);
+                objeto10.jTextField11.setText(rut_replegal);
+                objeto10.jTextField12.setText(nombre_replegal);
+                objeto10.jTextField13.setText(fantasia);
 
             }
-          
+
         } catch (SQLException ex) {
             System.out.println("Nop");
         }
-        
-        
+
 
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-          configura objeto12=new configura();
+        configura objeto12 = new configura();
         objeto12.setVisible(true);
-        
-          cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
         Connection dbCon = null;
@@ -1564,43 +1541,41 @@ void imprimirpdf(){
         ResultSet rs = null;
         String query = "select id,impresoratermica,boleta,ticket,imprimir from configuracion where id=1 ";
         // JOptionPane.showMessageDialog(null, query);
-       String montoinicial="";
+        String montoinicial = "";
         try {
-            
+
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
             //getting PreparedStatment to execute query 
             stmt = dbCon.prepareStatement(query);
             //Resultset returned by query 
             rs = stmt.executeQuery(query);
-           
+
             while (rs.next()) {
-                 String id=rs.getString("id");
-                 String impresoratermica=rs.getString("impresoratermica");
-                 String boleta=rs.getString("boleta");
-                 String ticket=rs.getString("ticket");
-                 String imprimir=rs.getString("imprimir");
-              if (boleta.equals("S")){
-                     objeto12.jCheckBox1.setSelected(true) ;
-                 }
-                   if (ticket.equals("S")){
-                     objeto12.jCheckBox2.setSelected(true) ;
-                 }
-                   
-                   if (imprimir.equals("S")){
-                     objeto12.jCheckBox3.setSelected(true) ;
-                 }  
-                   
-                 objeto12.jTextField1.setText(impresoratermica);
-        
-                    
+                String id = rs.getString("id");
+                String impresoratermica = rs.getString("impresoratermica");
+                String boleta = rs.getString("boleta");
+                String ticket = rs.getString("ticket");
+                String imprimir = rs.getString("imprimir");
+                if (boleta.equals("S")) {
+                    objeto12.jCheckBox1.setSelected(true);
+                }
+                if (ticket.equals("S")) {
+                    objeto12.jCheckBox2.setSelected(true);
+                }
+
+                if (imprimir.equals("S")) {
+                    objeto12.jCheckBox3.setSelected(true);
+                }
+
+                objeto12.jTextField1.setText(impresoratermica);
 
             }
-          
+
         } catch (SQLException ex) {
             System.out.println("Nop");
-        } 
-        
+        }
+
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jTable2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseEntered
@@ -1610,16 +1585,14 @@ void imprimirpdf(){
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
 
-        
-        
-        Informes0 objeto22=new Informes0();
+        Informes0 objeto22 = new Informes0();
         objeto22.setVisible(true);
-   
+
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void FamiliasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FamiliasActionPerformed
         // TODO add your handling code here:
-        familias objeto13=new familias();
+        familias objeto13 = new familias();
         objeto13.setVisible(true);
 
     }//GEN-LAST:event_FamiliasActionPerformed
@@ -1627,73 +1600,65 @@ void imprimirpdf(){
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
 
-        tickets objeto93=new tickets();
+        tickets objeto93 = new tickets();
         objeto93.setVisible(true);
 
     }//GEN-LAST:event_jButton15ActionPerformed
 
-    
-    
-    
-    
-        public static void imprimirtickets2(String bol) throws PrintException, IOException{
-        
-         Conexion cn=new Conexion();
-        
-          String url = "jdbc:mysql://"+cn.ip+":3306/"+cn.base+"?useSSL=false";
+    public static void imprimirtickets2(String bol) throws PrintException, IOException {
+
+        Conexion cn = new Conexion();
+
+        String url = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base + "?useSSL=false";
         String user = cn.usuario;
         String password = cn.pass;
         System.out.println("Buscando Tickets a Imprimir...");
-        
+
         //datos empresa
-          String query0 = "SELECT rut,nombre,direccion,comuna,ciudad,giro,fantasia FROM empresa WHERE id=1";
-                String  rut="";
-                String  nombre="";
-                String  direccion="";
-                String  comuna="";
-                String  ciudad="";
-                 String  giro="";
-                 String  fantasia="";
-       try (Connection con = DriverManager.getConnection(url, user, password);
+        String query0 = "SELECT rut,nombre,direccion,comuna,ciudad,giro,fantasia FROM empresa WHERE id=1";
+        String rut = "";
+        String nombre = "";
+        String direccion = "";
+        String comuna = "";
+        String ciudad = "";
+        String giro = "";
+        String fantasia = "";
+        try (Connection con = DriverManager.getConnection(url, user, password);
                 PreparedStatement pst = con.prepareStatement(query0);
                 ResultSet rs0 = pst.executeQuery()) {
 
             while (rs0.next()) {
-                rut=rs0.getString("rut");
-                nombre=rs0.getString("nombre");
-                direccion=rs0.getString("direccion");
-                comuna=rs0.getString("comuna");
-                ciudad=rs0.getString("ciudad");
-                giro=rs0.getString("giro");
-                fantasia=rs0.getString("fantasia");
-                
-                
-                
-                
-                  }
-             } catch (SQLException ex2) {
-                 System.out.println(ex2.getMessage()); 
-         
+                rut = rs0.getString("rut");
+                nombre = rs0.getString("nombre");
+                direccion = rs0.getString("direccion");
+                comuna = rs0.getString("comuna");
+                ciudad = rs0.getString("ciudad");
+                giro = rs0.getString("giro");
+                fantasia = rs0.getString("fantasia");
+
+            }
+        } catch (SQLException ex2) {
+            System.out.println(ex2.getMessage());
+
         }
         //fin datos empresa
-        
-        
-        String query = "SELECT numero_bol,total,fecha,forma,neto,iva FROM tickets WHERE numero_bol="+bol;
-        String pr="POS-58";
-       //  String pr="PDF Printer";
-         int neto=0;
-         int iva=0;
-       try (Connection con = DriverManager.getConnection(url, user, password);
+
+        String query = "SELECT numero_bol,total,fecha,forma,neto,iva FROM tickets WHERE numero_bol=" + bol;
+        String pr = "POS-58";
+        //  String pr="PDF Printer";
+        int neto = 0;
+        int iva = 0;
+        try (Connection con = DriverManager.getConnection(url, user, password);
                 PreparedStatement pst = con.prepareStatement(query);
                 ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {
-                int  numero=rs.getInt("numero_bol");
-                 neto=rs.getInt("neto");
-                iva=rs.getInt("iva");
-                int  total=rs.getInt("total");
-                String fecha=rs.getString("fecha");
-                String forma=rs.getString("forma");
+                int numero = rs.getInt("numero_bol");
+                neto = rs.getInt("neto");
+                iva = rs.getInt("iva");
+                int total = rs.getInt("total");
+                String fecha = rs.getString("fecha");
+                String forma = rs.getString("forma");
                 /*
                 System.out.print("numero->"+numero);
                 System.out.print("neto->"+neto);
@@ -1701,150 +1666,138 @@ void imprimirpdf(){
                 System.out.print("total->"+total);
                 System.out.print("fecha->"+fecha);
                 System.out.print("forma->"+forma);
-                */
-           	PrinterService printerService = new PrinterService();
-		
-		System.out.println(printerService.getPrinters());
-			
-		//print some stuff
-                printerService.printString(pr, fantasia +"\n");
-                printerService.printString(pr, "Tickets Numero:"+numero +"\n");
-                printerService.printString(pr, nombre +" \n");
-		printerService.printString(pr, rut +" \n");
-                printerService.printString(pr, giro +" \n");
-                printerService.printString(pr, direccion +" \n");
-                printerService.printString(pr, comuna +" \n");
-                printerService.printString(pr, "Fecha:"+fecha+" \n\n\n");
-                
+                 */
+                PrinterService printerService = new PrinterService();
+
+                System.out.println(printerService.getPrinters());
+
+                //print some stuff
+                printerService.printString(pr, fantasia + "\n");
+                printerService.printString(pr, "Tickets Numero:" + numero + "\n");
+                printerService.printString(pr, nombre + " \n");
+                printerService.printString(pr, rut + " \n");
+                printerService.printString(pr, giro + " \n");
+                printerService.printString(pr, direccion + " \n");
+                printerService.printString(pr, comuna + " \n");
+                printerService.printString(pr, "Fecha:" + fecha + " \n\n\n");
+
                 printerService.printString(pr, "Codigo Producto  Total \n");
                 //detalle
-                String query1 = "SELECT numero_bol,descripcion,cant,precio,total,codigo FROM detalle_tickets WHERE numero_bol="+bol;
-                  try (Connection con1 = DriverManager.getConnection(url, user, password);
-                       PreparedStatement pst1 = con.prepareStatement(query1);
-                       ResultSet rs1 = pst1.executeQuery()) {
+                String query1 = "SELECT numero_bol,descripcion,cant,precio,total,codigo FROM detalle_tickets WHERE numero_bol=" + bol;
+                try (Connection con1 = DriverManager.getConnection(url, user, password);
+                        PreparedStatement pst1 = con.prepareStatement(query1);
+                        ResultSet rs1 = pst1.executeQuery()) {
 
-                       while (rs1.next()) {
-                         String  codigo=rs1.getString("codigo");
-                         String  producto=rs1.getString("descripcion");
-                         int  totall=rs1.getInt("total");
-                          int  cant=rs1.getInt("cant");
-                          int  precio=rs1.getInt("precio");
-                         printerService.printString(pr,codigo+ "\n");
-                         printerService.printString(pr,producto +"\n");
-                         printerService.printString(pr,cant +"      $"+precio+"\n");
-                         printerService.printString(pr,"            $"+totall+ "\n");
-                       
-                         
+                    while (rs1.next()) {
+                        String codigo = rs1.getString("codigo");
+                        String producto = rs1.getString("descripcion");
+                        int totall = rs1.getInt("total");
+                        int cant = rs1.getInt("cant");
+                        int precio = rs1.getInt("precio");
+                        printerService.printString(pr, codigo + "\n");
+                        printerService.printString(pr, producto + "\n");
+                        printerService.printString(pr, cant + "      $" + precio + "\n");
+                        printerService.printString(pr, "            $" + totall + "\n");
+
                     }
 
-        } catch (SQLException ex1) {
-                 System.out.println(ex1.getMessage()); 
-         
-        }
- 
+                } catch (SQLException ex1) {
+                    System.out.println(ex1.getMessage());
+
+                }
+
                 //fin detalle
-                printerService.printString(pr, "\nNeto                   $"+neto+" \n");
-                printerService.printString(pr, "Iva                    $"+iva+" \n");
-                printerService.printString(pr, "Total                  $"+total+" \n");
-                
-            //    printerService.printImage(pr);	
-                
-            //    printerService.printString(pr, "Timbre Electronico SII Res.85 de 2011 \n");
-		// cut that paper!
-		byte[] cutP = new byte[] { 0x1d, 'V', 1 };
- 
-		printerService.printBytes(pr, cutP);
-                
-                  Connection con3 = null;
-                         PreparedStatement ps3 = null;
-                         try {
-                           con3 = DriverManager.getConnection(url, user, password);
-                           String query3 = "update tickets set impresion=? where numero_bol=? ";
-                           ps3 = con.prepareStatement(query3);
-                           ps3.setString(1, "S");
-                           ps3.setInt(2, numero);
-                           ps3.executeUpdate();
-                           System.out.println("Tickets Actualizada......");
-                           } catch (Exception e) {
-                             e.printStackTrace();
-                             }
-                
-                
+                printerService.printString(pr, "\nNeto                   $" + neto + " \n");
+                printerService.printString(pr, "Iva                    $" + iva + " \n");
+                printerService.printString(pr, "Total                  $" + total + " \n");
+
+                //    printerService.printImage(pr);	
+                //    printerService.printString(pr, "Timbre Electronico SII Res.85 de 2011 \n");
+                // cut that paper!
+                byte[] cutP = new byte[]{0x1d, 'V', 1};
+
+                printerService.printBytes(pr, cutP);
+
+                Connection con3 = null;
+                PreparedStatement ps3 = null;
+                try {
+                    con3 = DriverManager.getConnection(url, user, password);
+                    String query3 = "update tickets set impresion=? where numero_bol=? ";
+                    ps3 = con.prepareStatement(query3);
+                    ps3.setString(1, "S");
+                    ps3.setInt(2, numero);
+                    ps3.executeUpdate();
+                    System.out.println("Tickets Actualizada......");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
 
         } catch (SQLException ex) {
 
-         
         }
-       
-       //update boleta
-         System.out.println("Finalizado...");
-       //fin update boleta
- 
-      }
-    
-    
-    
-    
-    
-    public static void imprimirtickets(String bol) throws PrintException, IOException{
-        
-         Conexion cn=new Conexion();
-        
-          String url = "jdbc:mysql://"+cn.ip+":3306/"+cn.base+"?useSSL=false";
+
+        //update boleta
+        System.out.println("Finalizado...");
+        //fin update boleta
+
+    }
+
+    public static void imprimirtickets(String bol) throws PrintException, IOException {
+
+        Conexion cn = new Conexion();
+
+        String url = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base + "?useSSL=false";
         String user = cn.usuario;
         String password = cn.pass;
         System.out.println("Buscando Boletas a Imprimir...");
-        
+
         //datos empresa
-          String query0 = "SELECT rut,nombre,direccion,comuna,ciudad,giro,fantasia FROM empresa WHERE id=1";
-                String  rut="";
-                String  nombre="";
-                String  direccion="";
-                String  comuna="";
-                String  ciudad="";
-                 String  giro="";
-                 String  fantasia="";
-       try (Connection con = DriverManager.getConnection(url, user, password);
+        String query0 = "SELECT rut,nombre,direccion,comuna,ciudad,giro,fantasia FROM empresa WHERE id=1";
+        String rut = "";
+        String nombre = "";
+        String direccion = "";
+        String comuna = "";
+        String ciudad = "";
+        String giro = "";
+        String fantasia = "";
+        try (Connection con = DriverManager.getConnection(url, user, password);
                 PreparedStatement pst = con.prepareStatement(query0);
                 ResultSet rs0 = pst.executeQuery()) {
 
             while (rs0.next()) {
-                rut=rs0.getString("rut");
-                nombre=rs0.getString("nombre");
-                direccion=rs0.getString("direccion");
-                comuna=rs0.getString("comuna");
-                ciudad=rs0.getString("ciudad");
-                giro=rs0.getString("giro");
-                fantasia=rs0.getString("fantasia");
-                
-                
-                
-                
-                  }
-             } catch (SQLException ex2) {
-                 System.out.println(ex2.getMessage()); 
-         
+                rut = rs0.getString("rut");
+                nombre = rs0.getString("nombre");
+                direccion = rs0.getString("direccion");
+                comuna = rs0.getString("comuna");
+                ciudad = rs0.getString("ciudad");
+                giro = rs0.getString("giro");
+                fantasia = rs0.getString("fantasia");
+
+            }
+        } catch (SQLException ex2) {
+            System.out.println(ex2.getMessage());
+
         }
         //fin datos empresa
-        
-        
-        String query = "SELECT numero_bol,total,fecha,forma,neto,iva FROM boletas WHERE numero_bol="+bol;
-        String pr="POS-58";
-       //  String pr="PDF Printer";
-         int neto=0;
-         int iva=0;
-       try (Connection con = DriverManager.getConnection(url, user, password);
+
+        String query = "SELECT numero_bol,total,fecha,forma,neto,iva FROM boletas WHERE numero_bol=" + bol;
+        String pr = "POS-58";
+        //  String pr="PDF Printer";
+        int neto = 0;
+        int iva = 0;
+        try (Connection con = DriverManager.getConnection(url, user, password);
                 PreparedStatement pst = con.prepareStatement(query);
                 ResultSet rs = pst.executeQuery()) {
 
             while (rs.next()) {
-                int  numero=rs.getInt("numero_bol");
-                 neto=rs.getInt("neto");
-                iva=rs.getInt("iva");
-                int  total=rs.getInt("total");
-                String fecha=rs.getString("fecha");
-                String forma=rs.getString("forma");
+                int numero = rs.getInt("numero_bol");
+                neto = rs.getInt("neto");
+                iva = rs.getInt("iva");
+                int total = rs.getInt("total");
+                String fecha = rs.getString("fecha");
+                String forma = rs.getString("forma");
                 /*
                 System.out.print("numero->"+numero);
                 System.out.print("neto->"+neto);
@@ -1852,106 +1805,102 @@ void imprimirpdf(){
                 System.out.print("total->"+total);
                 System.out.print("fecha->"+fecha);
                 System.out.print("forma->"+forma);
-                */
-           	PrinterService printerService = new PrinterService();
-		
-		System.out.println(printerService.getPrinters());
-			
-		//print some stuff
-                printerService.printString(pr, fantasia +"\n");
-                printerService.printString(pr, "Boleta Electronica Numero:"+numero +"\n");
-                printerService.printString(pr, nombre +" \n");
-		printerService.printString(pr, rut +" \n");
-                printerService.printString(pr, giro +" \n");
-                printerService.printString(pr, direccion +" \n");
-                printerService.printString(pr, comuna +" \n");
-                printerService.printString(pr, "Fecha:"+fecha+" \n");
-                
+                 */
+                PrinterService printerService = new PrinterService();
+
+                System.out.println(printerService.getPrinters());
+
+                //print some stuff
+                printerService.printString(pr, fantasia + "\n");
+                printerService.printString(pr, "Boleta Electronica Numero:" + numero + "\n");
+                printerService.printString(pr, nombre + " \n");
+                printerService.printString(pr, rut + " \n");
+                printerService.printString(pr, giro + " \n");
+                printerService.printString(pr, direccion + " \n");
+                printerService.printString(pr, comuna + " \n");
+                printerService.printString(pr, "Fecha:" + fecha + " \n");
+
                 printerService.printString(pr, "Codigo Producto  Total \n");
                 //detalle
-                String query1 = "SELECT numero_bol,descripcion,cant,precio,total,codigo FROM detalle_bol WHERE numero_bol="+bol;
-                  try (Connection con1 = DriverManager.getConnection(url, user, password);
-                       PreparedStatement pst1 = con.prepareStatement(query1);
-                       ResultSet rs1 = pst1.executeQuery()) {
+                String query1 = "SELECT numero_bol,descripcion,cant,precio,total,codigo FROM detalle_bol WHERE numero_bol=" + bol;
+                try (Connection con1 = DriverManager.getConnection(url, user, password);
+                        PreparedStatement pst1 = con.prepareStatement(query1);
+                        ResultSet rs1 = pst1.executeQuery()) {
 
-                       while (rs1.next()) {
-                         String  codigo=rs1.getString("codigo");
-                         String  producto=rs1.getString("descripcion");
-                         int  totall=rs1.getInt("total");
-                         printerService.printString(pr,codigo+ "\n");
-                         printerService.printString(pr,producto +"\n");
-                         printerService.printString(pr,"       $"+totall+ "\n");
-                       
-                         
+                    while (rs1.next()) {
+                        String codigo = rs1.getString("codigo");
+                        String producto = rs1.getString("descripcion");
+                        int totall = rs1.getInt("total");
+                        printerService.printString(pr, codigo + "\n");
+                        printerService.printString(pr, producto + "\n");
+                        printerService.printString(pr, "       $" + totall + "\n");
+
                     }
 
-        } catch (SQLException ex1) {
-                 System.out.println(ex1.getMessage()); 
-         
-        }
- 
+                } catch (SQLException ex1) {
+                    System.out.println(ex1.getMessage());
+
+                }
+
                 //fin detalle
-                printerService.printString(pr, "\nNeto                   $"+neto+" \n");
-                printerService.printString(pr, "Iva                    $"+iva+" \n");
-                printerService.printString(pr, "Total                  $"+total+" \n");
-                
-                printerService.printImage(pr);	
-                
+                printerService.printString(pr, "\nNeto                   $" + neto + " \n");
+                printerService.printString(pr, "Iva                    $" + iva + " \n");
+                printerService.printString(pr, "Total                  $" + total + " \n");
+
+                printerService.printImage(pr);
+
                 printerService.printString(pr, "Timbre Electronico SII Res.85 de 2011 \n");
-		// cut that paper!
-		byte[] cutP = new byte[] { 0x1d, 'V', 1 };
- 
-		printerService.printBytes(pr, cutP);
-                
-                  Connection con3 = null;
-                         PreparedStatement ps3 = null;
-                         try {
-                           con3 = DriverManager.getConnection(url, user, password);
-                           String query3 = "update boletas set impresion=? where numero_bol=? ";
-                           ps3 = con.prepareStatement(query3);
-                           ps3.setString(1, "S");
-                           ps3.setInt(2, numero);
-                           ps3.executeUpdate();
-                           System.out.println("Boleta Actualizada......");
-                           } catch (Exception e) {
-                             e.printStackTrace();
-                             }
-                
-                
+                // cut that paper!
+                byte[] cutP = new byte[]{0x1d, 'V', 1};
+
+                printerService.printBytes(pr, cutP);
+
+                Connection con3 = null;
+                PreparedStatement ps3 = null;
+                try {
+                    con3 = DriverManager.getConnection(url, user, password);
+                    String query3 = "update boletas set impresion=? where numero_bol=? ";
+                    ps3 = con.prepareStatement(query3);
+                    ps3.setString(1, "S");
+                    ps3.setInt(2, numero);
+                    ps3.executeUpdate();
+                    System.out.println("Boleta Actualizada......");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
             }
 
         } catch (SQLException ex) {
 
-         
         }
-       
-       //update boleta
-         System.out.println("Finalizado...");
-       //fin update boleta
- 
-      }
-    
-    
-    
+
+        //update boleta
+        System.out.println("Finalizado...");
+        //fin update boleta
+
+    }
+
     /**
      * @param args the command line arguments
      */
-      private void limpiar(){
+    private void limpiar() {
         jTextField1.setText(null);
         jTextField2.setText("");
         jTextField3.setText("1");
         jTextField4.setText("0");
         jTextField5.setText("0");
         jTextField6.setText("0");
-        
+
         jTextField7.setText("");
         jTextField8.setText("");
         jTextField9.setText("");
         jTextField10.setText("");
         jTextField11.setText("");
         jTextField12.setText("");
-     
+
     }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

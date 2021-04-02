@@ -59,6 +59,7 @@ public class Inventario extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -95,6 +96,11 @@ public class Inventario extends javax.swing.JFrame {
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton2);
 
         jLabel1.setText("Id");
@@ -122,6 +128,13 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("Procesar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,14 +145,17 @@ public class Inventario extends javax.swing.JFrame {
                     .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton3))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton4)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton4))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel1)
@@ -174,7 +190,9 @@ public class Inventario extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton4)
+                            .addComponent(jButton5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)))
                 .addContainerGap())
@@ -240,12 +258,19 @@ public class Inventario extends javax.swing.JFrame {
         llenar();
     }//GEN-LAST:event_formWindowActivated
 
+  
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-
+        String vid=this.jTextField1.getText();
+        if (vid.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Fecha de Inventario");
+        }else{
         detalle_inventario objeto24 = new detalle_inventario();
         objeto24.setVisible(true);
         objeto24.jLabel5.setText(this.jTextField1.getText());
+        objeto24.llenar();
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -263,6 +288,91 @@ public class Inventario extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+
+        this.setVisible(false);
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Connection dbCon1 = null;
+        Connection dbCon0 = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        ResultSet rs0 = null;
+        String Buscar=this.jTextField2.getText();
+        String query = "select id,fecha,tipo from inventarios WHERE fecha='"+Buscar+"' and estado='Sin procesar'";
+        String procesar="N";
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+            String Buscarid="";
+            String Buscarfecha="";
+            while (rs.next()) {
+                   Buscarid = rs.getString("id");
+                 
+                   procesar="S";
+            }
+            if (procesar.equals("N")){
+                JOptionPane.showMessageDialog(null, "Este inventario ya fue procesado...");
+            }else{
+            /* procesar*/
+             String query0="SELECT id,ide,codigo,producto,un,cant FROM detalle_inventario WHERE ide="+Buscarid;
+             rs0 = stmt.executeQuery(query0);
+             while (rs0.next()) {
+                 String codigo    = rs0.getString("codigo");
+                 String producto  = rs0.getString("producto");
+                 String un        = rs0.getString("un");
+                 String cant      = rs0.getString("cant");
+                 //insertar
+                     try {
+                    dbCon0 = DriverManager.getConnection(dbURL, username, password);
+                    Statement comando0 = dbCon0.createStatement();
+                    comando0.executeUpdate("INSERT INTO movimientos(fecha,tipo,codigo,cantidad) VALUES ('"+Buscar+"','I','" + codigo + "'," + cant + ")");
+            
+                } catch (SQLException ex2) {
+                    System.out.println("Movimientos->"+ex2.getMessage().toString());
+                }
+             
+                 //fin insertar
+        
+            }
+             
+                try {
+                    dbCon1 = DriverManager.getConnection(dbURL, username, password);
+                    Statement comando1 = dbCon1.createStatement();
+                   comando1.executeUpdate("UPDATE inventarios SET estado='Procesado' WHERE id="+Buscarid);
+                } catch (SQLException ex0) {
+                    System.out.println("Update Inventario->"+ex0.getMessage().toString());
+                }
+             
+             
+             JOptionPane.showMessageDialog(null, "Inventario Procesado");
+            }
+            
+           /*fin procesar */
+            
+        } catch (SQLException ex) {
+            System.out.println("Principal->"+ex.getMessage().toString());
+        }
+
+
+
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void limpiarjtable() {
         modelo.setRowCount(0);
@@ -360,6 +470,7 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

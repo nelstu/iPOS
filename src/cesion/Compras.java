@@ -20,17 +20,18 @@ import javax.swing.table.DefaultTableModel;
  * @author dev
  */
 public class Compras extends javax.swing.JFrame {
- DefaultTableModel modelo;
+
+    DefaultTableModel modelo;
+
     /**
      * Creates new form Compras
      */
     public Compras() {
         initComponents();
-          setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         modelo = new DefaultTableModel();
         jTable1.setModel(modelo);
 
-   
         modelo.addColumn("Codigo");
         modelo.addColumn("Producto");
         modelo.addColumn("Un");
@@ -39,16 +40,14 @@ public class Compras extends javax.swing.JFrame {
         modelo.addColumn("Total");
     }
 
-    
-        private void cargarDriver() {
+    private void cargarDriver() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (Exception ex) {
 
         }
     }
-    
-     
+
     private void limpiarjtable() {
         modelo.setRowCount(0);
     }
@@ -65,11 +64,9 @@ public class Compras extends javax.swing.JFrame {
         jTextField9.setText("");
         jTextField10.setText("");
         jTextField11.setText("");
-      
-    
-    }   
-        
-        
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -434,15 +431,62 @@ public class Compras extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        String numero = jTextField1.getText();
+        String fecha = jTextField2.getText();
+        String rut = jTextField3.getText();
+        String razon = jTextField4.getText();
+
+        String direccion = jTextField5.getText();
+        String comuna = jTextField6.getText();
+        String ciudad = jTextField7.getText();
+        String giro = jTextField8.getText();
+        String neto = jTextField9.getText();
+        String iva = jTextField10.getText();
+        String total = jTextField11.getText();
+          if( numero.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Numero!!");
+            return;
+        }
+          if( fecha.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Fecha!!");
+            return;
+        }
+        if (rut.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Rut!!");
+            return;
+        }
+
+        if (razon.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Razon!!");
+            return;
+        }
+
+        if (direccion.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Direccion!!");
+            return;
+        }
+        if (comuna.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Comuna!!");
+            return;
+        }
+        if (ciudad.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Ciudad!!");
+            return;
+        }
+        if (giro.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Giro !!");
+            return;
+        }
 
         String Buscarnumero = jTextField1.getText();
-        String Buscarrut= jTextField3.getText();
+        String Buscarrut = jTextField3.getText();
         cargarDriver();
         Conexion cn = new Conexion();
         String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
         Connection dbCon = null;
+        Connection dbCon0 = null;
         Statement stmt = null;
         ResultSet rs = null;
         String query = "select * from documentosc where  numero = '" + Buscarnumero + "'  AND rut = '" + Buscarrut + "' ";
@@ -464,32 +508,19 @@ public class Compras extends javax.swing.JFrame {
                 try {
                     dbCon = DriverManager.getConnection(dbURL, username, password);
                     Statement comando = dbCon.createStatement();
-                     String numero = jTextField1.getText();
-                    String fecha = jTextField2.getText();
-                    String rut = jTextField3.getText();
-                    String razon = jTextField4.getText();
-                    
-                    String direccion = jTextField5.getText();
-                    String comuna = jTextField6.getText();
-                    String ciudad = jTextField7.getText();
-                    String giro = jTextField8.getText();
-                    String neto = jTextField9.getText();
-                    String iva = jTextField10.getText();
-                    String total = jTextField11.getText();
-                   
-                     String tipo= this.jComboBox1.getSelectedItem().toString();
+
+                    String tipo = this.jComboBox1.getSelectedItem().toString();
                     comando.executeUpdate("UPDATE documentosc set total=" + total + ",iva=" + iva + ",neto=" + neto + ",giro='" + giro + "',ciudad='" + ciudad + "',comuna='" + comuna + "',direccion='" + direccion + "',tipo='" + tipo + "',numero=" + numero + ",fecha='" + fecha + "',rut='" + rut + "',razon='" + razon + "' WHERE  numero = '" + Buscarnumero + "'  AND rut = '" + Buscarrut + "' ");
-                    
-                    
+
                     comando.executeUpdate("DELETE FROM detdocumentosc WHERE  numero = '" + Buscarnumero + "' ");
-           
-                        //detalle
-                     String codigo;
-                     String des;
-                     String un;
-                     String cant;
-                     String pre;
-                     String totall;
+
+                    //detalle
+                    String codigo;
+                    String des;
+                    String un;
+                    String cant;
+                    String pre;
+                    String totall;
                     for (int i = 0; i < jTable1.getRowCount(); i++) {
                         //for (int j = 0; j < jTable1.getColumnCount(); j++) {
                         codigo = jTable1.getValueAt(i, 0).toString();
@@ -500,8 +531,21 @@ public class Compras extends javax.swing.JFrame {
                         totall = jTable1.getValueAt(i, 5).toString();
 
                         comando.executeUpdate("insert into detdocumentosc(numero,codigo,producto,un,cantidad,precio,total) values (" + numero + ",'" + codigo + "','" + des + "','" + un + "'," + cant + "," + pre + "," + totall + ")");
+
+                        //insertar
+                        try {
+                            dbCon0 = DriverManager.getConnection(dbURL, username, password);
+                            Statement comando0 = dbCon0.createStatement();
+                            if (tipo.equals("FC Factura de Compra")) {
+                                comando0.executeUpdate("INSERT INTO movimientos(fecha,tipo,codigo,cantidad) VALUES ('" + fecha + "','FC','" + codigo + "'," + cant + ")");
+                            }
+                        } catch (SQLException ex2) {
+                            System.out.println("Movimientos->" + ex2.getMessage().toString());
+                        }
+
+                        //fin insertar
                     }
-                    
+
                     //fin detalle
                     JOptionPane.showMessageDialog(null, "Documento de Compras Actualizado");
                     //this.jComboBox1.removeAllItems();
@@ -513,29 +557,17 @@ public class Compras extends javax.swing.JFrame {
                 try {
                     dbCon = DriverManager.getConnection(dbURL, username, password);
                     Statement comando = dbCon.createStatement();
-                    String numero = jTextField1.getText();
-                    String fecha = jTextField2.getText();
-                    String rut = jTextField3.getText();
-                    String razon = jTextField4.getText();
-                       String direccion = jTextField5.getText();
-                    String comuna = jTextField6.getText();
-                    String ciudad = jTextField7.getText();
-                    String giro = jTextField8.getText();
-                    String neto = jTextField9.getText();
-                    String iva = jTextField10.getText();
-                    String total = jTextField11.getText();
-                   
-                     String tipo= this.jComboBox1.getSelectedItem().toString();
+
+                    String tipo = this.jComboBox1.getSelectedItem().toString();
                     comando.executeUpdate("insert into documentosc(total,iva,neto,giro,ciudad,comuna,direccion,tipo,numero,fecha,rut,razon) values (" + total + "," + iva + "," + neto + ",'" + giro + "','" + ciudad + "','" + comuna + "','" + direccion + "','" + tipo + "','" + numero + "','" + fecha + "','" + rut + "','" + razon + "')");
-                   
-                    
+
                     //detalle
-                     String codigo;
-                     String des;
-                     String un;
-                     String cant;
-                     String pre;
-                     String totall;
+                    String codigo;
+                    String des;
+                    String un;
+                    String cant;
+                    String pre;
+                    String totall;
                     for (int i = 0; i < jTable1.getRowCount(); i++) {
                         //for (int j = 0; j < jTable1.getColumnCount(); j++) {
                         codigo = jTable1.getValueAt(i, 0).toString();
@@ -547,11 +579,8 @@ public class Compras extends javax.swing.JFrame {
 
                         comando.executeUpdate("insert into detdocumentosc(numero,codigo,producto,un,cantidad,precio,total) values (" + numero + ",'" + codigo + "','" + des + "','" + un + "'," + cant + "," + pre + "," + totall + ")");
                     }
-                    
+
                     //fin detalle
-                    
-                    
-                    
                     JOptionPane.showMessageDialog(null, "Documento de Compras Creado");
                     //this.jComboBox1.removeAllItems();
                 } catch (SQLException ex) {
@@ -571,101 +600,92 @@ public class Compras extends javax.swing.JFrame {
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         // TODO add your handling code here:
- if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-         
-         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
-        // get the selected row index
-        int selectedRowIndex = jTable1.getSelectedRow();
-         String Buscarnumero= jTextField1.getText();
-         cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
-        String username = cn.usuario;
-        String password = cn.pass;
-        Connection dbCon = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-         ResultSet rs1 = null;
-        String query = "select * from documentosc where  numero = '" + Buscarnumero + "' ";
-        // JOptionPane.showMessageDialog(null, query);
-       String montoinicial="";
-        try {
-            //getting database connection to MySQL server 
-            dbCon = DriverManager.getConnection(dbURL, username, password);
-            //getting PreparedStatment to execute query 
-            stmt = dbCon.prepareStatement(query);
-            //Resultset returned by query 
-            rs = stmt.executeQuery(query);
-           
-            while (rs.next()) {
-                 String rut=rs.getString("rut");
-                 String fecha=rs.getString("fecha");
-                 String numero=rs.getString("numero");
-                 String razon=rs.getString("razon");
-                 String direccion=rs.getString("direccion");
-                 String comuna=rs.getString("comuna");
-                 String ciudad=rs.getString("ciudad");
-                 String giro=rs.getString("giro");
-                 String neto=rs.getString("neto");
-                 String iva=rs.getString("iva");
-                 String total=rs.getString("total");
-                 this.jTextField1.setText(numero);
-                 this.jTextField2.setText(fecha);
-                this.jTextField3.setText(rut);
-                this.jTextField4.setText(razon);
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-                this.jTextField5.setText(direccion);
-                this.jTextField6.setText(comuna);
-                this.jTextField7.setText(ciudad);
-                this.jTextField8.setText(giro);
-                this.jTextField9.setText(neto);
-                this.jTextField10.setText(iva);
-                this.jTextField11.setText(total);
+            // get the selected row index
+            int selectedRowIndex = jTable1.getSelectedRow();
+            String Buscarnumero = jTextField1.getText();
+            cargarDriver();
+            Conexion cn = new Conexion();
+            String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+            String username = cn.usuario;
+            String password = cn.pass;
+            Connection dbCon = null;
+            Statement stmt = null;
+            ResultSet rs = null;
+            ResultSet rs1 = null;
+            String query = "select * from documentosc where  numero = '" + Buscarnumero + "' ";
+            // JOptionPane.showMessageDialog(null, query);
+            String montoinicial = "";
+            try {
+                //getting database connection to MySQL server 
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                //getting PreparedStatment to execute query 
+                stmt = dbCon.prepareStatement(query);
+                //Resultset returned by query 
+                rs = stmt.executeQuery(query);
 
-                
-                  this.jComboBox1.setSelectedItem(rs.getString("tipo"));
-               
-                //detalle
-                String query1 = "select * from detdocumentosc where  numero = '" + Buscarnumero + "'";
-                rs1 = stmt.executeQuery(query1);
+                while (rs.next()) {
+                    String rut = rs.getString("rut");
+                    String fecha = rs.getString("fecha");
+                    String numero = rs.getString("numero");
+                    String razon = rs.getString("razon");
+                    String direccion = rs.getString("direccion");
+                    String comuna = rs.getString("comuna");
+                    String ciudad = rs.getString("ciudad");
+                    String giro = rs.getString("giro");
+                    String neto = rs.getString("neto");
+                    String iva = rs.getString("iva");
+                    String total = rs.getString("total");
+                    this.jTextField1.setText(numero);
+                    this.jTextField2.setText(fecha);
+                    this.jTextField3.setText(rut);
+                    this.jTextField4.setText(razon);
 
-                while (rs1.next()) {
-                    String codigo = rs1.getString("codigo");
-                    String producto = rs1.getString("producto");
-                    String un = rs1.getString("un");
-                    String precio = rs1.getString("precio");
-                    String cantidad = rs1.getString("cantidad");
-                    String totall = rs1.getString("total");
-                    
-                  
-                    Object[] object = new Object[6];
-                    object[0] = codigo;
-                    object[1] = producto;
-                    object[2] = un;
-                    object[3] = cantidad;
-                    object[4] = precio;
-                    object[5] = totall;
+                    this.jTextField5.setText(direccion);
+                    this.jTextField6.setText(comuna);
+                    this.jTextField7.setText(ciudad);
+                    this.jTextField8.setText(giro);
+                    this.jTextField9.setText(neto);
+                    this.jTextField10.setText(iva);
+                    this.jTextField11.setText(total);
 
-                    modelo.addRow(object);
+                    this.jComboBox1.setSelectedItem(rs.getString("tipo"));
 
-                    
-                    
+                    //detalle
+                    String query1 = "select * from detdocumentosc where  numero = '" + Buscarnumero + "'";
+                    rs1 = stmt.executeQuery(query1);
+
+                    while (rs1.next()) {
+                        String codigo = rs1.getString("codigo");
+                        String producto = rs1.getString("producto");
+                        String un = rs1.getString("un");
+                        String precio = rs1.getString("precio");
+                        String cantidad = rs1.getString("cantidad");
+                        String totall = rs1.getString("total");
+
+                        Object[] object = new Object[6];
+                        object[0] = codigo;
+                        object[1] = producto;
+                        object[2] = un;
+                        object[3] = cantidad;
+                        object[4] = precio;
+                        object[5] = totall;
+
+                        modelo.addRow(object);
+
+                    }
+                    //fin detalle
+
                 }
-                //fin detalle
-                 
-                 
 
+            } catch (SQLException ex) {
+                System.out.println("Nop");
             }
-          
-        } catch (SQLException ex) {
-            System.out.println("Nop");
+
         }
-            
-      }
-
-
-
 
 
     }//GEN-LAST:event_jTextField1KeyPressed
@@ -690,7 +710,7 @@ public class Compras extends javax.swing.JFrame {
         jTextField11.setText(String.valueOf((numero)));
     }
 
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
@@ -719,7 +739,6 @@ public class Compras extends javax.swing.JFrame {
         sumardet();
 
 
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -732,51 +751,44 @@ public class Compras extends javax.swing.JFrame {
 
     private void jTextField12KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField12KeyPressed
         // TODO add your handling code here:
- if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-         
-       
-         String Buscar= jTextField12.getText();
-         cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
-        String username = cn.usuario;
-        String password = cn.pass;
-        Connection dbCon = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-        String query = "select codigo,barra,producto,nombrecorto,un,familia,venta2,boleta,solicitaprecio,mayorista from productos where  barra = '" + Buscar + "'";
-        // JOptionPane.showMessageDialog(null, query);
-       String montoinicial="";
-        try {
-            //getting database connection to MySQL server 
-            dbCon = DriverManager.getConnection(dbURL, username, password);
-            //getting PreparedStatment to execute query 
-            stmt = dbCon.prepareStatement(query);
-            //Resultset returned by query 
-            rs = stmt.executeQuery(query);
-           
-            while (rs.next()) {
-                 String producto=rs.getString("producto");
-                 String un=rs.getString("un");
-                 String cant="1";
-              
-                 this.jTextField13.setText(producto);
-                 this.jTextField14.setText(un);
-                 this.jTextField15.setText(cant);
-              
-               
-               
-                 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
+            String Buscar = jTextField12.getText();
+            cargarDriver();
+            Conexion cn = new Conexion();
+            String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+            String username = cn.usuario;
+            String password = cn.pass;
+            Connection dbCon = null;
+            Statement stmt = null;
+            ResultSet rs = null;
+            String query = "select codigo,barra,producto,nombrecorto,un,familia,venta2,boleta,solicitaprecio,mayorista from productos where  barra = '" + Buscar + "'";
+            // JOptionPane.showMessageDialog(null, query);
+            String montoinicial = "";
+            try {
+                //getting database connection to MySQL server 
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                //getting PreparedStatment to execute query 
+                stmt = dbCon.prepareStatement(query);
+                //Resultset returned by query 
+                rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String producto = rs.getString("producto");
+                    String un = rs.getString("un");
+                    String cant = "1";
+
+                    this.jTextField13.setText(producto);
+                    this.jTextField14.setText(un);
+                    this.jTextField15.setText(cant);
+
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("Nop");
             }
-          
-        } catch (SQLException ex) {
-            System.out.println("Nop");
+
         }
-            
-      }
-
-
 
 
     }//GEN-LAST:event_jTextField12KeyPressed
@@ -784,29 +796,8 @@ public class Compras extends javax.swing.JFrame {
     private void jTextField16KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField16KeyPressed
         // TODO add your handling code here:
 
-       // TODO add your handling code here:
- if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-         
-       
-     String cant = jTextField15.getText();
-     String precio = jTextField16.getText();
-     String totall=String.valueOf(parseInt(cant)*parseInt(precio));
-     this.jTextField17.setText(totall);
-
-
-            
-      }
-
-
-
-
-    }//GEN-LAST:event_jTextField16KeyPressed
-
-    private void jTextField15KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField15KeyPressed
         // TODO add your handling code here:
-
-       // TODO add your handling code here:
- if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
 
             String cant = jTextField15.getText();
             String precio = jTextField16.getText();
@@ -815,6 +806,21 @@ public class Compras extends javax.swing.JFrame {
 
         }
 
+
+    }//GEN-LAST:event_jTextField16KeyPressed
+
+    private void jTextField15KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField15KeyPressed
+        // TODO add your handling code here:
+
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            String cant = jTextField15.getText();
+            String precio = jTextField16.getText();
+            String totall = String.valueOf(parseInt(cant) * parseInt(precio));
+            this.jTextField17.setText(totall);
+
+        }
 
 
     }//GEN-LAST:event_jTextField15KeyPressed
