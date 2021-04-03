@@ -12,6 +12,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,7 +60,7 @@ public class Compras extends javax.swing.JFrame {
 
     private void limpiar() {
         jTextField1.setText(null);
-        jTextField2.setText("");
+        
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
@@ -64,6 +70,27 @@ public class Compras extends javax.swing.JFrame {
         jTextField9.setText("");
         jTextField10.setText("");
         jTextField11.setText("");
+         Calendar ca = new GregorianCalendar();
+        String day = ca.get(Calendar.DAY_OF_MONTH) + "";
+        String month = ca.get(Calendar.MONTH) + 1 + "";
+        String year = ca.get(Calendar.YEAR) + "";
+
+        if (day.length() == 1) {
+            day = "0" + day;
+        }
+        if (month.length() == 1) {
+            month = "0" + month;
+        }
+
+        String dd = year + "-" + month + "-" + day;
+        
+               java.util.Date date2;
+        try {
+            date2 = new SimpleDateFormat("yyyy-MM-dd").parse(dd);
+             this.jDateChooser1.setDate(date2);
+        } catch (ParseException ex) {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -80,7 +107,6 @@ public class Compras extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -119,10 +145,16 @@ public class Compras extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setText("Numero");
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
@@ -132,6 +164,12 @@ public class Compras extends javax.swing.JFrame {
         jLabel2.setText("Fecha");
 
         jLabel3.setText("Rut");
+
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField3KeyPressed(evt);
+            }
+        });
 
         jLabel4.setText("Razon");
 
@@ -172,12 +210,22 @@ public class Compras extends javax.swing.JFrame {
             }
         });
 
+        jTextField15.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField15FocusLost(evt);
+            }
+        });
         jTextField15.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField15KeyPressed(evt);
             }
         });
 
+        jTextField16.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField16FocusLost(evt);
+            }
+        });
         jTextField16.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField16KeyPressed(evt);
@@ -223,6 +271,8 @@ public class Compras extends javax.swing.JFrame {
             }
         });
 
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -231,56 +281,48 @@ public class Compras extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton4))
+                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel18)
-                                                .addGap(60, 60, 60))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel13)
-                                                .addGap(83, 83, 83)
-                                                .addComponent(jLabel14)
-                                                .addGap(162, 162, 162)
-                                                .addComponent(jLabel15)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)))
+                                        .addComponent(jLabel13)
+                                        .addGap(83, 83, 83)
+                                        .addComponent(jLabel14)
+                                        .addGap(162, 162, 162)
+                                        .addComponent(jLabel15)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel10)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel12))
-                                        .addGap(16, 16, 16)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField10)
-                                            .addComponent(jTextField11)
-                                            .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addGap(0, 35, Short.MAX_VALUE)))))
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12))
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField10)
+                                    .addComponent(jTextField11)
+                                    .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(0, 35, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4)))
                         .addGap(49, 49, 49))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,19 +334,9 @@ public class Compras extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(58, 58, 58))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(44, 44, 44)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                                                    .addComponent(jTextField1))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(32, 32, 32)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(58, 58, 58)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
                                             .addComponent(jLabel8))
@@ -314,9 +346,8 @@ public class Compras extends javax.swing.JFrame {
                                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addGap(44, 44, 44)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(40, 40, 40)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -324,6 +355,8 @@ public class Compras extends javax.swing.JFrame {
                                                         .addComponent(jLabel16)
                                                         .addGap(54, 54, 54)
                                                         .addComponent(jLabel17)
+                                                        .addGap(72, 72, 72)
+                                                        .addComponent(jLabel18)
                                                         .addGap(0, 0, Short.MAX_VALUE))
                                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addComponent(jLabel6)
@@ -332,7 +365,18 @@ public class Compras extends javax.swing.JFrame {
                                                         .addGap(32, 32, 32)
                                                         .addComponent(jLabel7)
                                                         .addGap(39, 39, 39)
-                                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
+                                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -350,9 +394,9 @@ public class Compras extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -379,7 +423,7 @@ public class Compras extends javax.swing.JFrame {
                     .addComponent(jLabel16)
                     .addComponent(jLabel17)
                     .addComponent(jLabel18))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -402,8 +446,9 @@ public class Compras extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55)
-                        .addComponent(jButton4))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addGap(37, 37, 37))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
@@ -422,7 +467,7 @@ public class Compras extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 14, Short.MAX_VALUE))
         );
 
@@ -432,7 +477,9 @@ public class Compras extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         String numero = jTextField1.getText();
-        String fecha = jTextField2.getText();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        String fecha = sdf.format(this.jDateChooser1.getDate()); 
         String rut = jTextField3.getText();
         String razon = jTextField4.getText();
 
@@ -489,6 +536,44 @@ public class Compras extends javax.swing.JFrame {
         Connection dbCon0 = null;
         Statement stmt = null;
         ResultSet rs = null;
+        Statement stmt0 = null;
+        ResultSet rs0 = null;
+        //ingresar datos rut si no existe
+            String query0 = "SELECT * FROM socios WHERE   rut = '" + Buscarrut + "' ";
+        // JOptionPane.showMessageDialog(null, query);
+        String existe0 = "N";
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt0 = dbCon.prepareStatement(query0);
+            //Resultset returned by query 
+            rs0 = stmt0.executeQuery(query0);
+
+            while (rs0.next()) {
+                existe0 = "S";
+            }
+            
+            if (existe0.equals("N")){
+                   try {
+                            dbCon0 = DriverManager.getConnection(dbURL, username, password);
+                            Statement comando0 = dbCon0.createStatement();
+                           
+                             comando0.executeUpdate("INSERT INTO socios(proveedor,rut,nombre,direccion,comuna,ciudad,giro) VALUES ('S','" + rut + "','" + razon + "','" + direccion + "','" + comuna + "','" + ciudad + "','" + giro + "')");
+                           
+                        } catch (SQLException ex2) {
+                            System.out.println("Movimientos->" + ex2.getMessage().toString());
+                        }
+
+            }
+            
+        } catch (SQLException ex0) {
+                    setTitle(ex0.toString());
+                }
+        
+        //fin ingresar datos rut si no existe
+        
+        
         String query = "select * from documentosc where  numero = '" + Buscarnumero + "'  AND rut = '" + Buscarrut + "' ";
         // JOptionPane.showMessageDialog(null, query);
         String existe = "N";
@@ -601,7 +686,8 @@ public class Compras extends javax.swing.JFrame {
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
+              limpiar();
+            limpiarjtable();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
             // get the selected row index
@@ -640,7 +726,14 @@ public class Compras extends javax.swing.JFrame {
                     String iva = rs.getString("iva");
                     String total = rs.getString("total");
                     this.jTextField1.setText(numero);
-                    this.jTextField2.setText(fecha);
+                    String dd = fecha;
+                    java.util.Date date2;
+                    try {
+                        date2 = new SimpleDateFormat("yyyy-MM-dd").parse(dd);
+                        this.jDateChooser1.setDate(date2);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     this.jTextField3.setText(rut);
                     this.jTextField4.setText(razon);
 
@@ -714,6 +807,31 @@ public class Compras extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
+        
+          if (this.jTextField12.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Codigo");
+            return;
+        }
+          
+           if (this.jTextField13.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Producto");
+            return;
+        }
+        
+        if (this.jTextField15.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Cantidad");
+            return;
+        }
+         if (this.jTextField16.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Precio");
+            return;
+        }
+         
+        if (this.jTextField17.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Total");
+            return;
+        }
+        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         // get the selected row index
@@ -726,7 +844,7 @@ public class Compras extends javax.swing.JFrame {
         object[3] = jTextField15.getText();
         object[4] = jTextField16.getText();
         object[5] = jTextField17.getText();
-        System.out.println("Si");
+    
 
         modelo.addRow(object);
         jTextField12.setText("");
@@ -825,6 +943,175 @@ public class Compras extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextField15KeyPressed
 
+    private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
+        // TODO add your handling code here:
+ if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+         
+       
+         String Buscar= jTextField3.getText();
+         cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select id,rut,nombre,direccion,comuna,ciudad,region,email,cliente,proveedor,giro from socios where proveedor='S' and rut = '" + Buscar + "'";
+       
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                 String nombre=rs.getString("nombre");
+                 String direccion=rs.getString("direccion");
+                 String comuna=rs.getString("comuna");
+                 String ciudad=rs.getString("ciudad");
+                 String region=rs.getString("region");
+                 String email=rs.getString("email");
+                 String cliente=rs.getString("cliente");
+                 String proveedor=rs.getString("proveedor");
+                 String giro=rs.getString("giro");
+                 
+                 this.jTextField4.setText(nombre);
+                 this.jTextField5.setText(direccion);
+                 this.jTextField6.setText(comuna);
+                 this.jTextField7.setText(ciudad);
+                 this.jTextField8.setText(giro);
+             
+                 
+
+            }
+          
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+            
+      }
+
+
+
+
+    }//GEN-LAST:event_jTextField3KeyPressed
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        // TODO add your handling code here:
+  
+            limpiar();
+            limpiarjtable();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            // get the selected row index
+            int selectedRowIndex = jTable1.getSelectedRow();
+            String Buscarnumero = jTextField1.getText();
+            cargarDriver();
+            Conexion cn = new Conexion();
+            String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+            String username = cn.usuario;
+            String password = cn.pass;
+            Connection dbCon = null;
+            Statement stmt = null;
+            ResultSet rs = null;
+            ResultSet rs1 = null;
+            String query = "select * from documentosc where  numero = '" + Buscarnumero + "' ";
+            // JOptionPane.showMessageDialog(null, query);
+            String montoinicial = "";
+            try {
+                //getting database connection to MySQL server 
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                //getting PreparedStatment to execute query 
+                stmt = dbCon.prepareStatement(query);
+                //Resultset returned by query 
+                rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    String rut = rs.getString("rut");
+                    String fecha = rs.getString("fecha");
+                    String numero = rs.getString("numero");
+                    String razon = rs.getString("razon");
+                    String direccion = rs.getString("direccion");
+                    String comuna = rs.getString("comuna");
+                    String ciudad = rs.getString("ciudad");
+                    String giro = rs.getString("giro");
+                    String neto = rs.getString("neto");
+                    String iva = rs.getString("iva");
+                    String total = rs.getString("total");
+                    this.jTextField1.setText(numero);
+                    String dd = fecha;
+                    java.util.Date date2;
+                    try {
+                        date2 = new SimpleDateFormat("yyyy-MM-dd").parse(dd);
+                        this.jDateChooser1.setDate(date2);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    this.jTextField3.setText(rut);
+                    this.jTextField4.setText(razon);
+
+                    this.jTextField5.setText(direccion);
+                    this.jTextField6.setText(comuna);
+                    this.jTextField7.setText(ciudad);
+                    this.jTextField8.setText(giro);
+                    this.jTextField9.setText(neto);
+                    this.jTextField10.setText(iva);
+                    this.jTextField11.setText(total);
+
+                    this.jComboBox1.setSelectedItem(rs.getString("tipo"));
+
+                    //detalle
+                    String query1 = "select * from detdocumentosc where  numero = '" + Buscarnumero + "'";
+                    rs1 = stmt.executeQuery(query1);
+
+                    while (rs1.next()) {
+                        String codigo = rs1.getString("codigo");
+                        String producto = rs1.getString("producto");
+                        String un = rs1.getString("un");
+                        String precio = rs1.getString("precio");
+                        String cantidad = rs1.getString("cantidad");
+                        String totall = rs1.getString("total");
+
+                        Object[] object = new Object[6];
+                        object[0] = codigo;
+                        object[1] = producto;
+                        object[2] = un;
+                        object[3] = cantidad;
+                        object[4] = precio;
+                        object[5] = totall;
+
+                        modelo.addRow(object);
+
+                    }
+                    //fin detalle
+
+                }
+
+            } catch (SQLException ex) {
+                System.out.println("Nop");
+            }
+
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jTextField15FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField15FocusLost
+        // TODO add your handling code here:
+        String cant = jTextField15.getText();
+        String precio = jTextField16.getText();
+        String totall = String.valueOf(parseInt(cant) * parseInt(precio));
+        this.jTextField17.setText(totall);
+    }//GEN-LAST:event_jTextField15FocusLost
+
+    private void jTextField16FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField16FocusLost
+        // TODO add your handling code here:
+        String cant = jTextField15.getText();
+        String precio = jTextField16.getText();
+        String totall = String.valueOf(parseInt(cant) * parseInt(precio));
+        this.jTextField17.setText(totall);
+    }//GEN-LAST:event_jTextField16FocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -866,6 +1153,7 @@ public class Compras extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -896,7 +1184,6 @@ public class Compras extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

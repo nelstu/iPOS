@@ -152,6 +152,7 @@ public class pos extends javax.swing.JFrame {
         jButton15 = new javax.swing.JButton();
 
         setTitle("Punto de Venta");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
