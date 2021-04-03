@@ -433,7 +433,9 @@ public class pos extends javax.swing.JFrame {
 
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/excel.gif"))); // NOI18N
         jButton14.setText("Informes");
-        jButton14.setPreferredSize(new java.awt.Dimension(107, 40));
+        jButton14.setMaximumSize(new java.awt.Dimension(99, 23));
+        jButton14.setMinimumSize(new java.awt.Dimension(99, 23));
+        jButton14.setPreferredSize(new java.awt.Dimension(99, 23));
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -613,13 +615,13 @@ public class pos extends javax.swing.JFrame {
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1389,6 +1391,19 @@ public class pos extends javax.swing.JFrame {
         // TODO add your handling code here:
         cerrarcaja objeto4 = new cerrarcaja();
         objeto4.setVisible(true);
+        
+        //limpiar
+        objeto4.jLabel4.setText("");
+        objeto4.jLabel8.setText("");
+        objeto4.jLabel10.setText("");
+        objeto4.jLabel12.setText("");
+        objeto4.jLabel14.setText("");
+        objeto4.jLabel16.setText("");
+        
+        
+        //fin limpiar
+        
+        
         java.util.Date utilDate = new java.util.Date(); //fecha actual
         long lnMilisegundos = utilDate.getTime();
         java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);

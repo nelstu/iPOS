@@ -6,10 +6,18 @@
 package cesion;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,12 +62,12 @@ public class Inventario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -89,6 +97,11 @@ public class Inventario extends javax.swing.JFrame {
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton1);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/SAL.jpg"))); // NOI18N
@@ -135,6 +148,8 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
 
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -165,7 +180,7 @@ public class Inventario extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 23, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -182,9 +197,9 @@ public class Inventario extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -235,7 +250,12 @@ public class Inventario extends javax.swing.JFrame {
             try {
                 dbCon = DriverManager.getConnection(dbURL, username, password);
                 Statement comando = dbCon.createStatement();
-                String fecha = jTextField2.getText();
+                //String fecha = this.jDateChooser1.getDateFormatString();
+              SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+               String fecha = sdf.format(this.jDateChooser1.getDate()); 
+                
+         
                 String tipo = this.jComboBox1.getSelectedItem().toString();
 
                 comando.executeUpdate("insert into inventarios(fecha,tipo) values ('" + fecha + "','" + tipo + "')");
@@ -283,7 +303,19 @@ public class Inventario extends javax.swing.JFrame {
 
         // set the selected row data into jtextfields
         jTextField1.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        jTextField2.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        System.out.println("Fecha->"+model.getValueAt(selectedRowIndex, 1).toString());
+        String dd=model.getValueAt(selectedRowIndex, 1).toString();
+         java.util.Date date2;
+        try {
+            date2 = new SimpleDateFormat("yyyy-MM-dd").parse(dd);
+             this.jDateChooser1.setDate(date2);
+        } catch (ParseException ex) {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       
+        
+        
 
 
 
@@ -310,7 +342,7 @@ public class Inventario extends javax.swing.JFrame {
         Statement stmt = null;
         ResultSet rs = null;
         ResultSet rs0 = null;
-        String Buscar=this.jTextField2.getText();
+        String Buscar=this.jDateChooser1.getDateFormatString();
         String query = "select id,fecha,tipo from inventarios WHERE fecha='"+Buscar+"' and estado='Sin procesar'";
         String procesar="N";
         try {
@@ -374,6 +406,35 @@ public class Inventario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.jTextField1.setText("");
+        Calendar ca = new GregorianCalendar();
+        String day = ca.get(Calendar.DAY_OF_MONTH) + "";
+        String month = ca.get(Calendar.MONTH) + 1 + "";
+        String year = ca.get(Calendar.YEAR) + "";
+
+        if (day.length() == 1) {
+            day = "0" + day;
+        }
+        if (month.length() == 1) {
+            month = "0" + month;
+        }
+
+        String dd = year + "-" + month + "-" + day;
+        
+               java.util.Date date2;
+        try {
+            date2 = new SimpleDateFormat("yyyy-MM-dd").parse(dd);
+             this.jDateChooser1.setDate(date2);
+        } catch (ParseException ex) {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void limpiarjtable() {
         modelo.setRowCount(0);
     }
@@ -424,7 +485,7 @@ public class Inventario extends javax.swing.JFrame {
 
         llenar();
         jTextField1.setText("");
-        jTextField2.setText("");
+       // jTextField2.setText("");
        
         //jLabel3.setText("Nuevo");
         limpiarjtable();
@@ -472,6 +533,7 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -479,7 +541,6 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

@@ -45,6 +45,8 @@ public class productos extends javax.swing.JFrame {
         modelo.addColumn("$ Mayorista");
         modelo.addColumn("Solicita $");
         modelo.addColumn("Familia");
+        modelo.addColumn("Un");
+        modelo.addColumn("Boleta");
 
         limpiar();
         //llenar();
@@ -86,7 +88,7 @@ public class productos extends javax.swing.JFrame {
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select id,codigo,producto,venta2,mayorista,solicitaprecio,familia from productos where producto like '%" + Buscar + "%'";
+        String query = "select id,codigo,producto,venta2,mayorista,solicitaprecio,familia,un,boleta from productos where producto like '%" + Buscar + "%'";
         // JOptionPane.showMessageDialog(null, query);
         try {
             //getting database connection to MySQL server 
@@ -97,7 +99,7 @@ public class productos extends javax.swing.JFrame {
             rs = stmt.executeQuery(query);
             while (rs.next()) {
 
-                Object[] object = new Object[7];
+                Object[] object = new Object[9];
                 object[0] = rs.getString(1);
                 object[1] = rs.getString(2);
                 object[2] = rs.getString(3);
@@ -105,6 +107,8 @@ public class productos extends javax.swing.JFrame {
                 object[4] = rs.getString(5);
                 object[5] = rs.getString(6);
                 object[6] = rs.getString(7);
+                object[7] = rs.getString(8);
+                 object[8] = rs.getString(9);
                 System.out.println("Si");
 
                 modelo.addRow(object);
@@ -127,7 +131,7 @@ public class productos extends javax.swing.JFrame {
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select id,codigo,producto,venta2,barra,mayorista,solicitaprecio,familia from productos where  barra = '" + Buscar + "'  ";
+        String query = "select id,codigo,producto,venta2,barra,mayorista,solicitaprecio,familia,un,boleta from productos where  barra = '" + Buscar + "'  ";
         // JOptionPane.showMessageDialog(null, query);
         try {
             //getting database connection to MySQL server 
@@ -138,7 +142,7 @@ public class productos extends javax.swing.JFrame {
             rs = stmt.executeQuery(query);
             while (rs.next()) {
 
-                Object[] object = new Object[7];
+                Object[] object = new Object[9];
                 object[0] = rs.getString(1);
                 object[1] = rs.getString(2);
                 object[2] = rs.getString(3);
@@ -146,7 +150,8 @@ public class productos extends javax.swing.JFrame {
                 object[4] = rs.getString(6);
                 object[5] = rs.getString(7);
                 object[6] = rs.getString(8);
-                System.out.println("Si");
+                 object[7] = rs.getString(9);
+                 object[8] = rs.getString(10);
 
                 modelo.addRow(object);
             }
@@ -169,7 +174,7 @@ public class productos extends javax.swing.JFrame {
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select id,codigo,producto,venta2,barra,mayorista,solicitaprecio,familia from productos where  familia= '" + Buscar + "'  ";
+        String query = "select id,codigo,producto,venta2,barra,mayorista,solicitaprecio,familia,un,boleta from productos where  familia= '" + Buscar + "'  ";
         // JOptionPane.showMessageDialog(null, query);
         try {
             //getting database connection to MySQL server 
@@ -180,7 +185,7 @@ public class productos extends javax.swing.JFrame {
             rs = stmt.executeQuery(query);
             while (rs.next()) {
 
-                Object[] object = new Object[7];
+                Object[] object = new Object[9];
                 object[0] = rs.getString(1);
                 object[1] = rs.getString(2);
                 object[2] = rs.getString(3);
@@ -188,7 +193,8 @@ public class productos extends javax.swing.JFrame {
                 object[4] = rs.getString(6);
                 object[5] = rs.getString(7);
                 object[6] = rs.getString(8);
-                System.out.println("Si");
+                object[7] = rs.getString(9);
+                object[8] = rs.getString(10);
 
                 modelo.addRow(object);
             }
@@ -211,7 +217,7 @@ public class productos extends javax.swing.JFrame {
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select id,codigo,producto,venta2,mayorista,solicitaprecio,familia from productos";
+        String query = "select id,codigo,producto,venta2,mayorista,solicitaprecio,familia,un,boleta from productos";
         try {
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
@@ -221,7 +227,7 @@ public class productos extends javax.swing.JFrame {
             rs = stmt.executeQuery(query);
             while (rs.next()) {
 
-                Object[] object = new Object[7];
+                Object[] object = new Object[9];
                 object[0] = rs.getString(1);
                 object[1] = rs.getString(2);
                 object[2] = rs.getString(3);
@@ -229,6 +235,8 @@ public class productos extends javax.swing.JFrame {
                 object[4] = rs.getString(5);
                 object[5] = rs.getString(6);
                 object[6] = rs.getString(7);
+                object[7] = rs.getString(8);
+                object[8] = rs.getString(9);
                 System.out.println("Si");
 
                 modelo.addRow(object);
@@ -281,6 +289,9 @@ public class productos extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton7 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jCheckBox2 = new javax.swing.JCheckBox();
 
         setTitle("Productos");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -412,7 +423,7 @@ public class productos extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(0, 0, 255));
         jLabel7.setText("jLabel7");
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/DEL.jpg"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/Delete.jpg"))); // NOI18N
         jButton6.setText("Eliminar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -443,6 +454,10 @@ public class productos extends javax.swing.JFrame {
                 jButton9ActionPerformed(evt);
             }
         });
+
+        jLabel11.setText("Unidad");
+
+        jCheckBox2.setText("Boleta");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -476,17 +491,25 @@ public class productos extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jCheckBox1)
+                                                .addGap(34, 34, 34)
+                                                .addComponent(jCheckBox2)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jButton9))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel9)
-                                                .addGap(56, 56, 56)
-                                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
                                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(65, 65, 65)
-                                                .addComponent(jButton1)))
+                                                .addComponent(jButton1))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel9)
+                                                    .addComponent(jLabel11))
+                                                .addGap(55, 55, 55)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(0, 0, Short.MAX_VALUE)))))
                                         .addGap(8, 8, 8))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -581,11 +604,16 @@ public class productos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCheckBox1)
-                            .addComponent(jButton9))
+                            .addComponent(jButton9)
+                            .addComponent(jCheckBox2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -619,10 +647,50 @@ public class productos extends javax.swing.JFrame {
             System.out.println("solicitaprecio:" + solicitaprecio);
             jCheckBox1.setSelected(true);
         }
+          String boleta = model.getValueAt(selectedRowIndex, 8).toString();
+        if (boleta.equals("S")) {
+            jCheckBox2.setSelected(true);
+        }
         this.jComboBox1.setSelectedItem(model.getValueAt(selectedRowIndex, 6).toString());
+        this.jComboBox3.setSelectedItem(model.getValueAt(selectedRowIndex, 7).toString());
         jLabel7.setText("Editar");
     }//GEN-LAST:event_jTable1MouseClicked
 
+    
+    
+        private void cargarcombounidades(){
+        this.jComboBox3.removeAllItems();
+        cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select id,unidades from unidades order by unidades";
+        // JOptionPane.showMessageDialog(null, query);
+       String montoinicial="";
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                 String familias=rs.getString("unidades");
+              this.jComboBox3.addItem(familias);
+        }
+          
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage().toString());
+        }
+    }
+    
+    
+    
     private void cargarcombofamilias(){
         this.jComboBox1.removeAllItems();
         cargarDriver();
@@ -738,8 +806,13 @@ public class productos extends javax.swing.JFrame {
                     if (jCheckBox1.isSelected()) {
                         solicitaprecio = "S";
                     }
+                    String boleta = "N";
+                    if (jCheckBox2.isSelected()) {
+                        boleta = "S";
+                    }
+                    String unidad= this.jComboBox3.getSelectedItem().toString();
                     String familia= this.jComboBox1.getSelectedItem().toString();
-                    comando.executeUpdate("UPDATE productos set nombrecorto='" + producto + "',producto='" + producto + "',familia='" + familia + "',solicitaprecio='" + solicitaprecio + "',venta2=" + venta2 + ",mayorista=" + mayorista + " WHERE barra='" + barra + "'");
+                    comando.executeUpdate("UPDATE productos set boleta='" + boleta + "',un='" + unidad + "',nombrecorto='" + producto + "',producto='" + producto + "',familia='" + familia + "',solicitaprecio='" + solicitaprecio + "',venta2=" + venta2 + ",mayorista=" + mayorista + " WHERE barra='" + barra + "'");
                     JOptionPane.showMessageDialog(null, "Producto Actualizado");
                     this.jComboBox1.removeAllItems();
                 } catch (SQLException ex) {
@@ -804,29 +877,36 @@ public class productos extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "Desea Eliminar Productos?", "Eliminar Productos",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            // yes option
+            String Buscar = jTextField2.getText();
+            cargarDriver();
+            Conexion cn = new Conexion();
+            String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+            String username = cn.usuario;
+            String password = cn.pass;
+            Connection dbCon = null;
+            Statement stmt = null;
+            ResultSet rs = null;
 
-        String Buscar = jTextField2.getText();
-        cargarDriver();
-        Conexion cn = new Conexion();
-        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
-        String username = cn.usuario;
-        String password = cn.pass;
-        Connection dbCon = null;
-        Statement stmt = null;
-        ResultSet rs = null;
+            try {
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                Statement comando = dbCon.createStatement();
+                String id = jTextField1.getText();
 
-        try {
-            dbCon = DriverManager.getConnection(dbURL, username, password);
-            Statement comando = dbCon.createStatement();
-            String id = jTextField1.getText();
-
-            comando.executeUpdate("DELETE from productos  WHERE id=" + id);
-            JOptionPane.showMessageDialog(null, "Producto Eliminado");
-        } catch (SQLException ex) {
-            setTitle(ex.toString());
+                comando.executeUpdate("DELETE from productos  WHERE id=" + id);
+                JOptionPane.showMessageDialog(null, "Producto Eliminado");
+            } catch (SQLException ex) {
+                setTitle(ex.toString());
+            }
+            limpiar();
+            limpiarjtable();
+        } else {
+            // no option
         }
-        limpiar();
-        limpiarjtable();
+
+
 
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -851,6 +931,7 @@ public class productos extends javax.swing.JFrame {
         // TODO add your handling code here:
          cargarcombofamilias();
          cargarcombofamilias2();
+         cargarcombounidades();
     }//GEN-LAST:event_formWindowActivated
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -1008,10 +1089,13 @@ System.out.println("Error al escribir el fichero.");
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

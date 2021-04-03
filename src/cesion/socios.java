@@ -5,20 +5,52 @@
  */
 package cesion;
 
+import static cesion.posproductos.jCheckBox1;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author dev
  */
 public class socios extends javax.swing.JFrame {
-
+ DefaultTableModel modelo;
     /**
      * Creates new form socios
      */
     public socios() {
         initComponents();
         setLocationRelativeTo(null);
+            modelo = new DefaultTableModel();
+        jTable1.setModel(modelo);
+        
+        modelo.addColumn("id");
+        modelo.addColumn("Rut");
+        modelo.addColumn("Razon");
+        modelo.addColumn("email");
+        llenar();
+        
         limpiar();
     }
+        private void cargarDriver() {
+    try {
+      Class.forName("com.mysql.jdbc.Driver");
+    }catch(Exception ex) {
+
+    }
+  }
+    
+     private void limpiarjtable(){
+    modelo.setRowCount(0);
+   }
+        
+        
+        
  private void limpiar(){
         jTextField1.setText(null);
         jTextField2.setText("");
@@ -29,6 +61,10 @@ public class socios extends javax.swing.JFrame {
          jTextField7.setText("");
          jTextField8.setText("");
          jTextField9.setText("");
+         jTextField10.setText("");
+         jTextField11.setText("");
+         this.jCheckBox1.setSelected(false);
+         this.jCheckBox2.setSelected(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,8 +100,24 @@ public class socios extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField11 = new javax.swing.JTextField();
 
         setTitle("Clientes - Proveedores");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,6 +127,11 @@ public class socios extends javax.swing.JFrame {
                 "Rut", "Razon Social"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("Rut");
@@ -88,39 +145,85 @@ public class socios extends javax.swing.JFrame {
 
         jLabel3.setText("id");
 
-        jTextField3.setText("jTextField3");
+        jTextField3.setEnabled(false);
 
         jLabel4.setText("Rut");
 
-        jTextField4.setText("jTextField4");
-
         jLabel5.setText("Razon");
-
-        jTextField5.setText("jTextField5");
 
         jLabel6.setText("Direccion");
 
-        jTextField6.setText("jTextField6");
-
         jLabel7.setText("Comuna");
-
-        jTextField7.setText("jTextField7");
 
         jLabel8.setText("Ciudad");
 
-        jTextField8.setText("jTextField8");
-
         jLabel9.setText("email");
 
-        jTextField9.setText("jTextField9");
-
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/Delete.jpg"))); // NOI18N
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/diskblue.jpg"))); // NOI18N
         jButton2.setText("Grabar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/buscar.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/buscar.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox1.setText("Cliente");
+
+        jCheckBox2.setText("Proveedor");
+
+        jToolBar1.setRollover(true);
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/ADDREC.jpg"))); // NOI18N
+        jButton5.setText("Nuevo");
+        jButton5.setFocusable(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton5);
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/SAL.jpg"))); // NOI18N
+        jButton6.setText("Salir");
+        jButton6.setFocusable(false);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton6);
+
+        jLabel10.setText("jLabel10");
+
+        jLabel11.setText("Region");
+
+        jLabel12.setText("Giro");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,76 +232,94 @@ public class socios extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                        .addComponent(jLabel2)
                         .addGap(54, 54, 54)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButton3))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)))))
-                    .addComponent(jLabel9)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                            .addComponent(jTextField6)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                                .addComponent(jButton4)))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                        .addComponent(jLabel10)
+                        .addGap(96, 96, 96))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox1)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel9))
+                                .addGap(48, 48, 48)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField6)
+                                    .addComponent(jTextField5)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jButton2)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jCheckBox2)))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(35, 296, Short.MAX_VALUE))))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton4))
-                    .addComponent(jLabel2))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton4)
+                    .addComponent(jLabel10))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(29, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -225,13 +346,25 @@ public class socios extends javax.swing.JFrame {
                             .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBox1)
+                            .addComponent(jCheckBox2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
-                            .addComponent(jButton2))))
-                .addGap(35, 35, 35))
+                            .addComponent(jButton2))
+                        .addGap(40, 40, 40))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -242,13 +375,436 @@ public class socios extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+     public void llenarrut(){
+        limpiar();
+        limpiarjtable();
+        cargarDriver();
+        Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null; 
+        Statement stmt = null; 
+        ResultSet rs = null; 
+        String Buscar=this.jTextField1.getText();
+        String query ="SELECT id,rut,nombre,email FROM socios WHERE rut='"+Buscar+"'"; 
+          try {
+              //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password); 
+           //getting PreparedStatment to execute query 
+           stmt = dbCon.prepareStatement(query); 
+          //Resultset returned by query 
+           rs = stmt.executeQuery(query);  
+           while(rs.next()){ 
+       
+               Object[] object = new Object[4];
+               object[0] = rs.getString(1);
+               object[1] = rs.getString(2);
+               object[2] = rs.getString(3);
+               object[3] = rs.getString(4);
+ // System.out.println("Si" );
+        
+        modelo.addRow(object);
+          } 
+         
+        } catch(SQLException ex){
+          System.out.println("Socio->"+ex.getMessage().toString() ); 
+        }
+
+    }
+    
+     public void llenarnombre(){
+        limpiar();
+        limpiarjtable();
+        cargarDriver();
+        Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null; 
+        Statement stmt = null; 
+        ResultSet rs = null; 
+        String Buscar=this.jTextField2.getText();
+        String query ="SELECT id,rut,nombre,email FROM socios WHERE nombre LIKE '%"+Buscar+"%'"; 
+          try {
+              //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password); 
+           //getting PreparedStatment to execute query 
+           stmt = dbCon.prepareStatement(query); 
+          //Resultset returned by query 
+           rs = stmt.executeQuery(query);  
+           while(rs.next()){ 
+       
+               Object[] object = new Object[4];
+               object[0] = rs.getString(1);
+               object[1] = rs.getString(2);
+               object[2] = rs.getString(3);
+               object[3] = rs.getString(4);
+ // System.out.println("Si" );
+        
+        modelo.addRow(object);
+          } 
+         
+        } catch(SQLException ex){
+          System.out.println("Nop" ); 
+        }
+
+    }
+    
+    
+     public void llenar(){
+        limpiar();
+        limpiarjtable();
+        cargarDriver();
+        Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null; 
+        Statement stmt = null; 
+        ResultSet rs = null; 
+        String query ="SELECT id,rut,nombre,email FROM socios ORDER BY nombre"; 
+          try {
+              //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password); 
+           //getting PreparedStatment to execute query 
+           stmt = dbCon.prepareStatement(query); 
+          //Resultset returned by query 
+           rs = stmt.executeQuery(query);  
+           while(rs.next()){ 
+       
+               Object[] object = new Object[4];
+               object[0] = rs.getString(1);
+               object[1] = rs.getString(2);
+               object[2] = rs.getString(3);
+               object[3] = rs.getString(4);
+ // System.out.println("Si" );
+        
+        modelo.addRow(object);
+          } 
+         
+        } catch(SQLException ex){
+          System.out.println("Nop" ); 
+        }
+
+    }
+    
+    
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        this.jLabel10.setText("Nuevo");
+    }//GEN-LAST:event_formWindowActivated
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        this.jLabel10.setText("Nuevo");
+        limpiar();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+
+        String Buscar= jTextField3.getText();
+        cargarDriver();
+        Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        // JOptionPane.showMessageDialog(null, query);
+        String existe="N";
+        String operacion=this.jLabel10.getText();
+
+        if (operacion.equals("Editar")){
+            try {
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                Statement comando=dbCon.createStatement();
+                String rut= jTextField4.getText();
+                String nombre= jTextField5.getText();
+                String email= jTextField9.getText();
+
+                String direccion= jTextField6.getText();
+                String comuna= jTextField7.getText();
+                String ciudad= jTextField8.getText();
+                String region= jTextField10.getText();
+                String giro= jTextField11.getText();
+                String cliente="N";
+                String proveedor = "N";
+                if (jCheckBox1.isSelected()) {
+                    cliente = "S";
+                }
+                if (jCheckBox2.isSelected()) {
+                    proveedor = "S";
+                }
+
+                if( rut.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Rut!!");
+                    return;
+                }
+
+                if( nombre.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Nombre o Razon!!");
+                    return;
+                }
+
+                if( email.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar email!!");
+                    return;
+                }
+
+                if( direccion.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Direccion!!");
+                    return;
+                }
+
+                if( comuna.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Comuna!!");
+                    return;
+                }
+
+                if( ciudad.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Ciudad!!");
+                    return;
+                }
+                if( region.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Region!!");
+                    return;
+                }
+
+                if( giro.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Giro!!");
+                    return;
+                }
+
+                comando.executeUpdate("UPDATE socios set proveedor='"+proveedor+"',cliente='"+cliente+"',giro='"+giro+"',region='"+region+"',ciudad='"+ciudad+"',comuna='"+comuna+"',direccion='"+direccion+"',nombre='"+nombre+"',rut='"+rut+"',email='"+email+"' WHERE id="+Buscar);
+                JOptionPane.showMessageDialog(null, "Cliente-Proveedor Actualizado");
+            } catch(SQLException ex){
+                System.out.println(ex.getMessage().toString());
+            }
+        }
+        if (operacion.equals("Nuevo")){
+            try {
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                Statement comando=dbCon.createStatement();
+                String rut= jTextField4.getText();
+                String nombre= jTextField5.getText();
+                String email= jTextField9.getText();
+
+                String direccion= jTextField6.getText();
+                String comuna= jTextField7.getText();
+                String ciudad= jTextField8.getText();
+                String region= jTextField10.getText();
+                String giro= jTextField11.getText();
+                String cliente="N";
+                String proveedor = "N";
+                if (jCheckBox1.isSelected()) {
+                    cliente = "S";
+                }
+                if (jCheckBox2.isSelected()) {
+                    proveedor = "S";
+                }
+
+
+                if( rut.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Rut!!");
+                    return;
+                }
+
+                if( nombre.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Nombre o Razon!!");
+                    return;
+                }
+
+                if( email.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar email!!");
+                    return;
+                }
+
+                if( direccion.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Direccion!!");
+                    return;
+                }
+
+                if( comuna.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Comuna!!");
+                    return;
+                }
+
+                if( ciudad.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Ciudad!!");
+                    return;
+                }
+                if( region.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Region!!");
+                    return;
+                }
+
+                if( giro.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Debe Ingresar Giro!!");
+                    return;
+                }
+
+                comando.executeUpdate("INSERT INTO socios(proveedor,cliente,giro,region,ciudad,comuna,direccion,rut,nombre,email) values ('"+proveedor+"','"+cliente+"','"+giro+"','"+region+"','"+ciudad+"','"+comuna+"','"+direccion+"','"+rut+"','"+nombre+"','"+email+"')");
+                JOptionPane.showMessageDialog(null, "Cliente-Proveedor Nueva Creado");
+            } catch(SQLException ex){
+                 System.out.println(ex.getMessage().toString());
+            }
+        }
+        limpiar();
+        limpiarjtable();
+        llenar();
+
+        this.jLabel10.setText("Nuevo");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        // get the selected row index
+        int selectedRowIndex = jTable1.getSelectedRow();
+        String Buscar=model.getValueAt(selectedRowIndex, 0).toString();
+        // set the selected row data into jtextfields
+        jTextField3.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        jTextField4.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        jTextField5.setText(model.getValueAt(selectedRowIndex, 2).toString());
+        jTextField9.setText(model.getValueAt(selectedRowIndex, 3).toString());
+        
+        //buscar datos
+            cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Connection dbCon0 = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String direccion = "";
+        String comuna = "";
+        String ciudad = "";
+        String region = "";
+        String giro = "";
+        String cliente="N";
+        String proveedor="N";
+        //buscar configuracion
+        String query0 = "select id,rut,nombre,direccion,comuna,ciudad,region,email,cliente,proveedor,giro from socios where id="+Buscar;
+        // JOptionPane.showMessageDialog(null, query);
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query0);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query0);
+            while (rs.next()) {
+               direccion = rs.getString(4);
+               comuna = rs.getString(5);
+               ciudad = rs.getString(6);
+               region = rs.getString(7);
+               giro = rs.getString(11);
+              
+                if (!cliente.isEmpty()) {
+                    cliente = rs.getString(9);
+                    if (cliente.equals("S")) {
+                        this.jCheckBox1.setSelected(true);
+                    }
+                }
+
+                if (!proveedor.isEmpty()) {
+                    proveedor = rs.getString(10);
+                    if (proveedor.equals("S")) {
+                        this.jCheckBox2.setSelected(true);
+                    }
+                }
+               
+               
+              //  ticket = rs.getString(2);
+              //  imprimir = rs.getString(3);
+            }
+            this.jTextField6.setText(direccion);
+            this.jTextField7.setText(comuna);
+            this.jTextField8.setText(ciudad);
+            this.jTextField10.setText(region);
+            this.jTextField11.setText(giro);
+            
+            
+          
+                 jLabel10.setText("Editar");   
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage().toString());
+        }
+        
+        //fin buscar datos
+        
+        
+        
+     
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+  this.setVisible(false);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+  if (JOptionPane.showConfirmDialog(null, "Desea Eliminar Cliente o Proveedor?", "Eliminar Cliente Proveedor",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            // yes option
+            // TODO add your handling code here:
+            String Buscar = jTextField3.getText();
+            cargarDriver();
+            Conexion cn = new Conexion();
+            String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+            String username = cn.usuario;
+            String password = cn.pass;
+            Connection dbCon = null;
+            Statement stmt = null;
+            ResultSet rs = null;
+
+            try {
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                Statement comando = dbCon.createStatement();
+                String id = jTextField1.getText();
+
+                comando.executeUpdate("DELETE from socios  WHERE id=" + Buscar);
+                JOptionPane.showMessageDialog(null, "Cliente o Proveedor Eliminado");
+            } catch (SQLException ex) {
+                setTitle(ex.toString());
+            }
+            limpiar();
+            limpiarjtable();
+            llenar();
+        } else {
+            // no option
+        }
+
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    llenarrut();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+
+    llenarnombre();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,7 +846,14 @@ public class socios extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -303,6 +866,8 @@ public class socios extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
@@ -311,5 +876,6 @@ public class socios extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

@@ -181,7 +181,7 @@ public class menu extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         if (JOptionPane.showConfirmDialog(null, "Desea Salir?", "WARNING",
+         if (JOptionPane.showConfirmDialog(null, "Desea Salir?", "Salir del Sistema",
         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
     // yes option
   System.exit(0);

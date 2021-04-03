@@ -218,7 +218,7 @@ public class familias extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/DEL.jpg"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/Delete.jpg"))); // NOI18N
         jButton4.setText("Eliminar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,7 +296,7 @@ public class familias extends javax.swing.JFrame {
                         .addGap(180, 180, 180)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3)
-                            .addComponent(jButton4)))
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -388,7 +388,7 @@ String Buscar= jTextField1.getText();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+      this.jLabel3.setText("Nuevo");
   limpiar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -398,30 +398,40 @@ String Buscar= jTextField1.getText();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        String Buscar= jTextField1.getText();
-        cargarDriver();
-        Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
-        String username = cn.usuario;
-        String password = cn.pass;
-        Connection dbCon = null;
-        Statement stmt = null;
-        ResultSet rs = null;
 
-        try {
-            dbCon = DriverManager.getConnection(dbURL, username, password); 
-            Statement comando=dbCon.createStatement();
-            String id= jTextField1.getText();
+        if (JOptionPane.showConfirmDialog(null, "Desea Eliminar Familia?", "Eliminar Familia",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            // yes option
+            // TODO add your handling code here:
+            String Buscar = jTextField1.getText();
+            cargarDriver();
+            Conexion cn = new Conexion();
+            String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+            String username = cn.usuario;
+            String password = cn.pass;
+            Connection dbCon = null;
+            Statement stmt = null;
+            ResultSet rs = null;
 
-            comando.executeUpdate("DELETE from familias  WHERE id="+id);
-            JOptionPane.showMessageDialog(null, "Familia Eliminada");
-            } catch(SQLException ex){
-              setTitle(ex.toString());
-          }
-        limpiar();
-        limpiarjtable();
-        llenar();
+            try {
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                Statement comando = dbCon.createStatement();
+                String id = jTextField1.getText();
+
+                comando.executeUpdate("DELETE from familias  WHERE id=" + id);
+                JOptionPane.showMessageDialog(null, "Familia Eliminada");
+            } catch (SQLException ex) {
+                setTitle(ex.toString());
+            }
+            limpiar();
+            limpiarjtable();
+            llenar();
+        } else {
+            // no option
+        }
+
+
+      
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
