@@ -374,8 +374,7 @@ String Buscar= jTextField1.getText();
         // TODO add your handling code here:
 
  DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-
-        // get the selected row index
+   // get the selected row index
        int selectedRowIndex = jTable1.getSelectedRow();
        
         // set the selected row data into jtextfields
