@@ -1002,8 +1002,8 @@ public class Compras extends javax.swing.JFrame {
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
         // TODO add your handling code here:
   
-            limpiar();
-            limpiarjtable();
+          //  limpiar();
+          //  limpiarjtable();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
             // get the selected row index
