@@ -150,6 +150,8 @@ public class pos extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         setTitle("Punto de Venta");
         setResizable(false);
@@ -453,6 +455,10 @@ public class pos extends javax.swing.JFrame {
             }
         });
 
+        jLabel20.setText("Tickets Emitidos");
+
+        jLabel21.setText("jLabel21");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -473,9 +479,14 @@ public class pos extends javax.swing.JFrame {
                                         .addGap(36, 36, 36)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel19)
-                                            .addComponent(jLabel18)
-                                            .addComponent(jLabel16))))
-                                .addGap(127, 127, 127)
+                                            .addComponent(jLabel16)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel18)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel20)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(36, 36, 36)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,7 +587,9 @@ public class pos extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
-                            .addComponent(jLabel18))
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel21))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1347,6 +1360,28 @@ public class pos extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("Nop");
         }
+        
+        
+         String query1 = "select * from tickets where fecha = '" + sqlDate.toString() + "'";
+        // JOptionPane.showMessageDialog(null, query);
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query1);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query1);
+            int son = 0;
+            while (rs.next()) {
+                son++;
+
+            }
+            jLabel21.setText(Integer.toString(son));
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+        
+        
 
         //configuracion establecer default
         String query0 = "select defecto from configuracion where id=1";
@@ -1470,6 +1505,37 @@ public class pos extends javax.swing.JFrame {
         }
 
         //fin ventas
+        
+        
+         //tickets
+        String query2 = "select numero_bol,total,estado,forma from tickets where fecha = '" + fe + "'";
+        // JOptionPane.showMessageDialog(null, query);
+        int son2 = 0;
+        int totalg2 = 0;
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query2);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query2);
+
+            while (rs.next()) {
+                totalg2 = totalg2 + rs.getInt("total");
+                son2++;
+
+            }
+            objeto4.jLabel23.setText(String.valueOf(son2));
+              int tc = parseInt(montoinicial) + totalg2;
+            objeto4.jLabel24.setText(String.valueOf(tc));
+       
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+
+        //fin ventas
+        
+        
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -1979,6 +2045,8 @@ public class pos extends javax.swing.JFrame {
     public static javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
