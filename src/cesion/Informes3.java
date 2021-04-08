@@ -5,6 +5,20 @@
  */
 package cesion;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import jxl.Workbook;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+
   /**
  *
  * @author dev
@@ -19,6 +33,16 @@ public class Informes3 extends javax.swing.JFrame {
           setLocationRelativeTo(null);
     }
 
+        private void cargarDriver() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception ex) {
+
+        }
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,10 +54,10 @@ public class Informes3 extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setText("Desde");
 
@@ -46,6 +70,10 @@ public class Informes3 extends javax.swing.JFrame {
             }
         });
 
+        jDateChooser1.setDateFormatString("yyyy-MM-dd");
+
+        jDateChooser2.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -53,28 +81,30 @@ public class Informes3 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(105, 105, 105)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                            .addComponent(jTextField1))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addComponent(jButton1)
                 .addContainerGap(74, Short.MAX_VALUE))
@@ -84,7 +114,7 @@ public class Informes3 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +126,109 @@ public class Informes3 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = sdf.format(this.jDateChooser1.getDate()); 
+        String Buscar= fecha;
+        
+        String fecha2 = sdf.format(this.jDateChooser2.getDate()); 
+        String Buscar2= fecha2;
+        
+        
+         
+try
+{
+    
+    File f = new File("informeportickettotal.xls"); // Creamos un objeto file
+    System.out.println(f.getAbsolutePath());  
+//Se crea el libro Excel
+WritableWorkbook workbook =Workbook.createWorkbook(f);
 
+//Se crea una nueva hoja dentro del libro
+WritableSheet sheet =workbook.createSheet("Informe", 0);
+
+//Creamos celdas de varios tipos
+//sheet.addCell(new jxl.write.Number(0, 0, "Numero"));
+sheet.addCell(new jxl.write.Label(0, 0, "Fecha"));
+sheet.addCell(new jxl.write.Label(1, 0, "Desde"));
+sheet.addCell(new jxl.write.Label(2, 0, "Hasta"));
+sheet.addCell(new jxl.write.Label(3, 0, "#Boletas"));
+sheet.addCell(new jxl.write.Label(4, 0, "Total"));
+//sheet.addCell(new jxl.write.Boolean(3,0,true));
+//buscar ventas
+cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null; 
+        Statement stmt = null; 
+        ResultSet rs = null; 
+        String query ="select fecha,desde,hasta,ventadia,cantboletas from tickets WHERE fecha>='"+Buscar+"' AND fecha<='"+Buscar2+"' order by fecha ASC"; 
+          try {
+              //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password); 
+           //getting PreparedStatment to execute query 
+           stmt = dbCon.prepareStatement(query); 
+          //Resultset returned by query 
+           rs = stmt.executeQuery(query);  
+           int j=1;
+           int jtot=0;
+           int totalboletas=0;
+           int totalrango=0;
+           while(rs.next()){ 
+              sheet.addCell(new jxl.write.Label(0, j, rs.getString(1)));
+              sheet.addCell(new jxl.write.Label(1, j, rs.getString(2)));
+              sheet.addCell(new jxl.write.Label(2, j, rs.getString(3)));
+              
+              sheet.addCell(new jxl.write.Number(3, j, rs.getInt(5)));
+              sheet.addCell(new jxl.write.Number(4, j, rs.getInt(4)));
+              //sheet.addCell(new jxl.write.Number(2, j, rs.getInt(5)));
+              //sheet.addCell(new jxl.write.Number(3, j, rs.getInt(6)));
+              //sheet.addCell(new jxl.write.Number(4, j, rs.getInt(3)));
+              //jtot=jtot+rs.getInt(3);
+              totalboletas=totalboletas+rs.getInt(5);
+              totalrango=totalrango+rs.getInt(4);
+              j++;
+              } 
+              sheet.addCell(new jxl.write.Label(2, j, "Totales"));
+              sheet.addCell(new jxl.write.Number(3, j, totalboletas));
+              sheet.addCell(new jxl.write.Number(4, j, totalrango));
+        } catch(SQLException ex){
+          System.out.println(ex.getMessage().toString() ); 
+        }
+//fin buscar ventas
+
+
+//Escribimos los resultados al fichero Excel
+workbook.write();
+workbook.close();
+
+
+
+System.out.println("Ejemplo finalizado.");
+}
+catch (IOException ex)
+{
+System.out.println("Error al crear el fichero.");
+}
+catch (WriteException ex)
+{
+System.out.println("Error al escribir el fichero.");
+}
+
+  try {
+                Desktop.getDesktop().open(new File("informeportickettotal.xls"));
+                //To check if the solution is open or not, you can wait some time here
+                Thread.sleep(1000);
+
+            } catch (IOException | InterruptedException ex) {
+             //   Logger.getLogger(Open.class.getName()).log(Level.SEVERE, null, ex);
+      
+
+}  
+   
+        
+        
   
 
 
@@ -139,10 +271,10 @@ public class Informes3 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    public static javax.swing.JTextField jTextField1;
-    public static javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

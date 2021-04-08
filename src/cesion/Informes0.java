@@ -140,8 +140,8 @@ public class Informes0 extends javax.swing.JFrame {
 
         Informes objeto20 = new Informes();
         objeto20.setVisible(true);
-        objeto20.jTextField1.setText(sqlDate.toString());
-        objeto20.jTextField2.setText(sqlDate.toString());
+        //objeto20.jTextField1.setText(sqlDate.toString());
+        //objeto20.jTextField2.setText(sqlDate.toString());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -157,8 +157,8 @@ public class Informes0 extends javax.swing.JFrame {
 
         Informes1 objeto30=new Informes1();
         objeto30.setVisible(true);
-        objeto30.jTextField1.setText(sqlDate.toString());
-        objeto30.jTextField2.setText(sqlDate.toString());
+       // objeto30.jTextField1.setText(sqlDate.toString());
+       // objeto30.jTextField2.setText(sqlDate.toString());
     }//GEN-LAST:event_jButton2ActionPerformed
 
        private void cargarDriver() {
@@ -272,8 +272,8 @@ public class Informes0 extends javax.swing.JFrame {
 
         Informes2 objeto23 = new Informes2();
         objeto23.setVisible(true);
-        objeto23.jTextField1.setText(sqlDate.toString());
-        objeto23.jTextField2.setText(sqlDate.toString());
+     //   objeto23.jTextField1.setText(sqlDate.toString());
+     //   objeto23.jTextField2.setText(sqlDate.toString());
 
 
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -289,8 +289,8 @@ public class Informes0 extends javax.swing.JFrame {
 
         Informes3 objeto30=new Informes3();
         objeto30.setVisible(true);
-        objeto30.jTextField1.setText(sqlDate.toString());
-        objeto30.jTextField2.setText(sqlDate.toString());
+       // objeto30.jTextField1.setText(sqlDate.toString());
+       // objeto30.jTextField2.setText(sqlDate.toString());
 
 
 
