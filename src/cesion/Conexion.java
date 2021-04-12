@@ -25,10 +25,10 @@ public class Conexion {
   //  public static String usuario="cns58953_brujas";
   //  public static String pass="NSloteria2015";
     //linares
-   // public static String ip="45.236.131.236";
-  //  public static String base="ierp";
-  //  public static String usuario="nelstu";
-   // public static String pass="armijo183ISLA";
+ //   public static String ip="45.236.131.236";
+ //   public static String base="ierp";
+ //   public static String usuario="nelstu";
+ //   public static String pass="armijo183ISLA";
 
 
  
