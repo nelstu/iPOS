@@ -1207,7 +1207,7 @@ public class pos extends javax.swing.JFrame {
                 comando.executeUpdate("insert into tickets(estado,numero_bol,total,fecha,hora,neto,iva) values ('VIGENTE'," + String.valueOf(es) + "," + jTextField4.getText() + ",'" + sqlDate.toString() + "','" + sqlTime + "','" + neto + "','" + iva + "')");
                 //JOptionPane.showMessageDialog(null, "Boleta Creada");
             } catch (SQLException ex) {
-                setTitle(ex.toString());
+                 System.out.println(ex.getMessage().toString());
             }
             //grabar detalle
             String codigo;
