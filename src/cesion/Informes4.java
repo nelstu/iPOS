@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import jxl.Workbook;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
@@ -60,6 +61,7 @@ public class Informes4 extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setTitle("Ventas por dia por Familia");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -85,6 +87,8 @@ public class Informes4 extends javax.swing.JFrame {
 
         jLabel3.setText("Familia");
 
+        jCheckBox1.setText("Todos");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,16 +97,18 @@ public class Informes4 extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jCheckBox1)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3))
+                            .addGap(35, 35, 35)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                                .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,9 +126,11 @@ public class Informes4 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jCheckBox1)
+                .addGap(9, 9, 9)
                 .addComponent(jButton1)
-                .addGap(41, 41, 41))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,12 +196,29 @@ cargarDriver();
     String BuscarCod = "";
     String familia = this.jComboBox1.getSelectedItem().toString();
     // String query ="select fecha,codigo,descripcion,cant,precio,total from detalle_tickets WHERE fecha>='"+Buscar+"' AND fecha<='"+Buscar2+"' order by fecha ASC"; 
+    String query = "";
+    if (jCheckBox1.isSelected()) {
+        query = "SELECT detalle_tickets.fecha,detalle_tickets.codigo,detalle_tickets.descripcion,detalle_tickets.cant,detalle_tickets.precio,detalle_tickets.total,productos.familia  FROM `detalle_tickets`";
+        query = query + " INNER JOIN productos ";
+        query = query + " ON detalle_tickets.codigo = productos.barra ";
+        query = query + " WHERE   fecha>='" + Buscar + "' AND fecha<='" + Buscar2 + "'";
 
-    String query = "SELECT detalle_tickets.fecha,detalle_tickets.codigo,detalle_tickets.descripcion,detalle_tickets.cant,detalle_tickets.precio,detalle_tickets.total,productos.familia  FROM `detalle_tickets`";
-    query = query + " INNER JOIN productos ";
-    query = query + " ON detalle_tickets.codigo = productos.barra ";
-    query = query + " WHERE  productos.familia = '" + familia + "' AND fecha>='" + Buscar + "' AND fecha<='" + Buscar2 + "'";
+    } else {
+        if (this.jComboBox1.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Familia");
+            return;
+        }
         
+        
+        query = "SELECT detalle_tickets.fecha,detalle_tickets.codigo,detalle_tickets.descripcion,detalle_tickets.cant,detalle_tickets.precio,detalle_tickets.total,productos.familia  FROM `detalle_tickets`";
+        query = query + " INNER JOIN productos ";
+        query = query + " ON detalle_tickets.codigo = productos.barra ";
+        query = query + " WHERE  productos.familia = '" + familia + "' AND fecha>='" + Buscar + "' AND fecha<='" + Buscar2 + "'";
+
+    }
+    
+    
+   
         try {
               //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password); 
@@ -343,6 +368,7 @@ System.out.println("Error al escribir el fichero.");
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;

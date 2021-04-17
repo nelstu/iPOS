@@ -127,6 +127,8 @@ public class Cajas extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
+        setTitle("Cajas");
+
         jLabel1.setText("Desde");
 
         jDateChooser1.setDateFormatString("yyyy-MM-dd");

@@ -1050,7 +1050,15 @@ System.out.println("Error al escribir el fichero.");
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-
+      if (this.jComboBox1.getSelectedIndex() ==-1){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Familia");
+            return;
+        }    
+            
+    if (this.jComboBox3.getSelectedIndex() ==-1){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Unidad Principal");
+            return;
+        }
   String Buscar = jTextField2.getText();
         cargarDriver();
         Conexion cn = new Conexion();

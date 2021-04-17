@@ -398,12 +398,52 @@ String Buscar= jTextField1.getText();
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
+        //chequear productos con familia
+        String Buscarfamilia = jTextField2.getText();
+         cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select * from productos WHERE familia='"+Buscarfamilia+"'";
+        String Existen="N";
+        int van=0;
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+            
+            while (rs.next()) {
+                   Existen="S";
+                   van++;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+        if (Existen.equals("S")){
+            JOptionPane.showMessageDialog(null, "Existen Productos Asociados a Familia("+String.valueOf(van)+") ..No puede Eliminarla");
+            limpiar();
+            llenar();
+            return;
+        }
+        
+        //fin chequear productos con familia
+        
+        
         if (JOptionPane.showConfirmDialog(null, "Desea Eliminar Familia?", "Eliminar Familia",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             // yes option
             // TODO add your handling code here:
             String Buscar = jTextField1.getText();
             cargarDriver();
+            /*
             Conexion cn = new Conexion();
             String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
             String username = cn.usuario;
@@ -411,7 +451,7 @@ String Buscar= jTextField1.getText();
             Connection dbCon = null;
             Statement stmt = null;
             ResultSet rs = null;
-
+            */
             try {
                 dbCon = DriverManager.getConnection(dbURL, username, password);
                 Statement comando = dbCon.createStatement();

@@ -71,6 +71,8 @@ public class empresa extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jTextField13 = new javax.swing.JTextField();
 
+        setTitle("Datos Empresa");
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("Datos Empresa");
 
@@ -279,7 +281,7 @@ String Buscar= jTextField1.getText();
                          String giro= jTextField7.getText();
                          
                          String fechares= jTextField8.getText();
-                         String res= jTextField8.getText();
+                         String res= jTextField9.getText();
                          String acteco= jTextField10.getText();
                          String rut_replegal= jTextField11.getText();
                          String nombre_replegal= jTextField12.getText();

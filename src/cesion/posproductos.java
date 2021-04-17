@@ -346,6 +346,18 @@ public class posproductos extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        //validar
+        if (this.jComboBox1.getSelectedIndex() ==-1){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Unidad");
+            return;
+        }
+        
+        if (this.jComboBox2.getSelectedIndex() ==-1){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Familia");
+            return;
+        }
+        
+        //fin validar
 
 String Buscar= jTextField1.getText();
         cargarDriver();

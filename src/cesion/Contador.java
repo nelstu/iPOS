@@ -100,6 +100,8 @@ public class Contador extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setTitle("Contadores");
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

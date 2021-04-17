@@ -50,8 +50,14 @@ public class configura extends javax.swing.JFrame {
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
+        jCheckBox5 = new javax.swing.JCheckBox();
+        jCheckBox6 = new javax.swing.JCheckBox();
+        jCheckBox7 = new javax.swing.JCheckBox();
+        jCheckBox8 = new javax.swing.JCheckBox();
 
         jLabel1.setText("jLabel1");
+
+        setTitle("Configuracion");
 
         jLabel2.setText("Impresora Termica");
 
@@ -70,6 +76,14 @@ public class configura extends javax.swing.JFrame {
         jCheckBox3.setText("Imprimir");
 
         jCheckBox4.setText("Vender segun Stock");
+
+        jCheckBox5.setText("Factura desde POS");
+
+        jCheckBox6.setText("Guia desde POS");
+
+        jCheckBox7.setText("NC desde POS");
+
+        jCheckBox8.setText("ND desde POS");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -90,11 +104,18 @@ public class configura extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox2)
                                     .addComponent(jCheckBox1)
+                                    .addComponent(jCheckBox2)
                                     .addComponent(jCheckBox3)
-                                    .addComponent(jCheckBox4))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(jCheckBox4))
+                                .addGap(92, 92, 92)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jCheckBox8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jCheckBox7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jCheckBox6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))))
+                        .addGap(0, 101, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -105,19 +126,27 @@ public class configura extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addComponent(jCheckBox1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jCheckBox5))
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox2)
+                    .addComponent(jCheckBox6))
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox3)
+                    .addComponent(jCheckBox7))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(14, 14, 14))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jCheckBox4)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCheckBox4)
+                            .addComponent(jCheckBox8))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -168,7 +197,31 @@ public class configura extends javax.swing.JFrame {
                           if (jCheckBox3.isSelected()){
                              imprimir="S";
                          }
-                         comando.executeUpdate("UPDATE configuracion set imprimir='"+imprimir+"',impresoratermica='"+impresoratermica+"',boleta='"+boleta+"',ticket='"+ticket+"' WHERE id=1");
+                          
+                             String Fapos="N";
+                          if (jCheckBox5.isSelected()){
+                             Fapos="S";
+                         }
+                          
+                               String Gdpos="N";
+                          if (jCheckBox6.isSelected()){
+                             Gdpos="S";
+                         }
+                          
+                               String Ncpos="N";
+                          if (jCheckBox7.isSelected()){
+                             Ncpos="S";
+                         }
+                          
+                               String Ndpos="N";
+                          if (jCheckBox8.isSelected()){
+                             Ndpos="S";
+                         }
+                          
+                          
+                          
+                          
+                         comando.executeUpdate("UPDATE configuracion set Fapos='"+Fapos+"',Gdpos='"+Gdpos+"',Ncpos='"+Ncpos+"',Ndpos='"+Ndpos+"',imprimir='"+imprimir+"',impresoratermica='"+impresoratermica+"',boleta='"+boleta+"',ticket='"+ticket+"' WHERE id=1");
                          JOptionPane.showMessageDialog(null, "Configuracion Actualizada");
     
             }
@@ -220,6 +273,10 @@ public class configura extends javax.swing.JFrame {
     public static javax.swing.JCheckBox jCheckBox2;
     public static javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
+    public static javax.swing.JCheckBox jCheckBox5;
+    public static javax.swing.JCheckBox jCheckBox6;
+    public static javax.swing.JCheckBox jCheckBox7;
+    public static javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

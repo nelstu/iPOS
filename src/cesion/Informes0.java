@@ -45,6 +45,8 @@ public class Informes0 extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
+        setTitle("Informes");
+
         jButton1.setText("Ventas por Dia por Boletas");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +123,7 @@ public class Informes0 extends javax.swing.JFrame {
         );
 
         jButton3.setText("Actualizador de Cajas");
+        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);

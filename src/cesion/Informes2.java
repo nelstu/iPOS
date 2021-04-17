@@ -58,6 +58,8 @@ public class Informes2 extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
 
+        setTitle("Ventas por dia por Tickets");
+
         jLabel1.setText("Desde");
 
         jLabel2.setText("Hasta");
