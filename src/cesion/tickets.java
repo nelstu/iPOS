@@ -19,13 +19,20 @@ import javax.swing.table.DefaultTableModel;
  * @author dev
  */
 public class tickets extends javax.swing.JFrame {
-DefaultTableModel modelo1;
+   DefaultTableModel modelo0;
+   DefaultTableModel modelo1;
     /**
      * Creates new form tickets
      */
     public tickets() {
         initComponents();
         setLocationRelativeTo(null);
+        
+        modelo0 = new DefaultTableModel();
+        jTable1.setModel(modelo0);
+        modelo0.addColumn("Numero");
+        modelo0.addColumn("Fecha");
+        modelo0.addColumn("Total");
         
             modelo1 = new DefaultTableModel();
         jTable2.setModel(modelo1);
@@ -215,11 +222,13 @@ DefaultTableModel modelo1;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+        limpiarjtable1();
         llenar1();
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
+      private void limpiarjtable1(){
+         modelo0.setRowCount(0);
+   }
        private void limpiarjtable2(){
          modelo1.setRowCount(0);
    }
