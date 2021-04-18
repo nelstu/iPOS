@@ -152,6 +152,8 @@ public class login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
+        
+        
           cargarDriver();
          Conexion cn=new Conexion();
         String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
@@ -194,7 +196,8 @@ String pass = new String(arrayC);
          if (existe.equals("S")){
                 this.hide();
                 menu objeto=new menu();
-                objeto.setVisible(true);   
+                objeto.setVisible(true); 
+                objeto.jLabel1.setText(this.jTextField1.getText());
              }else{
              JOptionPane.showMessageDialog(null, "Acceso Rechazado");
              System.exit(0);

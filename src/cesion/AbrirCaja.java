@@ -118,8 +118,56 @@ public class AbrirCaja extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+//verificar si hay cajas
+     //revisar apertura de Caja
+            java.util.Date utilDate = new java.util.Date(); //fecha actual
+        long lnMilisegundos = utilDate.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
+        java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
+       
+        String Buscar= sqlDate.toString();
+        
+             cargarDriver();
+         Conexion cn=new Conexion();
+        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+//ahi una caja abierta con fecha anterior
+
+  String query0 = "select id,caja,fecha,estado from cajas where  fecha='"+Buscar+"' ";
+         int ca = 0;
+        try {
+            
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query0);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query0);
+            String anterior = "N";
+           
+            while (rs.next()) {
+                anterior = "S";
+                ca=rs.getInt("caja");
+                ca=ca+1;
+            }
+            if (anterior.equals("N")) {
+                ca=1;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+//fin ahi una caja abierta con fecha anterior
+
+//fin verificar si hay cajas
+
         // TODO add your handling code here:
                  cargarDriver();
+                 /*
                  Conexion cn=new Conexion();
                  String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
                  String username = cn.usuario;
@@ -127,6 +175,7 @@ public class AbrirCaja extends javax.swing.JFrame {
                  Connection dbCon = null;
                  Statement stmt = null;
                  ResultSet rs = null;
+                 */
 
                         try {
                          dbCon = DriverManager.getConnection(dbURL, username, password); 
@@ -135,7 +184,7 @@ public class AbrirCaja extends javax.swing.JFrame {
                          String montoinicial= jTextField2.getText();
         
                      
-                         comando.executeUpdate("insert into cajas(fecha,montoinicial,estado) values ('"+fecha+"',"+montoinicial+",'Abierta')");
+                         comando.executeUpdate("insert into cajas(caja,fecha,montoinicial,estado) values ("+String.valueOf(ca)+",'"+fecha+"',"+montoinicial+",'Abierta')");
                          JOptionPane.showMessageDialog(null, "Caja Abierta");
                            this.setVisible(false);
                         } catch(SQLException ex){

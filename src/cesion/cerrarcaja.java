@@ -5,11 +5,16 @@
  */
 package cesion;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.print.PrintException;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,6 +60,8 @@ public class cerrarcaja extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -112,6 +119,11 @@ public class cerrarcaja extends javax.swing.JFrame {
 
         jLabel23.setText("jLabel23");
 
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel28.setText("Caja");
+
+        jLabel29.setText("jLabel29");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -127,24 +139,29 @@ public class cerrarcaja extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
+                        .addComponent(jLabel6)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(52, 52, 52)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(52, 52, 52)
-                                .addComponent(jLabel22)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel23)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(222, 222, 222)
+                                        .addComponent(jLabel21))
+                                    .addComponent(jLabel28))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1)
+                                .addGap(28, 28, 28))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(308, 308, 308)
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(28, 28, 28))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel29)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel22)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel23)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +170,9 @@ public class cerrarcaja extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel29))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -443,9 +462,163 @@ public class cerrarcaja extends javax.swing.JFrame {
         
     }
     
+    
+    public static void imprimircierre() throws PrintException, IOException {
+
+        Conexion cn = new Conexion();
+
+        String url = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base + "?useSSL=false";
+        String user = cn.usuario;
+        String password = cn.pass;
+        System.out.println("Buscando Boletas a Imprimir...");
+
+        //datos empresa
+        String query0 = "SELECT rut,nombre,direccion,comuna,ciudad,giro,fantasia FROM empresa WHERE id=1";
+        String rut = "";
+        String nombre = "";
+        String direccion = "";
+        String comuna = "";
+        String ciudad = "";
+        String giro = "";
+        String fantasia = "";
+        try (Connection con = DriverManager.getConnection(url, user, password);
+                PreparedStatement pst = con.prepareStatement(query0);
+                ResultSet rs0 = pst.executeQuery()) {
+
+            while (rs0.next()) {
+                rut = rs0.getString("rut");
+                nombre = rs0.getString("nombre");
+                direccion = rs0.getString("direccion");
+                comuna = rs0.getString("comuna");
+                ciudad = rs0.getString("ciudad");
+                giro = rs0.getString("giro");
+                fantasia = rs0.getString("fantasia");
+
+            }
+        } catch (SQLException ex2) {
+            System.out.println(ex2.getMessage());
+
+        }
+        //fin datos empresa
+       
+        String query = "SELECT id,caja,numbol,numtic,montoinicial,ventadia,ventatic,ventatotal FROM cajas WHERE estado='Abierta' AND fecha='" + cerrarcaja.jLabel2.getText()+"'";
+        String pr = "POS-58";
+        //  String pr="PDF Printer";
+        int neto = 0;
+        int iva = 0;
+        int ventatotal=0;
+        String fecha="";String numbol="";String numtic="";String montoinicial="";String ventadia="";String ventatic="";
+        try (Connection con = DriverManager.getConnection(url, user, password);
+                PreparedStatement pst = con.prepareStatement(query);
+                ResultSet rs = pst.executeQuery()) {
+
+            while (rs.next()) {
+              
+               fecha = rs.getString("fecha");
+               numbol = rs.getString("numbol");
+               numtic = rs.getString("numtic");
+               montoinicial = rs.getString("montoinicial");
+               ventadia = rs.getString("ventadia");
+               ventatic = rs.getString("ventatic");
+               
+               ventatotal=Integer.parseInt(ventadia)+Integer.parseInt(ventatic);
+              
+            }
+              
+                PrinterService printerService = new PrinterService();
+
+                System.out.println(printerService.getPrinters());
+
+                //print some stuff
+                printerService.printString(pr, fantasia + "\n");
+                printerService.printString(pr, "Cierre de Caja:" + cerrarcaja.jLabel29.getText() + "\n");
+                printerService.printString(pr, nombre + " \n");
+                printerService.printString(pr, rut + " \n");
+                printerService.printString(pr, giro + " \n");
+                printerService.printString(pr, direccion + " \n");
+                printerService.printString(pr, comuna + " \n");
+                printerService.printString(pr, "Fecha:" + fecha + " \n");
+
+              
+           
+                printerService.printString(pr, "\n#Boletas                  $" + numbol + " \n");
+                printerService.printString(pr, "#Tickets                    $" + numtic + " \n");
+                printerService.printString(pr, "Monto Inicial                    $" + montoinicial + " \n");
+                printerService.printString(pr, "Venta Boletas                    $" + ventadia + " \n");
+                printerService.printString(pr, "Venta Tickets                    $" + ventatic + " \n");
+                
+                printerService.printString(pr, "Total Ventas                     $" + String.valueOf(ventatotal) + " \n");
+                
+           //     printerService.printString(pr, "Total                  $" + total + " \n");
+
+            
+                // cut that paper!
+                byte[] cutP = new byte[]{0x1d, 'V', 1};
+
+                printerService.printBytes(pr, cutP);
+
+             
+
+
+        } catch (SQLException ex) {
+
+        }
+
+        //update boleta
+        System.out.println("Finalizado...");
+        //fin update boleta
+
+    }
+    
+    
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       java.util.Date utilDate = new java.util.Date(); //fecha actual
+
+        //validar configuracion
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select id,impresoratermica,boleta,ticket,imprimir,Fapos,Gdpos,Ncpos,Ndpos,imprimecierre from configuracion where id=1 ";
+        // JOptionPane.showMessageDialog(null, query);
+        String montoinicial = "";
+        String imprimecierre ="";
+        try {
+
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String impresoratermica = rs.getString("impresoratermica");
+                String boleta = rs.getString("boleta");
+                String ticket = rs.getString("ticket");
+                String imprimir = rs.getString("imprimir");
+                
+                String Fapos = rs.getString("Fapos");
+                String Gdpos = rs.getString("Gdpos");
+                String Ncpos = rs.getString("Ncpos");
+                String Ndpos = rs.getString("Ndpos");
+                imprimecierre = rs.getString("imprimecierre");
+           }
+
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+       
+        //fin validar configuracion
+
+        java.util.Date utilDate = new java.util.Date(); //fecha actual
         long lnMilisegundos = utilDate.getTime();
         java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
         java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
@@ -455,6 +628,7 @@ public class cerrarcaja extends javax.swing.JFrame {
         if (reply == JOptionPane.YES_OPTION) {
                  actualizar(Buscar);
                  cargarDriver();
+                 /*
                  Conexion cn=new Conexion();
                  String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
                  String username = cn.usuario;
@@ -462,10 +636,18 @@ public class cerrarcaja extends javax.swing.JFrame {
                  Connection dbCon = null;
                  Statement stmt = null;
                  ResultSet rs = null;
-                 
+                 */
                  //buscar datos para actualizar Caja
                  
-                 
+                 if (imprimecierre.equals("S")){
+                     try {
+                         imprimircierre();
+                     } catch (PrintException ex) {
+                         Logger.getLogger(cerrarcaja.class.getName()).log(Level.SEVERE, null, ex);
+                     } catch (IOException ex) {
+                         Logger.getLogger(cerrarcaja.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+                 }
                  //fin buscar datos para actualizar Caja
                 try {
                          dbCon = DriverManager.getConnection(dbURL, username, password); 
@@ -544,6 +726,8 @@ public class cerrarcaja extends javax.swing.JFrame {
     public static javax.swing.JLabel jLabel25;
     public static javax.swing.JLabel jLabel26;
     public static javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    public static javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     public static javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

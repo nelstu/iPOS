@@ -23,24 +23,23 @@ import jxl.write.WriteException;
  *
  * @author dev
  */
-public class Informes5 extends javax.swing.JFrame {
+public class Informes6 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Informes5
+     * Creates new form Informes6
      */
-    public Informes5() {
+    public Informes6() {
         initComponents();
-        setLocationRelativeTo(null);
+         setLocationRelativeTo(null);
     }
 
-      private void cargarDriver() {
-    try {
-      Class.forName("com.mysql.jdbc.Driver");
-    }catch(Exception ex) {
+        private void cargarDriver() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception ex) {
 
+        }
     }
-  } 
-    
     
     
     
@@ -59,8 +58,6 @@ public class Informes5 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
-
-        setTitle("Productos Mas Vendidos");
 
         jLabel1.setText("Desde");
 
@@ -83,36 +80,33 @@ public class Informes5 extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(64, 64, 64)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(56, 56, 56)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
+                    .addComponent(jLabel2)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addComponent(jButton1)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,7 +117,7 @@ public class Informes5 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -131,111 +125,94 @@ public class Informes5 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-   SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fecha = sdf.format(this.jDateChooser1.getDate()); 
         String Buscar= fecha;
         
         String fecha2 = sdf.format(this.jDateChooser2.getDate()); 
         String Buscar2= fecha2;
         
-      //  String familia= this.jComboBox1.getSelectedItem().toString();
-         
-try
-{
-    
-    File f = new File("informeporticketfamilia.xls"); // Creamos un objeto file
-    System.out.println(f.getAbsolutePath());  
+        
+        
+        
+        try {
+
+            File f = new File("informeportickets.xls"); // Creamos un objeto file
+            System.out.println(f.getAbsolutePath());
 //Se crea el libro Excel
-WritableWorkbook workbook =Workbook.createWorkbook(f);
+            WritableWorkbook workbook = Workbook.createWorkbook(f);
 
 //Se crea una nueva hoja dentro del libro
-WritableSheet sheet =workbook.createSheet("Informe", 0);
+            WritableSheet sheet = workbook.createSheet("Informe", 0);
 
 //Creamos celdas de varios tipos
 //sheet.addCell(new jxl.write.Number(0, 0, "Numero"));
-sheet.addCell(new jxl.write.Label(0, 0, "Codigo"));
-sheet.addCell(new jxl.write.Label(1, 0, "Descricion"));
-sheet.addCell(new jxl.write.Label(2, 0, "Cantidad"));
-
+            sheet.addCell(new jxl.write.Label(0, 0, "Numero"));
+            sheet.addCell(new jxl.write.Label(1, 0, "Fecha"));
+            sheet.addCell(new jxl.write.Label(2, 0, "Rut"));
+            sheet.addCell(new jxl.write.Label(3, 0, "Proveedor"));
+            sheet.addCell(new jxl.write.Label(4, 0, "Neto"));
+            sheet.addCell(new jxl.write.Label(5, 0, "Iva"));
+            sheet.addCell(new jxl.write.Label(6, 0, "Total"));
+//sheet.addCell(new jxl.write.Boolean(3,0,true));
 //buscar ventas
-cargarDriver();
-    Conexion cn = new Conexion();
-    String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
-    String username = cn.usuario;
-    String password = cn.pass;
-    Connection dbCon = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-    Statement stmt1 = null;
-    ResultSet rs1 = null;
-    String BuscarCod = "";
-  
-    // String query ="select fecha,codigo,descripcion,cant,precio,total from detalle_tickets WHERE fecha>='"+Buscar+"' AND fecha<='"+Buscar2+"' order by fecha ASC"; 
-
-    String query = "SELECT detalle_tickets.codigo,detalle_tickets.descripcion,sum(detalle_tickets.cant) AS cantidad  FROM `detalle_tickets`";
-    query = query + " INNER JOIN productos ";
-    query = query + " ON detalle_tickets.codigo = productos.barra ";
-    query = query + " WHERE    detalle_tickets.fecha>='" + Buscar + "' AND detalle_tickets.fecha<='" + Buscar2 + "'";
-    query = query + " GROUP BY    detalle_tickets.codigo,detalle_tickets.descripcion ";
-    query = query + " ORDER BY    cantidad  DESC";  
-        try {
-              //getting database connection to MySQL server 
-            dbCon = DriverManager.getConnection(dbURL, username, password); 
-           //getting PreparedStatment to execute query 
-           stmt = dbCon.prepareStatement(query); 
-          //Resultset returned by query 
-           rs = stmt.executeQuery(query);  
-           int j=1;
-           int jtot=0;
-           int totalboletas=0;
-           int totalrango=0;
-           int son=0;
-           String fam="";
-            while (rs.next()) {
-                sheet.addCell(new jxl.write.Label(0, j, rs.getString(1)));
-                sheet.addCell(new jxl.write.Label(1, j, rs.getString(2)));
-                sheet.addCell(new jxl.write.Label(2, j, rs.getString(3)));
-              //  sheet.addCell(new jxl.write.Label(2, j, rs.getString(3)));
-
-                j++;
+            cargarDriver();
+            Conexion cn = new Conexion();
+            String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+            String username = cn.usuario;
+            String password = cn.pass;
+            Connection dbCon = null;
+            Statement stmt = null;
+            ResultSet rs = null;
+            String query = "select numero,fecha,rut,proveedor,neto,iva,total from documentosc WHERE fecha>='" + Buscar + "' AND fecha<='" + Buscar2 + "' order by numero_bol ASC";
+            try {
+                //getting database connection to MySQL server 
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                //getting PreparedStatment to execute query 
+                stmt = dbCon.prepareStatement(query);
+                //Resultset returned by query 
+                rs = stmt.executeQuery(query);
+                int j = 1;
+                int jtot = 0;
+                while (rs.next()) {
+                    sheet.addCell(new jxl.write.Label(0, j, rs.getString(1)));
+                    sheet.addCell(new jxl.write.Label(1, j, rs.getString(2)));
+                    sheet.addCell(new jxl.write.Label(2, j, rs.getString(3)));
+                    sheet.addCell(new jxl.write.Label(3, j, rs.getString(4)));
+                    sheet.addCell(new jxl.write.Number(4, j, rs.getInt(5)));
+                    sheet.addCell(new jxl.write.Number(5, j, rs.getInt(6)));
+                    sheet.addCell(new jxl.write.Number(6, j, rs.getInt(7)));
+                    jtot = jtot + rs.getInt(7);
+                    j++;
+                }
+                sheet.addCell(new jxl.write.Label(0, j, "Total"));
+                sheet.addCell(new jxl.write.Number(6, j, jtot));
+            } catch (SQLException ex) {
+                System.out.println("Nop");
             }
-             j++;
-
-        } catch(SQLException ex){
-          System.out.println(ex.getMessage().toString() ); 
-        }
 //fin buscar ventas
 
-
 //Escribimos los resultados al fichero Excel
-workbook.write();
-workbook.close();
+            workbook.write();
+            workbook.close();
 
+            System.out.println("Ejemplo finalizado.");
+        } catch (IOException ex) {
+            System.out.println("Error al crear el fichero.");
+        } catch (WriteException ex) {
+            System.out.println("Error al escribir el fichero.");
+        }
 
+        try {
+            Desktop.getDesktop().open(new File("informeportickets.xls"));
+            //To check if the solution is open or not, you can wait some time here
+            Thread.sleep(1000);
 
-System.out.println("Ejemplo finalizado.");
-}
-catch (IOException ex)
-{
-System.out.println("Error al crear el fichero.");
-}
-catch (WriteException ex)
-{
-System.out.println("Error al escribir el fichero.");
-}
+        } catch (IOException | InterruptedException ex) {
+            //   Logger.getLogger(Open.class.getName()).log(Level.SEVERE, null, ex);
 
-  try {
-                Desktop.getDesktop().open(new File("informeporticketfamilia.xls"));
-                //To check if the solution is open or not, you can wait some time here
-                Thread.sleep(1000);
+        }
 
-            } catch (IOException | InterruptedException ex) {
-             //   Logger.getLogger(Open.class.getName()).log(Level.SEVERE, null, ex);
-      
-
-}  
-   
-         
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -256,20 +233,20 @@ System.out.println("Error al escribir el fichero.");
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Informes5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informes6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Informes5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informes6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Informes5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informes6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Informes5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informes6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Informes5().setVisible(true);
+                new Informes6().setVisible(true);
             }
         });
     }
