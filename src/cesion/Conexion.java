@@ -15,10 +15,10 @@ import java.sql.SQLException;
  */
 public class Conexion {
     //Dennis
- //public static String ip="45.7.230.72";
- //public static String base="ferreteria2";
- //public static String usuario="nelstu";
- //public static String pass="armijo183ISLA";
+ public static String ip="45.7.230.72";
+ public static String base="ferreteria2";
+ public static String usuario="nelstu";
+ public static String pass="armijo183ISLA";
  
  //   public static String ip="www.nservicios.cl";
  //   public static String base="cns58953_Brujas";
@@ -32,10 +32,10 @@ public class Conexion {
    public static String pass="armijo183ISLA";
 */
     //linares testing
- 
+ /*
     public static String ip="45.236.131.236";
     public static String base="testing";
     public static String usuario="nelstu";
     public static String pass="armijo183ISLA";
- 
+ */
 }

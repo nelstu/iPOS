@@ -77,6 +77,14 @@ public class paneldte extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
 
         setTitle("Panel DTE SII");
 
@@ -142,6 +150,14 @@ public class paneldte extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Total");
+
+        jLabel7.setText("#Boletas");
+
+        jLabel8.setText("Desde");
+
+        jLabel9.setText("Hasta");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -180,19 +196,43 @@ public class paneldte extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel1)
-                        .addGap(33, 33, 33)
+                        .addGap(31, 31, 31)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6)
+                        .addGap(50, 50, 50)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
+                        .addGap(26, 26, 26)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
+                        .addGap(27, 27, 27)
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -212,16 +252,21 @@ public class paneldte extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(jButton2)
                         .addGap(32, 32, 32)
-                        .addComponent(jButton5)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jButton5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(20, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -266,7 +311,7 @@ public class paneldte extends javax.swing.JFrame {
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
-        String query ="select numero_bol,fecha,total,neto,iva,xmlgenerado,pdfgenerado,trackid,estadosii from boletas where fecha ='"+Buscar+"' order by numero_bol DESC"; 
+        String query ="select numero_bol,fecha,total,neto,iva,xmlgenerado,pdfgenerado,trackid,estadosii from boletas where fecha ='"+Buscar+"' order by numero_bol ASC"; 
          // JOptionPane.showMessageDialog(null, query);
           try {
               //getting database connection to MySQL server 
@@ -274,35 +319,50 @@ public class paneldte extends javax.swing.JFrame {
            //getting PreparedStatment to execute query 
            stmt = dbCon.prepareStatement(query); 
           //Resultset returned by query 
-           rs = stmt.executeQuery(query);  
-           while(rs.next()){ 
-              String pdfg=rs.getString(7);
-               String xmlg=rs.getString(6);
-              Object []object = new Object[9];
-        object[0] = rs.getString(1);
-        object[1] = rs.getString(2); 
-        object[2] = rs.getString(4); 
-        object[3] = rs.getString(5); 
-        object[4] = rs.getString(3); 
-        if (pdfg.equals("S")){
-             object[5] = "http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/dte_dennis/pdf/pdf39/"+ rs.getString(2) +"/dte"+rs.getString(1)+".pdf"; 
-        }else{
-            object[5] = "N";
-        }
-        
-        if (xmlg.equals("S")){
-           object[6] = "http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/dte_dennis/in/in39/"+rs.getString(2) +"/EnvioDTE_"+rs.getString(1)+".xml"; 
-       
-           }else{
-            object[6] = "N";
-        }
-        
-        object[7] = rs.getString(8); 
-        object[8] = rs.getString(9); 
-          
-        model.addRow(object);
-          } 
-         
+           rs = stmt.executeQuery(query);
+           int tboletas=0;
+           int sboletas=0;
+           String Desde="";
+           String Hasta="";
+           String Actual="";
+           while(rs.next()){
+                  Actual = rs.getString(1);
+                  if (sboletas == 0) {
+                      Desde = Actual;
+                  }
+                  String pdfg = rs.getString(7);
+                  String xmlg = rs.getString(6);
+                  Object[] object = new Object[9];
+                  object[0] = rs.getString(1);
+                  object[1] = rs.getString(2);
+                  object[2] = rs.getString(4);
+                  object[3] = rs.getString(5);
+                  object[4] = rs.getString(3);
+                  tboletas = tboletas + rs.getInt(3);
+                  sboletas++;
+                  if (pdfg.equals("S")) {
+                      object[5] = "http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/dte_dennis/pdf/pdf39/" + rs.getString(2) + "/dte" + rs.getString(1) + ".pdf";
+                  } else {
+                      object[5] = "N";
+                  }
+
+                  if (xmlg.equals("S")) {
+                      object[6] = "http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/dte_dennis/in/in39/" + rs.getString(2) + "/EnvioDTE_" + rs.getString(1) + ".xml";
+
+                  } else {
+                      object[6] = "N";
+                  }
+
+                  object[7] = rs.getString(8);
+                  object[8] = rs.getString(9);
+
+                  model.addRow(object);
+              }
+              Hasta = Actual;
+              this.jTextField5.setText(String.valueOf(tboletas));
+              this.jTextField6.setText(String.valueOf(sboletas));
+              this.jTextField7.setText(Desde);
+              this.jTextField8.setText(Hasta);
         } catch(SQLException ex){
           System.out.println("Nop" ); 
         }
@@ -373,9 +433,13 @@ public class paneldte extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = sdf.format(this.jDateChooser1.getDate()); 
+        String Buscar= fecha;
+        
   try {
            // TODO add your handling code here:
-           Desktop.getDesktop().browse(new URI("http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/libroconsumo.php?fecha='"+this.jTextField1.getText()+"'"));
+           Desktop.getDesktop().browse(new URI("http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/libroconsumo.php?son="+this.jTextField6.getText()+"&total="+this.jTextField5.getText()+"&fecha="+Buscar+"&Desde="+this.jTextField7.getText()+"&Hasta="+this.jTextField8.getText()));
        } catch (URISyntaxException ex) {
            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
        } catch (IOException ex) {
@@ -436,6 +500,10 @@ public class paneldte extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -443,6 +511,10 @@ public class paneldte extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
     private org.jdatepicker.impl.UtilDateModel utilDateModel1;
     // End of variables declaration//GEN-END:variables
 }
