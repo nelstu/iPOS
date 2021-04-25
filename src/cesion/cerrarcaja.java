@@ -69,6 +69,8 @@ public class cerrarcaja extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -207,6 +209,12 @@ public class cerrarcaja extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel24.setText("jLabel24");
 
+        jLabel30.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel30.setText("Retiros");
+
+        jLabel31.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel31.setText("jLabel31");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -221,12 +229,16 @@ public class cerrarcaja extends javax.swing.JFrame {
                             .addComponent(jLabel15))
                         .addGap(62, 62, 62)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
                                 .addGap(70, 70, 70)
-                                .addComponent(jLabel24))
-                            .addComponent(jLabel16))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel24)
+                                .addGap(111, 111, 111)
+                                .addComponent(jLabel30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel31)))))
+                .addGap(76, 76, 76))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,7 +247,9 @@ public class cerrarcaja extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14)
-                    .addComponent(jLabel24))
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel30)
+                    .addComponent(jLabel31))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -549,9 +563,9 @@ public class cerrarcaja extends javax.swing.JFrame {
                 
                 printerService.printString(pr, "Total Ventas                     $" + String.valueOf(ventatotal) + " \n");
                 
-           //     printerService.printString(pr, "Total                  $" + total + " \n");
+                printerService.printString(pr, "Retiros                  $" + jLabel31.getText()+ " \n");
 
-            
+                printerService.printString(pr, "Total Caja               $" + jLabel16.getText()+ " \n");
                 // cut that paper!
                 byte[] cutP = new byte[]{0x1d, 'V', 1};
 
@@ -729,6 +743,8 @@ public class cerrarcaja extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     public static javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    public static javax.swing.JLabel jLabel31;
     public static javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     public static javax.swing.JLabel jLabel6;

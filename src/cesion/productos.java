@@ -689,26 +689,54 @@ public class productos extends javax.swing.JFrame {
         int selectedRowIndex = jTable1.getSelectedRow();
 
         // set the selected row data into jtextfields
-        jTextField1.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        jTextField2.setText(model.getValueAt(selectedRowIndex, 1).toString());
-        jTextField3.setText(model.getValueAt(selectedRowIndex, 2).toString());
-        jTextField4.setText(model.getValueAt(selectedRowIndex, 3).toString());
-        jTextField7.setText(model.getValueAt(selectedRowIndex, 4).toString());
-        String solicitaprecio = model.getValueAt(selectedRowIndex, 5).toString();
+        if (model.getValueAt(selectedRowIndex, 0)!= null){
+             jTextField1.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        }
+         if (model.getValueAt(selectedRowIndex, 1)!= null){
+                jTextField2.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        }
+        
+         if (model.getValueAt(selectedRowIndex, 2)!= null){
+             jTextField3.setText(model.getValueAt(selectedRowIndex, 2).toString());
+         }
+        
+       if (model.getValueAt(selectedRowIndex, 3)!= null){
+            jTextField4.setText(model.getValueAt(selectedRowIndex, 3).toString());
+       }
+    
+         if (model.getValueAt(selectedRowIndex, 4)!= null){
+             jTextField7.setText(model.getValueAt(selectedRowIndex, 4).toString());
+         }
+         String solicitaprecio="N";
+           if (model.getValueAt(selectedRowIndex, 5)!= null){
+              solicitaprecio = model.getValueAt(selectedRowIndex, 5).toString();
+         }
+       
+        
+      
         if (solicitaprecio.equals("S")) {
             System.out.println("solicitaprecio:" + solicitaprecio);
             jCheckBox1.setSelected(true);
         }
-          String boleta = model.getValueAt(selectedRowIndex, 8).toString();
+        String boleta="N";
+        if (model.getValueAt(selectedRowIndex, 8)!= null){
+             boleta = model.getValueAt(selectedRowIndex, 8).toString();
+        }
+ 
         if (boleta.equals("S")) {
             jCheckBox2.setSelected(true);
         }
-        this.jComboBox1.setSelectedItem(model.getValueAt(selectedRowIndex, 6).toString());
+        
+         if (model.getValueAt(selectedRowIndex, 6)!= null){
+             this.jComboBox1.setSelectedItem(model.getValueAt(selectedRowIndex, 6).toString());
+         }
+        String unip="";
+         if (model.getValueAt(selectedRowIndex, 7)!= null){
+             unip=model.getValueAt(selectedRowIndex, 7).toString();
+             this.jComboBox3.setSelectedItem(unip);
+         }
+        
 
-        String unip=model.getValueAt(selectedRowIndex, 7).toString();
-        
-        this.jComboBox3.setSelectedItem(unip);
-        
         //buscar
         
          String Buscar = model.getValueAt(selectedRowIndex, 0).toString();

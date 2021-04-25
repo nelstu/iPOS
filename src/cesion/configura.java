@@ -55,6 +55,7 @@ public class configura extends javax.swing.JFrame {
         jCheckBox7 = new javax.swing.JCheckBox();
         jCheckBox8 = new javax.swing.JCheckBox();
         jCheckBox9 = new javax.swing.JCheckBox();
+        jCheckBox10 = new javax.swing.JCheckBox();
 
         jLabel1.setText("jLabel1");
 
@@ -88,6 +89,8 @@ public class configura extends javax.swing.JFrame {
 
         jCheckBox9.setText("Imprimir Cierre de Caja");
 
+        jCheckBox10.setText("Solo Boton Tickets");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -111,7 +114,8 @@ public class configura extends javax.swing.JFrame {
                                     .addComponent(jCheckBox2)
                                     .addComponent(jCheckBox3)
                                     .addComponent(jCheckBox4)
-                                    .addComponent(jCheckBox9))
+                                    .addComponent(jCheckBox9)
+                                    .addComponent(jCheckBox10))
                                 .addGap(92, 92, 92)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jCheckBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,6 +157,8 @@ public class configura extends javax.swing.JFrame {
                             .addComponent(jCheckBox8))
                         .addGap(18, 18, 18)
                         .addComponent(jCheckBox9)
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox10)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -229,8 +235,14 @@ public class configura extends javax.swing.JFrame {
                 imprimecierre = "S";
             }
 
+            String botonsoloticket= "N";
+            if (jCheckBox10.isSelected()) {
+                botonsoloticket = "S";
+            }
+            
+            
                           
-                         comando.executeUpdate("UPDATE configuracion set imprimecierre='"+imprimecierre+"',Fapos='"+Fapos+"',Gdpos='"+Gdpos+"',Ncpos='"+Ncpos+"',Ndpos='"+Ndpos+"',imprimir='"+imprimir+"',impresoratermica='"+impresoratermica+"',boleta='"+boleta+"',ticket='"+ticket+"' WHERE id=1");
+                         comando.executeUpdate("UPDATE configuracion set botonsoloticket='"+botonsoloticket+"',imprimecierre='"+imprimecierre+"',Fapos='"+Fapos+"',Gdpos='"+Gdpos+"',Ncpos='"+Ncpos+"',Ndpos='"+Ndpos+"',imprimir='"+imprimir+"',impresoratermica='"+impresoratermica+"',boleta='"+boleta+"',ticket='"+ticket+"' WHERE id=1");
                          JOptionPane.showMessageDialog(null, "Configuracion Actualizada");
     
             }
@@ -279,6 +291,7 @@ public class configura extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     public static javax.swing.JCheckBox jCheckBox1;
+    public static javax.swing.JCheckBox jCheckBox10;
     public static javax.swing.JCheckBox jCheckBox2;
     public static javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
