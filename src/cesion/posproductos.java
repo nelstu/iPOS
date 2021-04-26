@@ -301,7 +301,7 @@ public class posproductos extends javax.swing.JFrame {
             stmt = dbCon.prepareStatement(query);
             //Resultset returned by query 
             rs = stmt.executeQuery(query);
-           
+           this.jComboBox2.addItem("Seleccionar");
             while (rs.next()) {
                  String familias=rs.getString("familias");
               this.jComboBox2.addItem(familias);
@@ -332,7 +332,7 @@ public class posproductos extends javax.swing.JFrame {
             stmt = dbCon.prepareStatement(query);
             //Resultset returned by query 
             rs = stmt.executeQuery(query);
-           
+           this.jComboBox1.addItem("Seleccionar");
             while (rs.next()) {
                  String familias=rs.getString("unidades");
               this.jComboBox1.addItem(familias);
@@ -346,6 +346,32 @@ public class posproductos extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Codigo");
+            return;
+        }
+
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Productos");
+            return;
+        }
+
+        if (jTextField3.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Nombre Corto");
+            return;
+        }
+          
+          if (jTextField6.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Precio");
+            return;
+        }  
+          
+           if (jTextField4.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Precio Mayorista o 0");
+            return;
+        }   
+          
+          
         //validar
         if (this.jComboBox1.getSelectedIndex() ==-1){
             JOptionPane.showMessageDialog(null, "Debe Seleccionar Unidad");
@@ -464,7 +490,16 @@ String Buscar= jTextField1.getText();
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-     String Buscar= jTextField2.getText();
+         if (jTextField1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Codigo");
+            return;
+        }
+        
+        
+   if (JOptionPane.showConfirmDialog(null, "Desea Eliminar este Producto?", "Eliminar Productos",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        
+        String Buscar= jTextField2.getText();
         cargarDriver();
         Conexion cn=new Conexion();
         String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
@@ -484,7 +519,7 @@ String Buscar= jTextField1.getText();
             } catch(SQLException ex){
               setTitle(ex.toString());
           }
-
+   }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

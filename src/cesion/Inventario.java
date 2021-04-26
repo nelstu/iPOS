@@ -253,7 +253,7 @@ public class Inventario extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (jDateChooser1.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "Fecha Desde no Seleccionada", "Sin Seleccionar", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Fecha  no Seleccionada", "Sin Seleccionar", JOptionPane.INFORMATION_MESSAGE);
             jDateChooser1.requestFocusInWindow();
             return;
         }

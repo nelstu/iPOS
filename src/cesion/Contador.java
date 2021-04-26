@@ -25,12 +25,13 @@ public class Contador extends javax.swing.JFrame {
     public Contador() {
         initComponents();
         setLocationRelativeTo(null);
-           modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel();
         jTable1.setModel(modelo);
-        
+
         modelo.addColumn("Id");
         modelo.addColumn("Documento");
         modelo.addColumn("Contador");
+        modelo.addColumn("Ultimo Folio");
         llenar();
     
     }
@@ -44,24 +45,25 @@ public class Contador extends javax.swing.JFrame {
         Connection dbCon = null; 
         Statement stmt = null; 
         ResultSet rs = null; 
-        String query ="select id,documento,contador from contador"; 
-          try {
-              //getting database connection to MySQL server 
-            dbCon = DriverManager.getConnection(dbURL, username, password); 
-           //getting PreparedStatment to execute query 
-           stmt = dbCon.prepareStatement(query); 
-          //Resultset returned by query 
-           rs = stmt.executeQuery(query);  
-           while(rs.next()){ 
-              
-              Object []object = new Object[3];
-        object[0] = rs.getString(1);
-        object[1] = rs.getString(2); 
-        object[2] = rs.getString(3); 
-      
-  System.out.println("Si" );
-        
-        modelo.addRow(object);
+         String query = "select id,documento,contador,hasta from contador";
+         try {
+             //getting database connection to MySQL server 
+             dbCon = DriverManager.getConnection(dbURL, username, password);
+             //getting PreparedStatment to execute query 
+             stmt = dbCon.prepareStatement(query);
+             //Resultset returned by query 
+             rs = stmt.executeQuery(query);
+             while (rs.next()) {
+
+                 Object[] object = new Object[4];
+                 object[0] = rs.getString(1);
+                 object[1] = rs.getString(2);
+                 object[2] = rs.getString(3);
+                 object[3] = rs.getString(4);
+
+                 System.out.println("Si");
+
+                 modelo.addRow(object);
           } 
          
         } catch(SQLException ex){
@@ -99,6 +101,8 @@ public class Contador extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
 
         setTitle("Contadores");
 
@@ -135,6 +139,8 @@ public class Contador extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Ultimo Folio");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -144,7 +150,7 @@ public class Contador extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(42, 42, 42))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -152,12 +158,16 @@ public class Contador extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField1)
                             .addComponent(jTextField2)
-                            .addComponent(jTextField3)))))
+                            .addComponent(jTextField3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,6 +186,10 @@ public class Contador extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -190,7 +204,7 @@ public class Contador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 113, Short.MAX_VALUE))
+                .addGap(0, 90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,16 +219,17 @@ public class Contador extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
 
-DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         // get the selected row index
-       int selectedRowIndex = jTable1.getSelectedRow();
-       
+        int selectedRowIndex = jTable1.getSelectedRow();
+
         // set the selected row data into jtextfields
-       jTextField1.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        jTextField1.setText(model.getValueAt(selectedRowIndex, 0).toString());
         jTextField2.setText(model.getValueAt(selectedRowIndex, 1).toString());
-         jTextField3.setText(model.getValueAt(selectedRowIndex, 2).toString());
-     
+        jTextField3.setText(model.getValueAt(selectedRowIndex, 2).toString());
+        jTextField4.setText(model.getValueAt(selectedRowIndex, 3).toString());
+
 
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -225,11 +240,16 @@ DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
+        jTextField4.setText("");
  
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Contador de Documentos");
+            return;
+        }
 
 
         String Buscar= jTextField1.getText();
@@ -244,21 +264,22 @@ DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
       
             
           
-                 try {
-                         dbCon = DriverManager.getConnection(dbURL, username, password); 
-                         Statement comando=dbCon.createStatement();
-                         String id= jTextField1.getText();
-                         String documento= jTextField2.getText();
-                         String contador= jTextField3.getText();   
-                         comando.executeUpdate("UPDATE contador set contador='"+contador+"' WHERE id="+id);
-                         JOptionPane.showMessageDialog(null, "Contador Actualizado");
-                        } catch(SQLException ex){
-                           setTitle(ex.toString());
-                        }
-   
-                     limpiar();
-                     limpiarjtable();
-                     llenar();
+            try {
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            Statement comando = dbCon.createStatement();
+            String id = jTextField1.getText();
+            String documento = jTextField2.getText();
+            String contador = jTextField3.getText();
+            String ultimofolio = jTextField4.getText();
+            comando.executeUpdate("UPDATE contador set hasta='" + ultimofolio + "',contador='" + contador + "' WHERE id=" + id);
+            JOptionPane.showMessageDialog(null, "Contador Actualizado");
+        } catch (SQLException ex) {
+            setTitle(ex.toString());
+        }
+
+        limpiar();
+        limpiarjtable();
+        llenar();
 
 
 
@@ -304,11 +325,13 @@ DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
