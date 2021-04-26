@@ -251,6 +251,13 @@ public class Inventario extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+
+        if (jDateChooser1.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Fecha Desde no Seleccionada", "Sin Seleccionar", JOptionPane.INFORMATION_MESSAGE);
+            jDateChooser1.requestFocusInWindow();
+            return;
+        }
+
         String Buscar = jTextField1.getText();
         cargarDriver();
         Conexion cn = new Conexion();

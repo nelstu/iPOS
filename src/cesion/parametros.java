@@ -204,6 +204,59 @@ public class parametros extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
+        //validar
+   if (jTextField1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Rut");
+            return;
+        }
+   
+   if (jTextField2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Razon");
+            return;
+        }
+   
+     if (jTextField3.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Direccion");
+            return;
+        }
+   
+       if (jTextField4.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Comuna");
+            return;
+        }
+       
+         if (jTextField5.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Ciudad");
+            return;
+        }
+
+        if (jTextField6.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Telefono");
+            return;
+        }
+
+        if (jTextField7.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar email");
+            return;
+        }
+
+        if (jTextField8.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Fecha Resolucion");
+            return;
+        }
+
+        if (jTextField9.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Numero Resolucion");
+            return;
+        }
+           
+           
+           
+           
+         
+         
+         
+        
 
 String Buscar= jTextField1.getText();
         cargarDriver();

@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import jxl.Workbook;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
@@ -132,6 +133,20 @@ public class Informes1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+     if (jDateChooser1.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Fecha Desde no Seleccionada", "Sin Seleccionar", JOptionPane.INFORMATION_MESSAGE);
+            jDateChooser1.requestFocusInWindow();
+            return;
+        }
+        
+        if (jDateChooser2.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Fecha Hasta no Seleccionada", "Sin Seleccionar", JOptionPane.INFORMATION_MESSAGE);
+            jDateChooser2.requestFocusInWindow();
+            return;
+        }
+
+
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fecha = sdf.format(this.jDateChooser1.getDate()); 
         String Buscar= fecha;

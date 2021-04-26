@@ -20,6 +20,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
@@ -140,7 +141,19 @@ public class Informes extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-
+     if (jDateChooser1.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Fecha Desde no Seleccionada", "Sin Seleccionar", JOptionPane.INFORMATION_MESSAGE);
+            jDateChooser1.requestFocusInWindow();
+            return;
+        }
+        
+        if (jDateChooser2.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Fecha Hasta no Seleccionada", "Sin Seleccionar", JOptionPane.INFORMATION_MESSAGE);
+            jDateChooser2.requestFocusInWindow();
+            return;
+        }
+        
+        
 try
 {
     

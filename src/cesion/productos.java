@@ -796,6 +796,7 @@ public class productos extends javax.swing.JFrame {
         String query = "select id,unidades from unidades order by unidades";
         // JOptionPane.showMessageDialog(null, query);
        String montoinicial="";
+        this.jComboBox3.addItem("Seleccionar");
         try {
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
@@ -828,6 +829,7 @@ public class productos extends javax.swing.JFrame {
         String query = "select id,unidades from unidades order by unidades";
         // JOptionPane.showMessageDialog(null, query);
        String montoinicial="";
+        this.jComboBox4.addItem("Seleccionar");
         try {
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
@@ -859,6 +861,7 @@ public class productos extends javax.swing.JFrame {
         String query = "select id,familias from familias order by familias";
         // JOptionPane.showMessageDialog(null, query);
        String montoinicial="";
+       this.jComboBox1.addItem("Seleccionar");
         try {
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
@@ -890,6 +893,7 @@ public class productos extends javax.swing.JFrame {
         String query = "select id,familias from familias order by familias";
         // JOptionPane.showMessageDialog(null, query);
        String montoinicial="";
+        this.jComboBox2.addItem("Seleccionar");
         try {
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
@@ -919,6 +923,14 @@ public class productos extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         limpiar();
+        this.jTextField4.setText("0");
+        this.jTextField7.setText("0");
+        this.jTextField8.setText("0");
+        this.jTextField9.setText("0");
+        this.jTextField10.setText("0");
+        
+        
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1068,7 +1080,10 @@ System.out.println("Error al escribir el fichero.");
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-
+        if (jTextField2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Codigo");
+            return;
+        }
         Movimientos objeto11 = new Movimientos();
         objeto11.setVisible(true);
         objeto11.jLabel1.setText(this.jTextField2.getText());
@@ -1078,7 +1093,48 @@ System.out.println("Error al escribir el fichero.");
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-      if (this.jComboBox1.getSelectedIndex() ==-1){
+
+        //verificar monto 
+        if (jTextField2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Codigo");
+            return;
+        }
+
+        
+           if (jTextField3.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Producto");
+            return;
+        }
+           
+        if (jTextField4.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Precio de Venta");
+            return;
+        }
+
+        if (jTextField7.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Precio Mayorista o 0");
+            return;
+        }
+
+        if (jTextField8.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Conversion o 0");
+            return;
+        }
+
+        if (jTextField9.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Stock Minimo o 0");
+            return;
+        }
+
+        if (jTextField10.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Stock Maximo o 0");
+            return;
+        }
+//fin verificar monto
+        
+        
+        
+        if (this.jComboBox1.getSelectedIndex() ==-1){
             JOptionPane.showMessageDialog(null, "Debe Seleccionar Familia");
             return;
         }    
@@ -1208,6 +1264,10 @@ System.out.println("Error al escribir el fichero.");
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+         if (jTextField2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Codigo");
+            return;
+        }
 
    if (JOptionPane.showConfirmDialog(null, "Desea Eliminar Productos?", "Eliminar Productos",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {

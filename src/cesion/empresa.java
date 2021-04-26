@@ -257,7 +257,72 @@ public class empresa extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+//validar
+   if (jTextField2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Rut");
+            return;
+        }
+   
+    if (jTextField3.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Razon Social");
+            return;
+        }
+ if (jTextField4.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Direccion");
+            return;
+        }
 
+  if (jTextField5.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Comuna");
+            return;
+        }
+  
+    if (jTextField6.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Ciudad");
+            return;
+        }
+      if (jTextField7.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Giro");
+            return;
+        }
+      
+        if (jTextField8.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Fecha Resolucion");
+            return;
+        }
+      
+          if (jTextField9.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Resolucion");
+            return;
+        }
+          
+            if (jTextField10.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Codigo Actividad Economica");
+            return;
+        }
+        
+        if (jTextField11.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Rut Representante Legal");
+            return;
+        }
+      
+        if (jTextField12.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Nombre Representante Legal");
+            return;
+        }
+        
+        if (jTextField13.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Nombre de Fantasia o replicar Nombre de Empresa");
+            return;
+        }
+      
+    
+    
+ 
+ 
+//fin validar
+        
+        
 String Buscar= jTextField1.getText();
           cargarDriver();
          Conexion cn=new Conexion();

@@ -398,6 +398,12 @@ String Buscar= jTextField1.getText();
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
+           if (jTextField2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Familia");
+            return;
+        }
+        
+        
         //chequear productos con familia
         String Buscarfamilia = jTextField2.getText();
          cargarDriver();

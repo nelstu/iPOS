@@ -31,6 +31,7 @@ public class usuarios extends javax.swing.JFrame {
         modelo.addColumn("Id");
         modelo.addColumn("Usuario");
         modelo.addColumn("Password");
+        modelo.addColumn("email");
         limpiar();
         llenar();
     }
@@ -53,7 +54,7 @@ public class usuarios extends javax.swing.JFrame {
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select id,usuario,pass from usuarios";
+        String query = "select id,usuario,pass,email from usuarios";
         try {
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
@@ -63,10 +64,11 @@ public class usuarios extends javax.swing.JFrame {
             rs = stmt.executeQuery(query);
             while (rs.next()) {
 
-                Object[] object = new Object[3];
+                Object[] object = new Object[4];
                 object[0] = rs.getString(1);
                 object[1] = rs.getString(2);
                 object[2] = rs.getString(3);
+                object[3] = rs.getString(4);
                
 
                 modelo.addRow(object);
@@ -84,6 +86,7 @@ public class usuarios extends javax.swing.JFrame {
         jTextField2.setText("");
         jTextField3.setText("");
         jTextField4.setText("");
+        jTextField5.setText("");
        
      
     }
@@ -113,6 +116,8 @@ public class usuarios extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
 
         setTitle("Usuarios");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -199,6 +204,8 @@ public class usuarios extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("email");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -211,22 +218,29 @@ public class usuarios extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                                .addComponent(jButton2))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel1))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel6))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(75, 75, 75)
@@ -265,6 +279,10 @@ public class usuarios extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -278,7 +296,7 @@ public class usuarios extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,12 +321,25 @@ DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
 
         // get the selected row index
         int selectedRowIndex = jTable1.getSelectedRow();
-
-        // set the selected row data into jtextfields
-        jTextField1.setText(model.getValueAt(selectedRowIndex, 0).toString());
-        jTextField2.setText(model.getValueAt(selectedRowIndex, 1).toString());
-        jTextField4.setText(model.getValueAt(selectedRowIndex, 2).toString());
         this.jLabel5.setText("Editar");
+        // set the selected row data into jtextfields
+         if (model.getValueAt(selectedRowIndex, 0)!= null){
+             jTextField1.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        }
+           if (model.getValueAt(selectedRowIndex, 1)!= null){
+              jTextField2.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        }
+         if (model.getValueAt(selectedRowIndex, 2)!= null){
+              jTextField4.setText(model.getValueAt(selectedRowIndex, 2).toString());
+        }
+       
+            if (model.getValueAt(selectedRowIndex, 3)!= null){
+               jTextField5.setText(model.getValueAt(selectedRowIndex, 3).toString());
+        }
+         
+        
+       
+        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void limpiarjtable() {
@@ -318,6 +349,21 @@ DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+
+  if (jTextField2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Usuario");
+            return;
+        }
+  
+    if (jTextField4.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Password");
+            return;
+        }
+    
+      if (jTextField5.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe Ingresar email");
+            return;
+        }
         
        String Buscar= jTextField1.getText();
         cargarDriver();
@@ -339,9 +385,10 @@ DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
                          Statement comando=dbCon.createStatement();
                          String usuario= jTextField2.getText();
                          String pass= jTextField4.getText();
+                         String email= jTextField5.getText();
                   
              
-                         comando.executeUpdate("UPDATE usuarios set usuario='"+usuario+"',pass='"+pass+"' WHERE id="+Buscar);
+                         comando.executeUpdate("UPDATE usuarios set usuario='"+usuario+"',pass='"+pass+"',email='"+email+"' WHERE id="+Buscar);
                          JOptionPane.showMessageDialog(null, "Usuario Actualizado");
                         } catch(SQLException ex){
                            setTitle(ex.toString());
@@ -353,8 +400,8 @@ DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
                 Statement comando = dbCon.createStatement();
                 String usuario = jTextField2.getText();
                 String pass = jTextField4.getText();
-
-                comando.executeUpdate("insert into usuarios(usuario,pass) values ('" + usuario + "','" + pass + "')");
+                String email= jTextField5.getText();
+                comando.executeUpdate("insert into usuarios(email,usuario,pass) values ('" + email + "','" + usuario + "','" + pass + "')");
                 JOptionPane.showMessageDialog(null, "Usuario Nuevo Creado");
             } catch (SQLException ex) {
                 setTitle(ex.toString());
@@ -374,7 +421,12 @@ DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar Usuario");
+            return;
+        }
+        
+        
                 if (JOptionPane.showConfirmDialog(null, "Desea Eliminar Usuario?", "Eliminar Usuario",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             // TODO add your handling code here:
@@ -461,6 +513,7 @@ DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
@@ -468,6 +521,7 @@ DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

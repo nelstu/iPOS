@@ -54,6 +54,8 @@ public class AbrirCaja extends javax.swing.JFrame {
 
         jLabel3.setText("Monto Inicial $");
 
+        jTextField1.setEditable(false);
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/diskblue.jpg"))); // NOI18N
         jButton1.setText("Abrir Caja");
         jButton1.setToolTipText("");
@@ -118,7 +120,13 @@ public class AbrirCaja extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+//verificar monto 
+        if (jTextField2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Deben Ingresar Monto Inicial sino el valor 0");
+            return;
+        }
 
+//fin verificar monto
 //verificar si hay cajas
      //revisar apertura de Caja
             java.util.Date utilDate = new java.util.Date(); //fecha actual

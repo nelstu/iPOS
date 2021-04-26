@@ -400,6 +400,14 @@ public class paneldte extends javax.swing.JFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+      if (jDateChooser1.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Fecha  no Seleccionada", "Sin Seleccionar", JOptionPane.INFORMATION_MESSAGE);
+            jDateChooser1.requestFocusInWindow();
+            return;
+        }
+        
+
+
         limpiarjtable();
         llenar1();
     }//GEN-LAST:event_jButton1ActionPerformed

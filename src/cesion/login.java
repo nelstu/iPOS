@@ -151,9 +151,16 @@ public class login extends javax.swing.JFrame {
   
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
-        
-        
+ if (this.jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese usuario");
+            return;
+        }
+        char[] arrayC = this.jPasswordField1.getPassword();
+        String pass = new String(arrayC);
+        if (pass.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese Password");
+            return;
+        }
           cargarDriver();
          Conexion cn=new Conexion();
         String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
@@ -162,8 +169,7 @@ public class login extends javax.swing.JFrame {
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        char[] arrayC = this.jPasswordField1.getPassword(); 
-String pass = new String(arrayC); 
+      
 
         String query = "select usuario,pass from usuarios where usuario='"+this.jTextField1.getText()+"' AND pass='"+pass+"'";
         // JOptionPane.showMessageDialog(null, query);
