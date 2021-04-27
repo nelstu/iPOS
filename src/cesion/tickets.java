@@ -141,6 +141,9 @@ public class tickets extends javax.swing.JFrame {
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable1MousePressed(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
             }
@@ -292,6 +295,22 @@ public void llenar2(String bol){
 
 
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
+        // TODO add your handling code here:
+
+    limpiarjtable2();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        // get the selected row index
+        int selectedRowIndex = jTable1.getSelectedRow();
+
+        // set the selected row data into jtextfields
+        String bol = model.getValueAt(selectedRowIndex, 0).toString();
+         //JOptionPane.showMessageDialog(null, bol);
+        llenar2(bol);
+
+    }//GEN-LAST:event_jTable1MousePressed
 
     /**
      * @param args the command line arguments
