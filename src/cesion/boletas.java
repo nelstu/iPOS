@@ -5,12 +5,18 @@
  */
 package cesion;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -218,6 +224,10 @@ public void llenar1(){
         jTable2 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -265,6 +275,22 @@ public void llenar1(){
             }
         });
 
+        jButton3.setText("Generar Nota de Credito");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Numero Boleta");
+
+        jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -280,14 +306,27 @@ public void llenar1(){
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jButton3))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton4))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,11 +339,20 @@ public void llenar1(){
                         .addComponent(jButton2)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -317,7 +365,7 @@ public void llenar1(){
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,6 +395,11 @@ public void llenar1(){
         // set the selected row data into jtextfields
         String bol = model.getValueAt(selectedRowIndex, 0).toString();
         llenar2(bol);
+        
+
+
+        // set the selected row data into jtextfields
+        jTextField3.setText(model.getValueAt(selectedRowIndex, 0).toString());
         // JOptionPane.showMessageDialog(null, bol);
      
     }//GEN-LAST:event_jTable1MouseClicked
@@ -361,6 +414,130 @@ public void llenar1(){
         llenar3(Buscar);
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        String folio = "4";
+        java.util.Date utilDate = new java.util.Date(); //fecha actual
+        long lnMilisegundos = utilDate.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
+        java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
+
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+        String username = cn.usuario;
+        String password = cn.pass;
+        Connection dbCon = null;
+        Connection dbCon0 = null;
+        Statement stmt = null;
+       String Buscar=this.jTextField3.getText();
+            Connection dbCon4 = null;
+        Statement stmt4 = null;
+        ResultSet rsi = null;
+        int es=0;
+//if (ticket.equals("S")){
+            //buscar numero boleta
+            String query1 = "select numero_bol,total,fecha,neto,iva from boletas where numero_bol="+Buscar;
+            String neto="0";String iva="0";String total="0";String fecha="0";
+            
+            try {
+                //getting database connection to MySQL server 
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                //getting PreparedStatment to execute query 
+                stmt = dbCon.prepareStatement(query1);
+                //Resultset returned by query 
+                rsi = stmt.executeQuery(query1);
+                while (rsi.next()) {
+                    fecha = rsi.getString(3); 
+                    neto = rsi.getString(4); 
+                    iva = rsi.getString(5); 
+                    total = rsi.getString(2); 
+                    
+                     try {
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                Statement comando = dbCon.createStatement();
+            
+                comando.executeUpdate("insert into documentosncv(tpodocref,folioref,codref,razonref,feref,fecha,rut,neto,iva,total,numero) values ('39','"+Buscar+"','1',': Anula Documento Ref.','" + fecha+ "','" + sqlDate.toString()+ "','7-8'," + neto + "," + iva + "," + total + "," + folio + ")");
+                //JOptionPane.showMessageDialog(null, "Boleta Creada");
+            } catch (SQLException ex) {
+                 System.out.println(ex.getMessage().toString());
+            }
+                     
+                     
+                     
+                     
+
+                }
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage().toString());
+            }
+            
+            
+            //detalle
+            
+             String query2 = "select numero_bol,descripcion,cant,precio,total,codigo from detalle_bol where numero_bol="+Buscar;
+          
+            
+            try {
+                //getting database connection to MySQL server 
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                //getting PreparedStatment to execute query 
+                stmt = dbCon.prepareStatement(query2);
+                //Resultset returned by query 
+                rsi = stmt.executeQuery(query2);
+                 String descripcion = ""; 
+                 String    cant = "";
+                 String    precio = ""; 
+                 String    totald = ""; 
+                 String    codigo= "";
+                while (rsi.next()) {
+                    descripcion = rsi.getString(2); 
+                    cant = rsi.getString(3); 
+                    precio = rsi.getString(4); 
+                    totald = rsi.getString(5); 
+                    codigo= rsi.getString(6); 
+                     try {
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                Statement comando = dbCon.createStatement();
+            
+                comando.executeUpdate("insert into detdocumentosncv(numero,codigo,producto,precio,cantidad,total,ide) values (" + folio + "," + codigo + ",'" + descripcion+ "'," + precio + "," + cant+ "," + totald + "," + folio + ")");
+                //JOptionPane.showMessageDialog(null, "Boleta Creada");
+            } catch (SQLException ex) {
+                 System.out.println(ex.getMessage().toString());
+            }
+                     
+                     
+                     
+                     
+
+                }
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage().toString());
+            }
+            
+            //fin detalle
+            
+            JOptionPane.showMessageDialog(null, "Nota de Credito Generada");
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+
+try {
+           // TODO add your handling code here:
+           Desktop.getDesktop().browse(new URI("http://170.239.87.199/erpexpresspro/masterlibredte/examples/alumgo661brujas.php?folio="+this.jTextField3.getText()));
+       } catch (URISyntaxException ex) {
+           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+       } catch (IOException ex) {
+           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+       }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
    private void limpiarjtable(){
          modelo.setRowCount(0);
    }
@@ -407,8 +584,11 @@ public void llenar1(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -416,5 +596,6 @@ public void llenar1(){
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

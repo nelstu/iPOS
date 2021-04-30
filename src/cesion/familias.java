@@ -340,7 +340,7 @@ String Buscar= jTextField1.getText();
             if (operacion.equals("Editar")){
                  try {
                          dbCon = DriverManager.getConnection(dbURL, username, password); 
-                         Statement comando=dbCon.createStatement();
+                       Statement comando = dbCon.createStatement();
                          String familias= jTextField2.getText();
                   
              
