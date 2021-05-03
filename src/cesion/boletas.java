@@ -284,7 +284,7 @@ public void llenar1(){
 
         jLabel2.setText("Numero Boleta");
 
-        jButton4.setText("jButton4");
+        jButton4.setText("Genera xml pdf y Envio");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -418,7 +418,7 @@ public void llenar1(){
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        String folio = "4";
+        String folio = "5";
         java.util.Date utilDate = new java.util.Date(); //fecha actual
         long lnMilisegundos = utilDate.getTime();
         java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
