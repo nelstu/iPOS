@@ -239,7 +239,7 @@ public class tickets extends javax.swing.JFrame {
        
 public void llenar2(String bol){
           DefaultTableModel model2 = (DefaultTableModel)jTable2.getModel();   
- 
+          JOptionPane.showMessageDialog(null,bol);
 
         cargarDriver();
          Conexion cn=new Conexion();

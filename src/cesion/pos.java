@@ -2025,7 +2025,7 @@ public class pos extends javax.swing.JFrame {
                 es = rsi.getInt(2) + 1;
 
             }
-
+           dbCon.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage().toString());
             log.info(query1);
@@ -2047,6 +2047,7 @@ public class pos extends javax.swing.JFrame {
 
             comando.executeUpdate("insert into tickets(usuario,caja,forma,estado,numero_bol,total,fecha,hora,neto,iva) values ('" + this.jLabel19.getText() + "'," + this.jLabel24.getText() + ",'" + forma + "','VIGENTE'," + bol + "," + jTextField4.getText() + ",'" + sqlDate.toString() + "','" + sqlTime + "','" + neto + "','" + iva + "')");
             //JOptionPane.showMessageDialog(null, "Boleta Creada");
+           dbCon.close();
         } catch (SQLException ex) {
             System.out.println("insert ticket->" + ex.getMessage().toString());
             log.info("insert into tickets(usuario,caja,forma,estado,numero_bol,total,fecha,hora,neto,iva) values ('" + this.jLabel19.getText() + "'," + this.jLabel24.getText() + ",'" + forma + "','VIGENTE'," + bol + "," + jTextField4.getText() + ",'" + sqlDate.toString() + "','" + sqlTime + "','" + neto + "','" + iva + "')");
@@ -2057,7 +2058,7 @@ public class pos extends javax.swing.JFrame {
             dbCon4 = DriverManager.getConnection(dbURL, username, password);
             Statement comando4 = dbCon4.createStatement();
             comando4.executeUpdate("UPDATE cajas set numtic=numtic+1,ventatic=ventatic+" + jTextField4.getText() + " WHERE fecha='" + sqlDate.toString() + "' AND estado='Abierta'");
-
+            dbCon4.close();
         } catch (SQLException ex4) {
             System.out.println("cajas->" + ex4.getMessage().toString());
             log.info("UPDATE cajas set numtic=numtic+1,ventatic=ventatic+" + jTextField4.getText() + " WHERE fecha='" + sqlDate.toString() + "' AND estado='Abierta'");
@@ -2106,6 +2107,7 @@ public class pos extends javax.swing.JFrame {
                 System.out.println(SQL_INSERT);
                 // rows affected
                 System.out.println(row); //1
+                conn.close();
 
             } catch (SQLException e) {
                 System.out.println(e.getMessage().toString());
@@ -2123,7 +2125,7 @@ public class pos extends javax.swing.JFrame {
                 dbCon0 = DriverManager.getConnection(dbURL, username, password);
                 Statement comando0 = dbCon0.createStatement();
                 comando0.executeUpdate("INSERT INTO movimientos(fecha,tipo,codigo,cantidad) VALUES ('" + sqlDate.toString() + "','TI','" + codigo + "'," + cant + ")");
-
+                dbCon0.close();
             } catch (SQLException ex2) {
                 System.out.println("Movimientos->" + ex2.getMessage().toString());
             }
@@ -2140,6 +2142,7 @@ public class pos extends javax.swing.JFrame {
             Statement comando = dbCon.createStatement();
             comando.executeUpdate("update contador set contador=" + bol + " where documento='TIC'");
             JOptionPane.showMessageDialog(null, "Tickets Creado");
+            dbCon.close();
         } catch (SQLException ex) {
             setTitle(ex.toString());
         }
@@ -2156,21 +2159,24 @@ public class pos extends javax.swing.JFrame {
         String impresoratermica = "";
         //obtener impresora
         String queryx = "select id,impresoratermica,boleta,ticket,imprimir,Fapos,Gdpos,Ncpos,Ndpos,imprimecierre from configuracion where id=1 ";
-
+        String imprimirti="N";
         try (Connection con = DriverManager.getConnection(url, user, password);
                 PreparedStatement pst = con.prepareStatement(queryx);
                 ResultSet rsx = pst.executeQuery()) {
 
             while (rsx.next()) {
                 impresoratermica = rsx.getString("impresoratermica");
+                imprimirti = rsx.getString("imprimir");
 
             }
+            con.close();
         } catch (SQLException exx) {
             System.out.println(exx.getMessage());
 
         }
 
         //fin obtener impresora
+        if (imprimirti.equals("S")){
         //datos empresa
         String query0 = "SELECT rut,nombre,direccion,comuna,ciudad,giro,fantasia FROM empresa WHERE id=1";
         String rut = "";
@@ -2194,6 +2200,7 @@ public class pos extends javax.swing.JFrame {
                 fantasia = rs0.getString("fantasia");
 
             }
+            con.close();
         } catch (SQLException ex2) {
             System.out.println(ex2.getMessage());
 
@@ -2257,7 +2264,8 @@ public class pos extends javax.swing.JFrame {
                         printerService.printString(pr, "            $" + totalli + "\n");
 
                     }
-
+                      con.close();
+                      con1.close();
                 } catch (SQLException ex1) {
                     System.out.println(ex1.getMessage());
 
@@ -2286,16 +2294,19 @@ public class pos extends javax.swing.JFrame {
                     ps3.setInt(2, numero);
                     ps3.executeUpdate();
                     System.out.println("Tickets Actualizada......");
+                   con3.close();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
             }
-
+       
         } catch (SQLException ex) {
 
         }
-
+        
+  }
+        
         //update boleta
         System.out.println("Finalizado...");
         //fin update boleta

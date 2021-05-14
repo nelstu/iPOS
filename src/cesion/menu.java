@@ -308,9 +308,12 @@ public class menu extends javax.swing.JFrame {
         //fin revisar apertura de caja
         if (apertura.equals("S")){
              pos objeto2=new pos();
+             if (objeto2.isVisible()==true){
+                  JOptionPane.showMessageDialog(null,  " esta abierto");
+             }
              objeto2.setVisible(true);
              objeto2.jLabel24.setText(cajaactual);
-             objeto2.jLabel19.setText(this.jLabel1.getText());
+             objeto2.jLabel19.setText(this.jLabel1.getText());  
         }else{
              JOptionPane.showMessageDialog(null, "Debe Abrir Caja");
               AbrirCaja objeto25=new AbrirCaja();
