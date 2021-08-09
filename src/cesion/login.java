@@ -5,11 +5,17 @@
  */
 package cesion;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,6 +49,8 @@ public class login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ingreso al Sistema");
@@ -70,6 +78,20 @@ public class login extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Datos de Conexion");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Crear");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -77,20 +99,24 @@ public class login extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(74, 74, 74)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                .addGap(73, 73, 73))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(74, 74, 74)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
-                        .addGap(73, 73, 73))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(55, 55, 55))))
+                        .addComponent(jButton3)
+                        .addGap(33, 33, 33))
+                    .addComponent(jButton2)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +133,11 @@ public class login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addGap(70, 70, 70))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,26 +162,26 @@ public class login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-     System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jButton2ActionPerformed
-  private void limpiar(){
+    private void limpiar() {
         jTextField1.setText(null);
         jPasswordField1.setText("");
 
     }
-  
-      private void cargarDriver() {
-    try {
-      Class.forName("com.mysql.jdbc.Driver");
-    }catch(Exception ex) {
 
+    private void cargarDriver() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception ex) {
+
+        }
     }
-  }
-  
-  
+
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
- if (this.jTextField1.getText().isEmpty()) {
+        if (this.jTextField1.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese usuario");
             return;
         }
@@ -161,55 +191,108 @@ public class login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese Password");
             return;
         }
-          cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        cargarDriver();
+        Conexion cn = new Conexion();
+        cn.datos();
+        //JOptionPane.showMessageDialog(null, cn.ip);
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-      
 
-        String query = "select usuario,pass from usuarios where usuario='"+this.jTextField1.getText()+"' AND pass='"+pass+"'";
+        String query = "select usuario,pass from usuarios where usuario='" + this.jTextField1.getText() + "' AND pass='" + pass + "'";
         // JOptionPane.showMessageDialog(null, query);
-      
-        String existe="N";
-        
-  try {
-            
+
+        String existe = "N";
+
+        try {
+
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
             //getting PreparedStatment to execute query 
             stmt = dbCon.prepareStatement(query);
             //Resultset returned by query 
             rs = stmt.executeQuery(query);
-           
+
             while (rs.next()) {
-                 existe="S";
-            
-           
-    
-        
-                    
+                existe = "S";
 
             }
-          
+
         } catch (SQLException ex) {
-            System.out.println("Nop");
-        } 
-  
-         if (existe.equals("S")){
-                this.hide();
-                menu objeto=new menu();
-                objeto.setVisible(true); 
-                objeto.jLabel1.setText(this.jTextField1.getText());
-             }else{
-             JOptionPane.showMessageDialog(null, "Acceso Rechazado");
-             System.exit(0);
-         }
-        
+            System.out.println(ex.getMessage().toString());
+        }
+
+        if (existe.equals("S")) {
+            this.hide();
+            menu objeto = new menu();
+            objeto.setVisible(true);
+            objeto.jLabel1.setText(this.jTextField1.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Acceso Rechazado");
+            System.exit(0);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+
+        DatosdeConexion objeto2 = new DatosdeConexion();
+        objeto2.setVisible(true);
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    public static void createNewDatabase(String fileName) throws UnsupportedEncodingException {
+        //    String ruta = System.getProperty("java.class.path");
+        String ruta = System.getProperty("user.dir");
+        System.out.println(ruta);
+        String url = "jdbc:sqlite:" + ruta + "/" + fileName;
+
+        try (Connection conn = DriverManager.getConnection(url)) {
+            if (conn != null) {
+                DatabaseMetaData meta = conn.getMetaData();
+                System.out.println("The driver name is " + meta.getDriverName());
+                System.out.println("A new database has been created.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // SQL statement for creating a new table
+        String sql = "CREATE TABLE IF NOT EXISTS ruta (\n"
+                + "	id integer PRIMARY KEY,\n"
+                + "	ip text  NULL,\n"
+                + "	usuario text  NULL,\n"
+                + "	clave text  NULL,\n"
+                + "	carpeta text  NULL,\n"
+                + "	base text  NULL\n"
+                + ");";
+
+        try (Connection conn = DriverManager.getConnection(url);
+                Statement stmt = conn.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+            sql = "INSERT INTO ruta(id,ip,usuario,clave,base,carpeta) VALUES(1,'127.0.0.1','usuario','clave','base','carpeta')";
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            // TODO add your handling code here:
+
+            createNewDatabase("pos.db");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,6 +332,8 @@ public class login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

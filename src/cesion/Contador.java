@@ -67,7 +67,7 @@ public class Contador extends javax.swing.JFrame {
           } 
          
         } catch(SQLException ex){
-          System.out.println("Nop" ); 
+          System.out.println(ex.getMessage().toString() ); 
         }
 
     }

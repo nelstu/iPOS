@@ -50,11 +50,13 @@ public class AbrirCaja extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
 
+        setTitle("Monto Apertura");
+
         jLabel1.setText("Fecha");
 
         jLabel3.setText("Monto Inicial $");
 
-        jTextField1.setEditable(false);
+        jTextField1.setEnabled(false);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cesion/img/diskblue.jpg"))); // NOI18N
         jButton1.setText("Abrir Caja");

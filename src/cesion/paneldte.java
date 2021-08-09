@@ -6,7 +6,6 @@
 package cesion;
 
 import java.awt.Desktop;
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -26,25 +25,27 @@ import javax.swing.table.DefaultTableModel;
  * @author nelstu
  */
 public class paneldte extends javax.swing.JFrame {
-   DefaultTableModel modelo;
+
+    DefaultTableModel modelo;
+
     /**
      * Creates new form paneldte
      */
     public paneldte() {
         initComponents();
         setLocationRelativeTo(null);
-         modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel();
         jTable1.setModel(modelo);
-        
+
         modelo.addColumn("Numero");
         modelo.addColumn("Fecha");
         modelo.addColumn("Neto");
         modelo.addColumn("Iva");
         modelo.addColumn("Total");
-         modelo.addColumn("Pdf");
-          modelo.addColumn("Xml");
-          modelo.addColumn("Trackid");
-          modelo.addColumn("Estado SII");
+        modelo.addColumn("Pdf");
+        modelo.addColumn("Xml");
+        modelo.addColumn("Trackid");
+        modelo.addColumn("Estado SII");
     }
 
     /**
@@ -258,12 +259,12 @@ public class paneldte extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel3)
-                                    .addGap(74, 74, 74)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,7 +296,7 @@ public class paneldte extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -324,8 +325,7 @@ public class paneldte extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(65, 65, 65)
+                                .addGap(81, 81, 81)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10))
@@ -359,7 +359,9 @@ public class paneldte extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
                                 .addGap(26, 26, 26)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -458,7 +460,7 @@ public class paneldte extends javax.swing.JFrame {
                             .addComponent(jLabel12))
                         .addGap(33, 33, 33)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, 110, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(48, 48, 48)
                         .addComponent(jButton13)))
@@ -516,100 +518,101 @@ public class paneldte extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-           private void cargarDriver() {
-    try {
-      Class.forName("com.mysql.jdbc.Driver");
-    }catch(Exception ex) {
+    private void cargarDriver() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception ex) {
 
+        }
     }
-  }
-       private void limpiarjtable(){
-          modelo.setRowCount(0);
-   }
-    
-    public void llenar1(){
-          DefaultTableModel model = (DefaultTableModel)jTable1.getModel();   
-  
-         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-               String fecha = sdf.format(this.jDateChooser1.getDate()); 
-        String Buscar= fecha;
+    private void limpiarjtable() {
+        modelo.setRowCount(0);
+    }
+
+    public void llenar1() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        String fecha = sdf.format(this.jDateChooser1.getDate());
+        String Buscar = fecha;
         cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
-        Connection dbCon = null; 
-        Statement stmt = null; 
-        ResultSet rs = null; 
-        String query ="select numero_bol,fecha,total,neto,iva,xmlgenerado,pdfgenerado,trackid,estadosii from boletas where fecha ='"+Buscar+"' order by numero_bol ASC"; 
-         // JOptionPane.showMessageDialog(null, query);
-          try {
-              //getting database connection to MySQL server 
-            dbCon = DriverManager.getConnection(dbURL, username, password); 
-           //getting PreparedStatment to execute query 
-           stmt = dbCon.prepareStatement(query); 
-          //Resultset returned by query 
-           rs = stmt.executeQuery(query);
-           int tboletas=0;
-           int sboletas=0;
-           String Desde="";
-           String Hasta="";
-           String Actual="";
-           while(rs.next()){
-                  Actual = rs.getString(1);
-                  if (sboletas == 0) {
-                      Desde = Actual;
-                  }
-                  String pdfg = rs.getString(7);
-                  String xmlg = rs.getString(6);
-                  Object[] object = new Object[9];
-                  object[0] = rs.getString(1);
-                  object[1] = rs.getString(2);
-                  object[2] = rs.getString(4);
-                  object[3] = rs.getString(5);
-                  object[4] = rs.getString(3);
-                  tboletas = tboletas + rs.getInt(3);
-                  sboletas++;
-                  if (pdfg.equals("S")) {
-                      object[5] = "http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/dte_dennis/pdf/pdf39/" + rs.getString(2) + "/dte" + rs.getString(1) + ".pdf";
-                  } else {
-                      object[5] = "N";
-                  }
+        Connection dbCon = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "select numero_bol,fecha,total,neto,iva,xmlgenerado,pdfgenerado,trackid,estadosii from boletas where fecha ='" + Buscar + "' order by numero_bol ASC";
+        // JOptionPane.showMessageDialog(null, query);
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query);
+            int tboletas = 0;
+            int sboletas = 0;
+            String Desde = "";
+            String Hasta = "";
+            String Actual = "";
+            while (rs.next()) {
+                Actual = rs.getString(1);
+                if (sboletas == 0) {
+                    Desde = Actual;
+                }
+                String pdfg = rs.getString(7);
+                String xmlg = rs.getString(6);
+                Object[] object = new Object[9];
+                object[0] = rs.getString(1);
+                object[1] = rs.getString(2);
+                object[2] = rs.getString(4);
+                object[3] = rs.getString(5);
+                object[4] = rs.getString(3);
+                tboletas = tboletas + rs.getInt(3);
+                sboletas++;
+                if (pdfg.equals("S")) {
+                    object[5] = "http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/dte_dennis/pdf/pdf39/" + rs.getString(2) + "/dte" + rs.getString(1) + ".pdf";
+                } else {
+                    object[5] = "N";
+                }
 
-                  if (xmlg.equals("S")) {
-                      object[6] = "http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/dte_dennis/in/in39/" + rs.getString(2) + "/EnvioDTE_" + rs.getString(1) + ".xml";
+                if (xmlg.equals("S")) {
+                    object[6] = "http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/dte_dennis/in/in39/" + rs.getString(2) + "/EnvioDTE_" + rs.getString(1) + ".xml";
 
-                  } else {
-                      object[6] = "N";
-                  }
+                } else {
+                    object[6] = "N";
+                }
 
-                  object[7] = rs.getString(8);
-                  object[8] = rs.getString(9);
+                object[7] = rs.getString(8);
+                object[8] = rs.getString(9);
 
-                  model.addRow(object);
-              }
-              Hasta = Actual;
-              this.jTextField5.setText(String.valueOf(tboletas));
-              this.jTextField6.setText(String.valueOf(sboletas));
-              this.jTextField7.setText(Desde);
-              this.jTextField8.setText(Hasta);
-        } catch(SQLException ex){
-          System.out.println("Nop" ); 
+                model.addRow(object);
+            }
+            Hasta = Actual;
+            this.jTextField5.setText(String.valueOf(tboletas));
+            this.jTextField6.setText(String.valueOf(sboletas));
+            this.jTextField7.setText(Desde);
+            this.jTextField8.setText(Hasta);
+        } catch (SQLException ex) {
+            System.out.println("Nop");
         }
 
     }
-    
-    
+
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-      if (jDateChooser1.getDate() == null) {
+        if (jDateChooser1.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Fecha  no Seleccionada", "Sin Seleccionar", JOptionPane.INFORMATION_MESSAGE);
             jDateChooser1.requestFocusInWindow();
             return;
         }
-        
-       this.jTextField10.setText("1");
+
+        this.jTextField10.setText("1");
 
         limpiarjtable();
         llenar1();
@@ -617,143 +620,144 @@ public class paneldte extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         // get the selected row index
-       int selectedRowIndex = jTable1.getSelectedRow();
-       
+        int selectedRowIndex = jTable1.getSelectedRow();
+
         // set the selected row data into jtextfields
-       jTextField2.setText(model.getValueAt(selectedRowIndex, 0).toString());
-       jTextField1.setText(model.getValueAt(selectedRowIndex, 1).toString());
-       jTextField3.setText(model.getValueAt(selectedRowIndex, 5).toString());
-       jTextField4.setText(model.getValueAt(selectedRowIndex, 6).toString());
-       jTextField9.setText(model.getValueAt(selectedRowIndex, 7).toString());
+        jTextField2.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        jTextField1.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        jTextField3.setText(model.getValueAt(selectedRowIndex, 5).toString());
+        jTextField4.setText(model.getValueAt(selectedRowIndex, 6).toString());
+        jTextField9.setText(model.getValueAt(selectedRowIndex, 7).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       try {
-           // TODO add your handling code here:
-           Desktop.getDesktop().browse(new URI("http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/alumgo39.php?id="+this.jTextField2.getText()+"&fecha='"+this.jTextField1.getText()+"'"));
-       } catch (URISyntaxException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (IOException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        try {
+            // TODO add your handling code here:
+            Desktop.getDesktop().browse(new URI("http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/alumgo39.php?id=" + this.jTextField2.getText() + "&fecha='" + this.jTextField1.getText() + "'"));
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-     try {
-           // TODO add your handling code here:
-           Desktop.getDesktop().browse(new URI(this.jTextField3.getText()));
-       } catch (URISyntaxException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (IOException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       }
-
+        try {
+            // TODO add your handling code here:
+            Desktop.getDesktop().browse(new URI(this.jTextField3.getText()));
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-     try {
-           // TODO add your handling code here:
-           Desktop.getDesktop().browse(new URI(this.jTextField4.getText()));
-       } catch (URISyntaxException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (IOException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       }
-
+        try {
+            // TODO add your handling code here:
+            Desktop.getDesktop().browse(new URI(this.jTextField4.getText()));
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String fecha = sdf.format(this.jDateChooser1.getDate()); 
-        String Buscar= fecha;
-        
-  try {
-           // TODO add your handling code here:
-           Desktop.getDesktop().browse(new URI("http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/libroconsumo.php?envio="+this.jTextField10.getText()+"&son="+this.jTextField6.getText()+"&total="+this.jTextField5.getText()+"&fecha="+Buscar+"&Desde="+this.jTextField7.getText()+"&Hasta="+this.jTextField8.getText()));
-       } catch (URISyntaxException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (IOException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = sdf.format(this.jDateChooser1.getDate());
+        String Buscar = fecha;
+
+        try {
+            // TODO add your handling code here:
+            Desktop.getDesktop().browse(new URI("http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/libroconsumo.php?envio=" + this.jTextField10.getText() + "&son=" + this.jTextField6.getText() + "&total=" + this.jTextField5.getText() + "&fecha=" + Buscar + "&Desde=" + this.jTextField7.getText() + "&Hasta=" + this.jTextField8.getText()));
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-       int desde=Integer.parseInt(this.jTextField7.getText());
-       int hasta=Integer.parseInt(this.jTextField8.getText());
-       for(int i=desde  ; i <= hasta; i++){
-           
+        int desde = Integer.parseInt(this.jTextField7.getText());
+        int hasta = Integer.parseInt(this.jTextField8.getText());
+        for (int i = desde; i <= hasta; i++) {
+
             try {
-           // TODO add your handling code here:
-           Desktop.getDesktop().browse(new URI("http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/alumgo39i.php?folio="+String.valueOf(i)));
-       } catch (URISyntaxException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (IOException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       }
-           
-           
-           try {
-               java.util.concurrent.TimeUnit.SECONDS.sleep(5);
-           } catch (InterruptedException ex) {
-               Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-           }
-          System.out.println(i);
-         } 
+                // TODO add your handling code here:
+                Conexion cn = new Conexion();
+                cn.datos();
+                Desktop.getDesktop().browse(new URI("http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/alumgo39" + cn.carpeta + ".php?folio=" + String.valueOf(i)));
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                java.util.concurrent.TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(i);
+        }
         JOptionPane.showMessageDialog(null, "XML Generados y Pdf Generados");
-    /*    
+        /*    
   
-*/
+         */
 
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-      try {
-           // TODO add your handling code here:
-           Desktop.getDesktop().browse(new URI("http://45.7.230.72/api/envio.php?numero="+this.jTextField2.getText()+"&fecha="+this.jTextField1.getText()));
-       } catch (URISyntaxException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (IOException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        try {
+            // TODO add your handling code here:
+            Desktop.getDesktop().browse(new URI("http://45.7.230.72/api/envio.php?numero=" + this.jTextField2.getText() + "&fecha=" + this.jTextField1.getText()));
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-     try {
-           // TODO add your handling code here:
-           Desktop.getDesktop().browse(new URI("http://45.7.230.72/api/consultaestado.php?folio="+this.jTextField2.getText()+"&track="+this.jTextField9.getText()));
-       } catch (URISyntaxException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (IOException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        try {
+            // TODO add your handling code here:
+            Desktop.getDesktop().browse(new URI("http://45.7.230.72/api/consultaestado.php?folio=" + this.jTextField2.getText() + "&track=" + this.jTextField9.getText()));
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String fecha = sdf.format(this.jDateChooser1.getDate()); 
-        String Buscar= fecha;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = sdf.format(this.jDateChooser1.getDate());
+        String Buscar = fecha;
         //envio todos
-        int desde=Integer.parseInt(this.jTextField7.getText());
-       int hasta=Integer.parseInt(this.jTextField8.getText());
-       for(int i=desde  ; i <= hasta; i++){
-           /*
+        int desde = Integer.parseInt(this.jTextField7.getText());
+        int hasta = Integer.parseInt(this.jTextField8.getText());
+        Conexion cn = new Conexion();
+        cn.datos();
+        for (int i = desde; i <= hasta; i++) {
+            /*
             try {
            // TODO add your handling code here:
            Desktop.getDesktop().browse(new URI("http://45.7.230.72/ierp/public/vendor/sasco/libredte/examples/alumgo39i.php?folio="+String.valueOf(i)));
@@ -762,27 +766,23 @@ public class paneldte extends javax.swing.JFrame {
        } catch (IOException ex) {
            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
        }
-         */
+             */
             try {
-           // TODO add your handling code here:
-           Desktop.getDesktop().browse(new URI("http://45.7.230.72/api/envio.php?numero="+String.valueOf(i)+"&fecha="+Buscar));
-       } catch (URISyntaxException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (IOException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       }
-           
-           
-           
-           
-           
-           try {
-               java.util.concurrent.TimeUnit.SECONDS.sleep(5);
-           } catch (InterruptedException ex) {
-               Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-           }
-          System.out.println(i);
-         } 
+                // TODO add your handling code here:
+                Desktop.getDesktop().browse(new URI("http://45.7.230.72/api/envio" + cn.carpeta + ".php?numero=" + String.valueOf(i) + "&fecha=" + Buscar));
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                java.util.concurrent.TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(i);
+        }
         JOptionPane.showMessageDialog(null, "Envios Generados ");
 
 
@@ -791,59 +791,57 @@ public class paneldte extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
 
- SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String fecha = sdf.format(this.jDateChooser1.getDate()); 
-        String Buscar= fecha;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = sdf.format(this.jDateChooser1.getDate());
+        String Buscar = fecha;
         //envio todos
-        int desde=Integer.parseInt(this.jTextField7.getText());
-       int hasta=Integer.parseInt(this.jTextField8.getText());
-       for(int i=desde  ; i <= hasta; i++){
-           //buscar track
-            String Buscarbol= String.valueOf(i);
-        
-        cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
-        String username = cn.usuario;
-        String password = cn.pass;
-        Connection dbCon = null; 
-        Statement stmt = null; 
-        ResultSet rs = null; 
-        String query ="select numero_bol,fecha,total,neto,iva,trackid from boletas where total<>0 and numero_bol= '"+Buscarbol+"' "; 
-         // JOptionPane.showMessageDialog(null, query);
-         String trackid="";
-           try {
-               //getting database connection to MySQL server 
-               dbCon = DriverManager.getConnection(dbURL, username, password);
-               //getting PreparedStatment to execute query 
-               stmt = dbCon.prepareStatement(query);
-               //Resultset returned by query 
-               rs = stmt.executeQuery(query);
-               int st = 0;
-               while (rs.next()) {
+        int desde = Integer.parseInt(this.jTextField7.getText());
+        int hasta = Integer.parseInt(this.jTextField8.getText());
+        for (int i = desde; i <= hasta; i++) {
+            //buscar track
+            String Buscarbol = String.valueOf(i);
 
-                   trackid = rs.getString(6);
+            cargarDriver();
+            Conexion cn = new Conexion();
+            cn.datos();
+            String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
+            String username = cn.usuario;
+            String password = cn.pass;
+            Connection dbCon = null;
+            Statement stmt = null;
+            ResultSet rs = null;
+            String query = "select numero_bol,fecha,total,neto,iva,trackid from boletas where total<>0 and numero_bol= '" + Buscarbol + "' ";
+            // JOptionPane.showMessageDialog(null, query);
+            String trackid = "";
+            try {
+                //getting database connection to MySQL server 
+                dbCon = DriverManager.getConnection(dbURL, username, password);
+                //getting PreparedStatment to execute query 
+                stmt = dbCon.prepareStatement(query);
+                //Resultset returned by query 
+                rs = stmt.executeQuery(query);
+                int st = 0;
+                while (rs.next()) {
 
-               }
-               this.jTextField1.setText(Integer.toString(st));
-           } catch (SQLException ex) {
-               System.out.println("Nop");
-           }
+                    trackid = rs.getString(6);
 
-           
-           //fin buscar track
-           
-           
-       try {
-           // TODO add your handling code here:
-           Desktop.getDesktop().browse(new URI("http://45.7.230.72/api/consultaestado.php?folio="+String.valueOf(i)+"&track="+trackid));
-       } catch (URISyntaxException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (IOException ex) {
-           Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       
-       /*
+                }
+                this.jTextField1.setText(Integer.toString(st));
+            } catch (SQLException ex) {
+                System.out.println("Nop");
+            }
+
+            //fin buscar track
+            try {
+                // TODO add your handling code here:
+                Desktop.getDesktop().browse(new URI("http://45.7.230.72/api/consultaestado" + cn.carpeta + ".php?folio=" + String.valueOf(i) + "&track=" + trackid));
+            } catch (URISyntaxException ex) {
+                Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            /*
             try {
            // TODO add your handling code here:
            Desktop.getDesktop().browse(new URI("http://45.7.230.72/api/envio.php?numero="+String.valueOf(i)+"&fecha="+Buscar));
@@ -852,18 +850,14 @@ public class paneldte extends javax.swing.JFrame {
        } catch (IOException ex) {
            Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
        }
-           */
-           
-           
-           
-           
-           try {
-               java.util.concurrent.TimeUnit.SECONDS.sleep(5);
-           } catch (InterruptedException ex) {
-               Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
-           }
-          System.out.println(i);
-         } 
+             */
+            try {
+                java.util.concurrent.TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(paneldte.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(i);
+        }
         JOptionPane.showMessageDialog(null, "Consutas Todos ");
 
 
@@ -872,18 +866,18 @@ public class paneldte extends javax.swing.JFrame {
     private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
         // TODO add your handling code here:
 
-      // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         // get the selected row index
-       int selectedRowIndex = jTable1.getSelectedRow();
-       
+        int selectedRowIndex = jTable1.getSelectedRow();
+
         // set the selected row data into jtextfields
-       jTextField2.setText(model.getValueAt(selectedRowIndex, 0).toString());
-       jTextField1.setText(model.getValueAt(selectedRowIndex, 1).toString());
-       jTextField3.setText(model.getValueAt(selectedRowIndex, 5).toString());
-       jTextField4.setText(model.getValueAt(selectedRowIndex, 6).toString());
-       jTextField9.setText(model.getValueAt(selectedRowIndex, 7).toString());
+        jTextField2.setText(model.getValueAt(selectedRowIndex, 0).toString());
+        jTextField1.setText(model.getValueAt(selectedRowIndex, 1).toString());
+        jTextField3.setText(model.getValueAt(selectedRowIndex, 5).toString());
+        jTextField4.setText(model.getValueAt(selectedRowIndex, 6).toString());
+        jTextField9.setText(model.getValueAt(selectedRowIndex, 7).toString());
     }//GEN-LAST:event_jTable1MousePressed
 
     /**

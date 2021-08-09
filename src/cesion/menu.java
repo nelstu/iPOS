@@ -50,6 +50,7 @@ public class menu extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("iPOS");
@@ -150,68 +151,81 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
+        jButton14.setText("Informes");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(2, 2, 2)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButton9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -219,36 +233,36 @@ public class menu extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         if (JOptionPane.showConfirmDialog(null, "Desea Salir?", "Salir del Sistema",
-        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-    // yes option
-  System.exit(0);
-} else {
-    // no option
-}
-        
+        if (JOptionPane.showConfirmDialog(null, "Desea Salir?", "Salir del Sistema",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            // yes option
+            System.exit(0);
+        } else {
+            // no option
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         productos objeto1=new productos();
+        productos objeto1 = new productos();
         objeto1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
         //revisar apertura de Caja
-            java.util.Date utilDate = new java.util.Date(); //fecha actual
+        java.util.Date utilDate = new java.util.Date(); //fecha actual
         long lnMilisegundos = utilDate.getTime();
         java.sql.Date sqlDate = new java.sql.Date(lnMilisegundos);
         java.sql.Time sqlTime = new java.sql.Time(lnMilisegundos);
-       
-        String Buscar= sqlDate.toString();
-        
-             cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+
+        String Buscar = sqlDate.toString();
+
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
         Connection dbCon = null;
@@ -256,10 +270,10 @@ public class menu extends javax.swing.JFrame {
         ResultSet rs = null;
 //ahi una caja abierta con fecha anterior
 
-  String query0 = "select id,caja,fecha,estado from cajas where estado='Abierta' and fecha<'"+Buscar+"' ";
+        String query0 = "select id,caja,fecha,estado from cajas where estado='Abierta' and fecha<'" + Buscar + "' ";
 
         try {
-            
+
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
             //getting PreparedStatment to execute query 
@@ -281,138 +295,138 @@ public class menu extends javax.swing.JFrame {
         }
 //fin ahi una caja abierta con fecha anterior
 
-
-        String query = "select id,caja,fecha,estado from cajas where estado='Abierta' and fecha='"+Buscar+"' ";
+        String query = "select id,caja,fecha,estado from cajas where estado='Abierta' and fecha='" + Buscar + "' ";
         // JOptionPane.showMessageDialog(null, query);
-       String montoinicial="";
-        String apertura="N";
-        String cajaactual="";
+        String montoinicial = "";
+        String apertura = "N";
+        String cajaactual = "";
         try {
-            
+
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
             //getting PreparedStatment to execute query 
             stmt = dbCon.prepareStatement(query);
             //Resultset returned by query 
             rs = stmt.executeQuery(query);
-           
+
             while (rs.next()) {
-                 apertura="S";
-                cajaactual= rs.getString(2);
-               }
-          
+                apertura = "S";
+                cajaactual = rs.getString(2);
+            }
+
         } catch (SQLException ex) {
             System.out.println("Nop");
         }
-        
-        //fin revisar apertura de caja
-        if (apertura.equals("S")){
-             pos objeto2=new pos();
-             if (objeto2.isVisible()==true){
-                  JOptionPane.showMessageDialog(null,  " esta abierto");
-             }
-             objeto2.setVisible(true);
-             objeto2.jLabel24.setText(cajaactual);
-             objeto2.jLabel19.setText(this.jLabel1.getText());  
-        }else{
-             JOptionPane.showMessageDialog(null, "Debe Abrir Caja");
-              AbrirCaja objeto25=new AbrirCaja();
-             objeto25.setVisible(true);
-             objeto25.jTextField1.setText(Buscar);
-        }
-         
-    }//GEN-LAST:event_jButton2ActionPerformed
-   private void cargarDriver() {
-    try {
-      Class.forName("com.mysql.jdbc.Driver");
-    }catch(Exception ex) {
 
+        //fin revisar apertura de caja
+        if (apertura.equals("S")) {
+            pos objeto2 = new pos();
+            if (objeto2.isVisible() == true) {
+                JOptionPane.showMessageDialog(null, " esta abierto");
+            }
+            objeto2.setVisible(true);
+            objeto2.jLabel24.setText(cajaactual);
+            objeto2.jLabel19.setText(this.jLabel1.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe Abrir Caja");
+            AbrirCaja objeto25 = new AbrirCaja();
+            objeto25.setVisible(true);
+            objeto25.jTextField1.setText(Buscar);
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+    private void cargarDriver() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception ex) {
+
+        }
     }
-  }
-    
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         // parametros objeto3=new parametros();
         //objeto3.setVisible(true);
-            // TODO add your handling code here:
-        empresa objeto10=new empresa();
+        // TODO add your handling code here:
+        empresa objeto10 = new empresa();
         objeto10.setVisible(true);
-     
-        
-         cargarDriver();
-         Conexion cn=new Conexion();
-        String dbURL = "jdbc:mysql://"+cn.ip+":3306/"+cn.base;
+
+        cargarDriver();
+        Conexion cn = new Conexion();
+        String dbURL = "jdbc:mysql://" + cn.ip + ":3306/" + cn.base;
         String username = cn.usuario;
         String password = cn.pass;
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select id,rut,nombre,giro,acteco,direccion,comuna,ciudad,rut_replegal,nombre_replegal,fechares,res from empresa where id=1 ";
+        String query = "select id,rut,nombre,giro,acteco,direccion,comuna,ciudad,rut_replegal,nombre_replegal,fechares,res,email,fantasia,rut_envia from empresa where id=1 ";
         // JOptionPane.showMessageDialog(null, query);
-       String montoinicial="";
+        String montoinicial = "";
         try {
-            
+
             //getting database connection to MySQL server 
             dbCon = DriverManager.getConnection(dbURL, username, password);
             //getting PreparedStatment to execute query 
             stmt = dbCon.prepareStatement(query);
             //Resultset returned by query 
             rs = stmt.executeQuery(query);
-           
-            while (rs.next()) {
-                 String rut=rs.getString("rut");
-                 String nombre=rs.getString("nombre");
-                 String direccion=rs.getString("direccion");
-                 String comuna=rs.getString("comuna");
-                 String ciudad=rs.getString("ciudad");
-                  String giro=rs.getString("giro");
-                  String fechares=rs.getString("fechares");
-                  String res=rs.getString("res");
-                    String acteco=rs.getString("acteco");
-                    String rut_replegal=rs.getString("rut_replegal");
-                    String nombre_replegal=rs.getString("nombre_replegal");
-                 objeto10.jTextField1.setText("1");
-                 objeto10.jTextField2.setText(rut);
-                 objeto10.jTextField3.setText(nombre);
-                 objeto10.jTextField4.setText(direccion);
-                 objeto10.jTextField5.setText(comuna);
-                 objeto10.jTextField6.setText(ciudad);
-                 objeto10.jTextField7.setText(giro);
-                  objeto10.jTextField8.setText(fechares);
-                   objeto10.jTextField9.setText(res);
-                    objeto10.jTextField10.setText(acteco);
-                    objeto10.jTextField11.setText(rut_replegal);
-                    objeto10.jTextField12.setText(nombre_replegal);
-                    
 
+            while (rs.next()) {
+                String rut = rs.getString("rut");
+                String nombre = rs.getString("nombre");
+                String direccion = rs.getString("direccion");
+                String comuna = rs.getString("comuna");
+                String ciudad = rs.getString("ciudad");
+                String giro = rs.getString("giro");
+                String fechares = rs.getString("fechares");
+                String res = rs.getString("res");
+                String acteco = rs.getString("acteco");
+                String rut_replegal = rs.getString("rut_replegal");
+                String nombre_replegal = rs.getString("nombre_replegal");
+                String email = rs.getString("email");
+                String fantasia = rs.getString("fantasia");
+                String rut_envia = rs.getString("rut_envia");
+
+                objeto10.jTextField1.setText("1");
+                objeto10.jTextField2.setText(rut);
+                objeto10.jTextField3.setText(nombre);
+                objeto10.jTextField4.setText(direccion);
+                objeto10.jTextField5.setText(comuna);
+                objeto10.jTextField6.setText(ciudad);
+                objeto10.jTextField7.setText(giro);
+                objeto10.jTextField8.setText(fechares);
+                objeto10.jTextField9.setText(res);
+                objeto10.jTextField10.setText(acteco);
+                objeto10.jTextField11.setText(rut_replegal);
+                objeto10.jTextField12.setText(nombre_replegal);
+                objeto10.jTextField13.setText(fantasia);
+                objeto10.jTextField14.setText(email);
+                objeto10.jTextField15.setText(rut_envia);
             }
-          
+
         } catch (SQLException ex) {
-            System.out.println("Nop");
+            System.out.println(ex.getMessage().toString());
         }
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-          socios objeto4=new socios();
+        socios objeto4 = new socios();
         objeto4.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        usuarios objeto5=new usuarios();
+        usuarios objeto5 = new usuarios();
         objeto5.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
 
-        familias objeto13=new familias();
+        familias objeto13 = new familias();
         objeto13.setVisible(true);
 
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -420,33 +434,33 @@ public class menu extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
 
-        paneldte objeto14=new paneldte();
+        paneldte objeto14 = new paneldte();
         objeto14.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        Contador objeto13=new Contador();
+        Contador objeto13 = new Contador();
         objeto13.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        Compras0  objeto20=new Compras0();
+        Compras0 objeto20 = new Compras0();
         objeto20.setVisible(true);
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        Inventario  objeto22=new Inventario();
+        Inventario objeto22 = new Inventario();
         objeto22.setVisible(true);
 
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        Cajas  objeto23=new Cajas();
+        Cajas objeto23 = new Cajas();
         objeto23.setVisible(true);
 
     }//GEN-LAST:event_jButton12ActionPerformed
@@ -457,6 +471,14 @@ public class menu extends javax.swing.JFrame {
         objeto26.setVisible(true);
 
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+
+        Informes0 objeto22 = new Informes0();
+        objeto22.setVisible(true);
+
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -499,6 +521,7 @@ public class menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
