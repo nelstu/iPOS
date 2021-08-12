@@ -55,7 +55,7 @@ public class pos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         limpiar();
-        log.info("Inciando");
+        log.info("Iniciando");
 
         modelo = new DefaultTableModel();
         jTable2.setModel(modelo);
@@ -65,6 +65,7 @@ public class pos extends javax.swing.JFrame {
         modelo.addColumn("Codigo");
         modelo.addColumn("Productos");
         modelo.addColumn("$ Venta");
+        modelo.addColumn("Familia");
 
         TableColumnModel columnModel = jTable2.getColumnModel();
         columnModel.getColumn(0).setWidth(0);
@@ -76,7 +77,9 @@ public class pos extends javax.swing.JFrame {
         columnModel.getColumn(2).setWidth(300);
         columnModel.getColumn(2).setMinWidth(300);
         columnModel.getColumn(2).setMaxWidth(300);
-
+        columnModel.getColumn(3).setWidth(0);
+        columnModel.getColumn(3).setMinWidth(0);
+        columnModel.getColumn(3).setMaxWidth(0);
         modelodet = new DefaultTableModel();
         jTable1.setModel(modelodet);
 
@@ -86,6 +89,7 @@ public class pos extends javax.swing.JFrame {
         modelodet.addColumn("Cantidad");
         modelodet.addColumn("$ Precio");
         modelodet.addColumn("Total");
+        modelodet.addColumn("Familia");
 
         TableColumnModel columnModel2 = jTable1.getColumnModel();
         columnModel2.getColumn(0).setPreferredWidth(100);
@@ -94,7 +98,7 @@ public class pos extends javax.swing.JFrame {
         columnModel2.getColumn(3).setPreferredWidth(100);
         columnModel2.getColumn(4).setPreferredWidth(100);
         columnModel2.getColumn(5).setPreferredWidth(100);
-
+        columnModel2.getColumn(6).setPreferredWidth(0);
     }
 
     /**
@@ -784,7 +788,7 @@ public class pos extends javax.swing.JFrame {
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select id,barra,producto,venta2,boleta,solicitaprecio,mayorista from productos where barra = '" + Buscar + "'";
+        String query = "select id,barra,producto,venta2,boleta,solicitaprecio,mayorista,familia from productos where barra = '" + Buscar + "'";
         // JOptionPane.showMessageDialog(null, query);
         try {
             //getting database connection to MySQL server 
@@ -797,7 +801,7 @@ public class pos extends javax.swing.JFrame {
             while (rs.next()) {
                 String solicitaprecio = rs.getString(6);
 
-                Object[] object = new Object[6];
+                Object[] object = new Object[7];
                 object[0] = rs.getString(2);
                 object[1] = rs.getString(3);
                 object[2] = "";
@@ -847,7 +851,7 @@ public class pos extends javax.swing.JFrame {
                     object[4] = rs.getString(7);
                     object[5] = String.valueOf(parseInt(rs.getString(7)) * parseInt(jTextField3.getText()));
                 }
-
+                object[6] = rs.getString(8);
                 /*
                  if (!solicitaprecio.equals("S")){
                    if (jCheckBox1.isSelected()){
@@ -897,7 +901,7 @@ public class pos extends javax.swing.JFrame {
         Connection dbCon = null;
         Statement stmt = null;
         ResultSet rs = null;
-        String query = "select id,codigo,producto,venta2,mayorista from productos where producto like '%" + Buscar + "%'";
+        String query = "select id,codigo,producto,venta2,mayorista,familia from productos where producto like '%" + Buscar + "%'";
         // JOptionPane.showMessageDialog(null, query);
         try {
             //getting database connection to MySQL server 
@@ -908,7 +912,7 @@ public class pos extends javax.swing.JFrame {
             rs = stmt.executeQuery(query);
             while (rs.next()) {
 
-                Object[] object = new Object[4];
+                Object[] object = new Object[5];
                 object[0] = rs.getString(1);
                 object[1] = rs.getString(2);
                 object[2] = rs.getString(3);
@@ -918,7 +922,7 @@ public class pos extends javax.swing.JFrame {
                 } else {
                     object[3] = rs.getString(4);
                 }
-
+                object[4] = rs.getString(6);
                 System.out.println("Si");
 
                 modelo.addRow(object);
@@ -946,13 +950,14 @@ public class pos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Sin Precio");
             return;
         }
-        Object[] object = new Object[6];
+        Object[] object = new Object[7];
         object[0] = model.getValueAt(selectedRowIndex, 1).toString();
         object[1] = model.getValueAt(selectedRowIndex, 2).toString();
         object[2] = "";
         object[3] = jTextField3.getText();
         object[4] = model.getValueAt(selectedRowIndex, 3).toString();
         object[5] = String.valueOf(parseInt(model.getValueAt(selectedRowIndex, 3).toString()) * parseInt(jTextField3.getText()));
+        object[6] = model.getValueAt(selectedRowIndex, 4).toString();
         System.out.println("Si");
         /*
         String validador=(String) object[1];
@@ -1664,6 +1669,7 @@ public class pos extends javax.swing.JFrame {
         objeto4.jLabel26.setText("");
         objeto4.jLabel27.setText("");
         objeto4.jLabel29.setText(this.jLabel24.getText());
+        objeto4.jLabel33.setText("");
         //fin limpiar
 
         java.util.Date utilDate = new java.util.Date(); //fecha actual
@@ -1810,6 +1816,37 @@ public class pos extends javax.swing.JFrame {
         int tc3 = tc0 - tc;
         objeto4.jLabel16.setText(String.valueOf(tc3));
         //fin retiros
+        
+        
+        
+//cigarros
+        String query31 = "select id,total from detalle_tickets WHERE familia='cigarros' AND fecha = '" + fe + "'";
+        // JOptionPane.showMessageDialog(null, query);
+        int total31 = 0;
+        int t3 = 0;
+        try {
+            //getting database connection to MySQL server 
+            dbCon = DriverManager.getConnection(dbURL, username, password);
+            //getting PreparedStatment to execute query 
+            stmt = dbCon.prepareStatement(query31);
+            //Resultset returned by query 
+            rs = stmt.executeQuery(query31);
+
+            while (rs.next()) {
+
+                total31 = total31 + rs.getInt("total");
+
+            }
+
+            t3 = total31;
+            objeto4.jLabel33.setText(String.valueOf(t3));
+
+        } catch (SQLException ex) {
+            System.out.println("Nop");
+        }
+      
+        
+        //fin cigarros
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -2071,6 +2108,7 @@ public class pos extends javax.swing.JFrame {
         String cant;
         String pre;
         String total;
+        String familia;
         for (int i = 0; i < jTable1.getRowCount(); i++) {
             //for (int j = 0; j < jTable1.getColumnCount(); j++) {
             if (jTable1.getValueAt(i, 0).toString().isEmpty()) {
@@ -2084,11 +2122,12 @@ public class pos extends javax.swing.JFrame {
             cant = jTable1.getValueAt(i, 3).toString();
             pre = jTable1.getValueAt(i, 4).toString();
             total = jTable1.getValueAt(i, 5).toString();
+            familia = jTable1.getValueAt(i, 6).toString();
             String SQL_INSERT = "";
             try {
                 Connection conn = DriverManager.getConnection(dbURL, username, password);
 
-                SQL_INSERT = "insert into detalle_tickets(fecha,hora,numero_bol,codigo,descripcion,cant,precio,total) values (?,?,?,?,?,?,?,?)";
+                SQL_INSERT = "insert into detalle_tickets(fecha,hora,numero_bol,codigo,descripcion,cant,precio,total,familia) values (?,?,?,?,?,?,?,?,?)";
                 PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT);
 
                 preparedStatement.setString(1, sqlDate.toString());
@@ -2102,6 +2141,7 @@ public class pos extends javax.swing.JFrame {
                 preparedStatement.setString(6, cant);
                 preparedStatement.setString(7, pre);
                 preparedStatement.setString(8, total);
+                preparedStatement.setString(9, familia);
 
                 int row = preparedStatement.executeUpdate();
                 System.out.println(SQL_INSERT);
